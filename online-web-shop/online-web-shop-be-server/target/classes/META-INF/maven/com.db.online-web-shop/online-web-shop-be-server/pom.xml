@@ -6,4 +6,9 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>online-web-shop-be-server</artifactId>
+  
+    <properties>
+		<java.version>1.8</java.version>
+	</properties>
+  
 </project>
