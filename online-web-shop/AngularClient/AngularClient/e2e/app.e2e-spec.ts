@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('angular-client App', () => {
+describe('angular-client-ui App', () => {
   let page: AppPage;
 
   beforeEach(() => {

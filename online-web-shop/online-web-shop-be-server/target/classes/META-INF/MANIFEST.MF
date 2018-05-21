@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
 Implementation-Vendor: Pivotal Software, Inc.
 Implementation-Title: online-web-shop-be-server
-Implementation-Version: 0.0.1-SNAPSHOT
-Implementation-Vendor-Id: com.db.online-web-shop
+Implementation-Version: 1.5.9.RELEASE
+Implementation-Vendor-Id: org.springframework.boot
 Build-Jdk: 1.7.0_55
 Built-By: asen311
 Created-By: Maven Integration for Eclipse
 Implementation-URL: http://projects.spring.io/spring-boot/online-web-s
- hop/online-web-shop-be-server/
+ hop-be-server/
 
