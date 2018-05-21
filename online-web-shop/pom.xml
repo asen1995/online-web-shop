@@ -13,6 +13,12 @@
 		<version>1.5.9.RELEASE</version>
 	</parent>
 
+	<properties>
+
+		<ojdbc6.version>12.1.0.2</ojdbc6.version>
+
+	</properties>
+
 
 	<modules>
 		<module>online-web-shop-be-server</module>

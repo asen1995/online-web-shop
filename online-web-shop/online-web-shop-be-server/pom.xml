@@ -71,19 +71,20 @@
 			<artifactId>spring-data-oracle</artifactId>
 			<version>1.1.0.RELEASE</version>
 		</dependency>
+		<!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc6</artifactId> 
+			<version>12.1.0.2</version> <scope>runtime</scope> </dependency> -->
+
 		<dependency>
-	<groupId>com.oracle</groupId>
-	<artifactId>ojdbc6</artifactId>
-	<version>12.1.0.2</version>
-	<scope>runtime</scope>
-</dependency> 
-
-
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>12.1.0.2</version>
+			<scope>runtime</scope>
+		</dependency>
 
 	</dependencies>
 
 	<build>
-		<plugins>
+		<!-- <plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -124,7 +125,7 @@
 					</execution>
 				</executions>
 			</plugin>
-		</plugins>
+		</plugins> -->
 	</build>
 
 
