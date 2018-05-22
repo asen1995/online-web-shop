@@ -1,28 +1,28 @@
-<div >
+<div id="registration" >
     
      <h1> registration </h1>
         <div> 
-                username : <input type="text" placeholder="username"  minlength="5" maxlength="25" required>
+                username : <input [(ngModel)]="username" type="text" placeholder="username"  minlength="5" maxlength="25" required>
         </div>
 
         <div> 
-                password : <input type="password" placeholder="password"  minlength="5" maxlength="25" required>
+                password : <input [(ngModel)]="password" type="password" placeholder="password"  minlength="5" maxlength="25" required>
         </div>
 
         <div> 
-                country : <input type="text" placeholder="country"required>
+                country :  <input [(ngModel)]="country" type="text" placeholder="country" required>
+        </div>
+     
+        <div> 
+                city :     <input [(ngModel)]="city" type="text" placeholder="city"  maxlength="30"  required>
+        </div>
+                
+        <div> 
+                telephone : <input [(ngModel)]="telephone" type="text" placeholder="telephone"  maxlength="20"  required>
         </div>
 
         <div> 
-                city : <input type="text" placeholder="city"  maxlength="30"  required>
-        </div>
-
-        <div> 
-                telephone : <input type="text" placeholder="telephone"  maxlength="20"  required>
-        </div>
-
-        <div> 
-                mail : <input type="text" placeholder="mail" minlength="10" maxlength="30" required>
+                mail : <input  [(ngModel)]="mail" type="text" placeholder="mail" minlength="10" maxlength="30" required>
         </div>
 
        
