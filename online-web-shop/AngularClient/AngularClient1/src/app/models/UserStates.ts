@@ -1,8 +1,8 @@
-export class UserStates {
+export const UserStates = {
 
-    SIMPLE_USER: number = 1;
-    ADMIN_USER: number = 2;
-    DELETED_USER: number = 3;
-    BANNED_USER: number = 4;
+    SIMPLE_USER: 1,
+    ADMIN_USER:  2,
+    DELETED_USER:3,
+    BANNED_USER: 4,
     
 }

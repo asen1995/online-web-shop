@@ -5,4 +5,5 @@ export class User {
     city: string;
     telephone: string;
     mail: string;
+    user_state : number;
   }

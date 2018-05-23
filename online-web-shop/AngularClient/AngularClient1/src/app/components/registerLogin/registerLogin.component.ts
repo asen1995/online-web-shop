@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { User } from '../../models/User';
+import { UserStates } from '../../models/UserStates';
 
 import { environment } from '../../../environments/environment';
 @Component({
@@ -12,10 +13,7 @@ export class RegisterLoginComponent implements OnInit {
 
  
 
-  constructor(
-    private http: Http) {
-
-  }
+  constructor(private http: Http) {}
 
    user : User = {
     username: '',
@@ -24,6 +22,7 @@ export class RegisterLoginComponent implements OnInit {
     city: '',
     telephone: '',
     mail: '',
+    user_state : UserStates.SIMPLE_USER
    };
   
 
