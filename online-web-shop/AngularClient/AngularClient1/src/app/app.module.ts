@@ -3,19 +3,19 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms'; 
-import { RegisterComponent } from './components/register/register.component';
+import { RegisterLoginComponent } from './components/registerLogin/registerLogin.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterLoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
   providers: [],
-  bootstrap: [RegisterComponent]
+  bootstrap: [RegisterLoginComponent]
 })
 export class AppModule { }
