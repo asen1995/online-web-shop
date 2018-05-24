@@ -13,14 +13,15 @@ import { RegisterLoginService } from '../../services/registerLogin.service';
 export class HomeComponent implements OnInit {
 
 
+  showLgnScr : boolean;
 
   ngOnInit() {
-  
+    this.showLgnScr = false;
 
   }
 
 
   changeToLoginScreen(){
-    
+    this.showLgnScr = true;
   }
 }
