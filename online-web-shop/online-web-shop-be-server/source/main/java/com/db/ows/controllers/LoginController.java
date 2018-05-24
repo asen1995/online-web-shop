@@ -43,7 +43,7 @@ public class LoginController {
 	@RequestMapping( value = "/registerUser", method = RequestMethod.POST)
 	public void registerUser(User user) {
 		System.out.println(user);
-		System.out.println("pass ");
+		ls.registerUser(user);
 
 	}
 
