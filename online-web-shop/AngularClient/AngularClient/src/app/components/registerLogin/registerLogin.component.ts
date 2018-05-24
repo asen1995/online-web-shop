@@ -31,15 +31,8 @@ export class RegisterLoginComponent implements OnInit {
 
   registration: boolean;
 
-  chosenOperation: string;
-  buttonName: string;
-
-
-  response: string;
-
   ngOnInit() {
-    this.chosenOperation = this.registration ? "registration" : "login";
-    this.buttonName = this.registration ? "register" : "login";
+  
     this.determineSelectedOperation();
 
   }
@@ -48,8 +41,24 @@ export class RegisterLoginComponent implements OnInit {
     this.rls.registerUser(this.user);
    }
 
+
+   login(){
+     
+   }
+
+
    determineSelectedOperation(){
     this.registration = (this.rls.currentOperation ===  UserAction.REGISTRATION )? true:false;
    }
+  
+   changeToRegistrationScreen(){
+     this.rls.currentOperation = UserAction.REGISTRATION;
+     this.determineSelectedOperation();
 
+   }
+
+   changeToLoginScreen(){
+     this.rls.currentOperation = UserAction.LOGIN;
+     this.determineSelectedOperation();
+   }
 }
