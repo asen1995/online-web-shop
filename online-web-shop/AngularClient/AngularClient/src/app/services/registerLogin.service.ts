@@ -4,16 +4,22 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { BackEndService } from '../services/backEndService.service';
 import { User } from '../models/User';
+import { UserAction } from '../models/UserAction';
 
 
 @Injectable()
 export class RegisterLoginService {
 
-
-
     constructor(private http: HttpClient, private backendServer: BackEndService) { }
 
 
+    
+    currentOperation : UserAction;
+    
+
+    setCurrentOperation(selectedOperation : UserAction) {
+        this.currentOperation = selectedOperation;
+    }
 
     registerUser(user: User) {
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from '../../models/User';
 import { UserStates } from '../../models/UserStates';
+import { UserAction } from '../../models/UserAction';
 import { RegisterLoginService } from '../../services/registerLogin.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class RegisterLoginComponent implements OnInit {
  
   constructor(private rls: RegisterLoginService) { }
 
-
+  
    user : User = {
     username: '',
     password: '',
@@ -28,7 +29,7 @@ export class RegisterLoginComponent implements OnInit {
   
 
 
-  registration: boolean = true;
+  registration: boolean;
 
   chosenOperation: string;
   buttonName: string;
@@ -39,7 +40,7 @@ export class RegisterLoginComponent implements OnInit {
   ngOnInit() {
     this.chosenOperation = this.registration ? "registration" : "login";
     this.buttonName = this.registration ? "register" : "login";
-
+    this.determineSelectedOperation();
 
   }
 
@@ -47,5 +48,8 @@ export class RegisterLoginComponent implements OnInit {
     this.rls.registerUser(this.user);
    }
 
+   determineSelectedOperation(){
+    this.registration = (this.rls.currentOperation ===  UserAction.REGISTRATION )? true:false;
+   }
 
 }
