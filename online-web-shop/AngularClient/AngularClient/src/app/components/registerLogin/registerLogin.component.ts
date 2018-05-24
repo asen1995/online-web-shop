@@ -1,24 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+
 import { User } from '../../models/User';
 import { UserStates } from '../../models/UserStates';
+import { RegisterLoginService } from '../../services/registerLogin.service';
 
-import { environment } from '../../../environments/environment';
 @Component({
   selector: 'registerLogin',
   templateUrl: './registerLogin.component.html',
-  styleUrls: ['./registerLogin.component.css']
+  styleUrls: ['./registerLogin.component.css'],
+  providers: [RegisterLoginService]
 })
 export class RegisterLoginComponent implements OnInit {
 
  
+  constructor(private rls: RegisterLoginService) { }
 
-  constructor(private http: Http) {}
 
    user : User = {
-    username: 'dgdf',
-    password: 'fg',
-    country: 'fr',
+    username: '',
+    password: '',
+    country: '',
     city: '',
     telephone: '',
     mail: '',
@@ -38,16 +39,13 @@ export class RegisterLoginComponent implements OnInit {
   ngOnInit() {
     this.chosenOperation = this.registration ? "registration" : "login";
     this.buttonName = this.registration ? "register" : "login";
-  this.register();
+
 
   }
 
-  register() {
-    alert("triy");
-    this.http.put(environment._SERVER + 'login/try', {email: 'adam@example.com'}).subscribe(
-      res => {
-          const response = res.text();
-      }
-  );
-  }
+   register() {
+    this.rls.registerUser(this.user);
+   }
+
+
 }

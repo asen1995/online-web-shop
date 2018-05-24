@@ -2,19 +2,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
+import { RegisterLoginComponent } from './components/registerLogin/registerLogin.component';
 
-import { RegisterComponent } from './components/register/register.component';
+import { HttpClientModule } from '@angular/common/http';
+
+import { BackEndService } from '../app/services/backEndService.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterLoginComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
-  bootstrap: [RegisterComponent]
+  providers: [BackEndService],
+  bootstrap: [RegisterLoginComponent]
 })
 export class AppModule { }
