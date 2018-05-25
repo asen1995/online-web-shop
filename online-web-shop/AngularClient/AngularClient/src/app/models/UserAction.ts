@@ -1,3 +1,3 @@
 export enum UserAction {
-    LOGIN,REGISTRATION
- }
+    LOGIN, REGISTRATION
+}

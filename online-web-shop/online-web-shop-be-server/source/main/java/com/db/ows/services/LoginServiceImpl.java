@@ -17,4 +17,10 @@ public class LoginServiceImpl implements LoginService {
 		lr.registerUser(user);
 	}
 
+	@Override
+	public boolean userIsNotAlreadyRegistered(String username) {
+
+		return lr.userIsNotAlreadyRegistered(username);
+	}
+
 }

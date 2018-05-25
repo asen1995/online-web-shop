@@ -1,14 +1,18 @@
 package com.db.ows.repositories;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.db.ows.model.User;
 
+import com.db.ows.model.User;
+import static com.db.ows.model.CONSTANTS.*;
 @Repository
 public class LoginRepositoryImpl implements LoginRepository {
 
@@ -28,10 +32,30 @@ public class LoginRepositoryImpl implements LoginRepository {
 		params.put("city", user.getCity());
 		params.put("telephone", user.getTelephone());
 		params.put("mail", user.getMail());
-	
-		System.out.println("lets try to register " + user);
 
 		jdbcTmpl.update(sql.toString(), params);
+
+	}
+
+	@Override
+	public boolean userIsNotAlreadyRegistered(String username) {
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append(" SELECT COUNT(*) users_with_name FROM OWS_USERS where USERNAME = :username ");
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("username", username);
+
+		Integer findedUsers = 0;
+		findedUsers = jdbcTmpl.queryForObject(sql.toString(), params, new RowMapper<Integer>() {
+
+			@Override
+			public Integer mapRow(ResultSet res, int arg1) throws SQLException {
+				return res.getInt("users_with_name");
+			}
+		});
+
+		return (findedUsers == ZERO ) ? true : false;
 
 	}
 

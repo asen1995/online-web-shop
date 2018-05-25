@@ -10,4 +10,6 @@ public interface LoginService {
 
 	public void registerUser(User user);
 
+	public boolean userIsNotAlreadyRegistered(String username);
+
 }

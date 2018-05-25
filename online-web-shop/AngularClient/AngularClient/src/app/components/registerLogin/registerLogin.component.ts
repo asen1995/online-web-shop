@@ -13,52 +13,54 @@ import { RegisterLoginService } from '../../services/registerLogin.service';
 })
 export class RegisterLoginComponent implements OnInit {
 
- 
+
   constructor(private rls: RegisterLoginService) { }
 
-  
-   user : User = {
+
+  user: User = {
     username: '',
     password: '',
     country: '',
     city: '',
     telephone: '',
     mail: '',
-    user_state : UserStates.SIMPLE_USER
-   };
-  
+    user_state: UserStates.SIMPLE_USER
+  };
+
 
 
   registration: boolean;
 
+  registrationSuccess: boolean;
+
+
+
   ngOnInit() {
-  
+
+    this.determineSelectedOperation();
+    this.rls.showRegistrationMessage = false;
+  }
+
+  register() {
+    this.rls.registerUser(this.user);
+  }
+
+
+  login() {
+
+  }
+  determineSelectedOperation() {
+    this.registration = (this.rls.currentOperation === UserAction.REGISTRATION) ? true : false;
+  }
+
+  changeToRegistrationScreen() {
+    this.rls.currentOperation = UserAction.REGISTRATION;
     this.determineSelectedOperation();
 
   }
 
-   register() {
-    this.rls.registerUser(this.user);
-   }
-
-
-   login(){
-     
-   }
-
-
-   determineSelectedOperation(){
-    this.registration = (this.rls.currentOperation ===  UserAction.REGISTRATION )? true:false;
-   }
-  
-   changeToRegistrationScreen(){
-     this.rls.currentOperation = UserAction.REGISTRATION;
-     this.determineSelectedOperation();
-
-   }
-
-   changeToLoginScreen(){
-     this.rls.currentOperation = UserAction.LOGIN;
-     this.determineSelectedOperation();
-   }
+  changeToLoginScreen() {
+    this.rls.currentOperation = UserAction.LOGIN;
+    this.determineSelectedOperation();
+  }
 }

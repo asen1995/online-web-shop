@@ -1,7 +1,7 @@
 <div id="home">Online web platform
 
 
-    <button id="login-home"  (click)="changeToLoginScreen()" > login </button>
+    <button id="login-home" *ngIf="!showLgnScr" (click)="changeToLoginScreen()" > login </button>
     <registerLogin *ngIf="showLgnScr"></registerLogin>
 
 </div>

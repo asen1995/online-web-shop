@@ -6,18 +6,22 @@ import { BackEndService } from '../services/backEndService.service';
 import { User } from '../models/User';
 import { UserAction } from '../models/UserAction';
 
+import { constants } from '../constants';
 
 @Injectable()
 export class RegisterLoginService {
 
+
+    currentOperation: UserAction;
+
+
+    registrationSuccess: boolean;
+    showRegistrationMessage: boolean = false;
+
+
     constructor(private http: HttpClient, private backendServer: BackEndService) { }
 
-
-    
-    currentOperation : UserAction;
-    
-
-    setCurrentOperation(selectedOperation : UserAction) {
+    setCurrentOperation(selectedOperation: UserAction) {
         this.currentOperation = selectedOperation;
     }
 
@@ -40,17 +44,25 @@ export class RegisterLoginService {
 
             .subscribe(
             (val) => {
-                console.log("POST call successful value returned in body",
-                    val);
+                this.updateMessageStatus(val);
+              
             },
             response => {
-                console.log("POST call in error", response);
+
             },
             () => {
-                console.log("The POST observable is now completed.");
+
             });
 
-
     }
-
+    updateMessageStatus(response){
+        if (response == constants.REGISTRATION_SUCCESS ){
+            alert("suc");
+            this.registrationSuccess = this.showRegistrationMessage = true;
+        }else {
+            alert("fal");
+            this.registrationSuccess = false;
+            this.showRegistrationMessage = true;
+        }
+    }
 }
