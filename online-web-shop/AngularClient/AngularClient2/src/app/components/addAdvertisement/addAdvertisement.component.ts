@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BackEndService } from '../../services/backEndService.service';
 @Component({
     selector: 'addAdvertisement',
-    templateUrl: './addAvertisement.component.html',
-    styleUrls: ['./addAvertisement.component.css']
+    templateUrl: './addAdvertisement.component.html',
+    styleUrls: ['./addAdvertisement.component.css']
 })
 export class AddAdvertisementComponent implements OnInit {
 

@@ -11,11 +11,14 @@ import { BackEndService } from '../app/services/backEndService.service';
 
 import { RegisterLoginComponent } from './components/registerLogin/registerLogin.component';
 import { HomeComponent  } from '../app/components/home/home.component';
+import { AddAdvertisementComponent } from '../app/components/addAdvertisement/addAdvertisement.component'
 @NgModule({
   declarations: [
     AppComponent,
     RegisterLoginComponent,
-    HomeComponent
+    HomeComponent,
+    AddAdvertisementComponent
+  
   ],
   imports: [
     BrowserModule,
