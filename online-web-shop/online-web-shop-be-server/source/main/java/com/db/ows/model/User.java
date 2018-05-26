@@ -10,6 +10,10 @@ public class User {
 	private String telephone;
 	private String mail;
 	private int user_state;
+	private int profileOpenedcount;
+	private int currentAdvertisementCount;
+	private String registerDate;
+	private String lastLoginDate;
 
 	@Override
 	public String toString() {
@@ -79,6 +83,38 @@ public class User {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public int getProfileOpenedcount() {
+		return profileOpenedcount;
+	}
+
+	public void setProfileOpenedcount(int profileOpenedcount) {
+		this.profileOpenedcount = profileOpenedcount;
+	}
+
+	public int getCurrentAdvertisementCount() {
+		return currentAdvertisementCount;
+	}
+
+	public void setCurrentAdvertisementCount(int currentAdvertisementCount) {
+		this.currentAdvertisementCount = currentAdvertisementCount;
+	}
+
+	public String getRegisterDate() {
+		return registerDate;
+	}
+
+	public void setRegisterDate(String registerDate) {
+		this.registerDate = registerDate;
+	}
+
+	public String getLastLoginDate() {
+		return lastLoginDate;
+	}
+
+	public void setLastLoginDate(String lastLoginDate) {
+		this.lastLoginDate = lastLoginDate;
 	}
 
 }
