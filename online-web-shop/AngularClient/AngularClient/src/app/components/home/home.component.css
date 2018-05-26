@@ -7,3 +7,8 @@
     float: right;
     size: 300px;
 }
+
+.advertisement-style{
+    background-color:rgb(82, 199, 253);
+    padding : 1%;
+}
