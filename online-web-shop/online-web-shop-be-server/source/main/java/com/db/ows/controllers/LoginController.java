@@ -17,11 +17,6 @@ public class LoginController {
 	@Autowired
 	private LoginService ls;
 
-	@GetMapping(value = "/getLoggedInUser")
-	public String getLoggedInUser() {
-		System.out.println("gets called");
-		return "@GetMapping";
-	}
 
 	@RequestMapping(value = "/loginUser", method = RequestMethod.POST)
 	public void loginUser(String username, String password) {	
