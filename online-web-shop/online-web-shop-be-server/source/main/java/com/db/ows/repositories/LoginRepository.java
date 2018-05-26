@@ -6,4 +6,8 @@ public interface LoginRepository {
 	public void registerUser(User user);
 
 	public boolean userIsNotAlreadyRegistered(String username);
+
+	public User getUser(String username, String password);
+
+	public boolean userExisting(String username, String password);
 }

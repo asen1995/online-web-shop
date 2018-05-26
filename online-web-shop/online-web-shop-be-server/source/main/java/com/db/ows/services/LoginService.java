@@ -12,4 +12,6 @@ public interface LoginService {
 
 	public boolean userIsNotAlreadyRegistered(String username);
 
+	public User getUser(String username, String password);
+
 }

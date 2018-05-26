@@ -17,18 +17,6 @@ export class RegisterLoginComponent implements OnInit {
   constructor(private rls: RegisterLoginService) { }
 
 
-  user: User = {
-    username: '',
-    password: '',
-    country: '',
-    city: '',
-    telephone: '',
-    mail: '',
-    user_state: UserStates.SIMPLE_USER
-  };
-
-
-
   registration: boolean;
 
   registrationSuccess: boolean;
@@ -42,12 +30,12 @@ export class RegisterLoginComponent implements OnInit {
   }
 
   register() {
-    this.rls.registerUser(this.user);
+    this.rls.registerUser();
   }
 
 
   login() {
-
+    this.rls.loginUser();
   }
   determineSelectedOperation() {
     this.registration = (this.rls.currentOperation === UserAction.REGISTRATION) ? true : false;

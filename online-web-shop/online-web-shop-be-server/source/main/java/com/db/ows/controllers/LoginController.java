@@ -18,10 +18,12 @@ public class LoginController {
 	private LoginService ls;
 
 
-	@RequestMapping(value = "/loginUser", method = RequestMethod.POST)
-	public void loginUser(String username, String password) {	
+	@RequestMapping(value = "/loginUser", method = RequestMethod.GET)
+	public User loginUser(String username, String password) {
+		return ls.getUser(username,password);
 	}
 
+	
 	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
 	public RegistrationState registerUser(User user) {
 	

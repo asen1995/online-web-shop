@@ -24,6 +24,6 @@ import { HomeComponent  } from '../app/components/home/home.component';
     HttpClientModule
   ],
   providers: [BackEndService],
-  bootstrap: [HomeComponent]
+  bootstrap: [RegisterLoginComponent]
 })
 export class AppModule { }

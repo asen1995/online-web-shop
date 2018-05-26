@@ -1,4 +1,4 @@
-<div id="registration">
+<div id="registration" *ngIf="!rls.userIsLogged">
 
         <h1>
                 <span *ngIf="!registration"> Login </span>
@@ -6,33 +6,33 @@
         </h1>
         <div>
                 username :
-                <input [(ngModel)]="user.username" type="text" placeholder="username" minlength="5" maxlength="25" required>
+                <input [(ngModel)]="rls.user.username" type="text" placeholder="username" minlength="5" maxlength="25" required>
         </div>
 
         <div>
                 password :
-                <input [(ngModel)]="user.password" type="password" placeholder="password" minlength="5" maxlength="25" required>
+                <input [(ngModel)]="rls.user.password" type="password" placeholder="password" minlength="5" maxlength="25" required>
         </div>
 
         <div *ngIf="registration">
                 <div>
                         country :
-                        <input [(ngModel)]="user.country" type="text" placeholder="country" required>
+                        <input [(ngModel)]="rls.user.country" type="text" placeholder="country" required>
                 </div>
 
                 <div>
                         city :
-                        <input [(ngModel)]="user.city" type="text" placeholder="city" maxlength="30" required>
+                        <input [(ngModel)]="rls.user.city" type="text" placeholder="city" maxlength="30" required>
                 </div>
 
                 <div>
                         telephone :
-                        <input [(ngModel)]="user.telephone" type="text" placeholder="telephone" maxlength="20" required>
+                        <input [(ngModel)]="rls.user.telephone" type="text" placeholder="telephone" maxlength="20" required>
                 </div>
 
                 <div>
                         mail :
-                        <input [(ngModel)]="user.mail" type="text" placeholder="mail" minlength="10" maxlength="30" required>
+                        <input [(ngModel)]="rls.user.mail" type="text" placeholder="mail" minlength="10" maxlength="30" required>
                 </div>
         </div>
 
@@ -59,4 +59,9 @@
 
 
         </div>
+
+
+</div>
+<div>
+        <home *ngIf="rls.userIsLogged"> </home>
 </div>

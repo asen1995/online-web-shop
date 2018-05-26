@@ -13,6 +13,8 @@ import { RegisterLoginService } from '../../services/registerLogin.service';
 export class HomeComponent implements OnInit {
 
 
+  constructor(private rls: RegisterLoginService) { }
+
   showLgnScr : boolean;
 
   ngOnInit() {

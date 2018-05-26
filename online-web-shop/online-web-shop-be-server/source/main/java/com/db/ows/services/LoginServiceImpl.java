@@ -23,4 +23,12 @@ public class LoginServiceImpl implements LoginService {
 		return lr.userIsNotAlreadyRegistered(username);
 	}
 
+	@Override
+	public User getUser(String username, String password) {
+		if(lr.userExisting(username,password)){			
+			return lr.getUser(username, password);
+		}
+		return null;
+	}
+
 }

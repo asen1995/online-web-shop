@@ -8,8 +8,19 @@ import { UserAction } from '../models/UserAction';
 
 import { constants } from '../constants';
 
+import { UserStates } from '../models/UserStates';
 @Injectable()
 export class RegisterLoginService {
+    
+  user: User = {
+    username: '',
+    password: '',
+    country: '',
+    city: '',
+    telephone: '',
+    mail: '',
+    user_state: UserStates.SIMPLE_USER
+  };
 
 
     currentOperation: UserAction;
@@ -18,6 +29,7 @@ export class RegisterLoginService {
     registrationSuccess: boolean;
     showRegistrationMessage: boolean = false;
 
+    userIsLogged : boolean = false;
 
     constructor(private http: HttpClient, private backendServer: BackEndService) { }
 
@@ -25,18 +37,18 @@ export class RegisterLoginService {
         this.currentOperation = selectedOperation;
     }
 
-    registerUser(user: User) {
+    registerUser() {
 
         const params =
             {
                 params: new HttpParams()
-                    .set('username', user.username)
-                    .set("password", user.password)
-                    .set("country", user.country)
-                    .set("city", user.city)
-                    .set("telephone", user.telephone)
-                    .set("mail", user.mail)
-                    .set("user_state", String(user.user_state))
+                    .set('username', this.user.username)
+                    .set("password", this.user.password)
+                    .set("country", this.user.country)
+                    .set("city", this.user.city)
+                    .set("telephone", this.user.telephone)
+                    .set("mail", this.user.mail)
+                    .set("user_state", String(this.user.user_state))
             };
 
 
@@ -57,12 +69,30 @@ export class RegisterLoginService {
     }
     updateMessageStatus(response){
         if (response == constants.REGISTRATION_SUCCESS ){
-            alert("suc");
             this.registrationSuccess = this.showRegistrationMessage = true;
         }else {
-            alert("fal");
             this.registrationSuccess = false;
             this.showRegistrationMessage = true;
         }
     }
+
+
+    loginUser(){
+
+        const params =
+        {
+            params: new HttpParams()
+                .set('username',this.user.username)
+                .set("password",this.user.password)
+          
+        };
+
+         this.http.get(this.backendServer.getServer() + "login/loginUser",params).subscribe(data => {
+             console.log(data);
+             this.userIsLogged = true;
+             alert(   this. userIsLogged);
+           });
+        }
+    
+
 }
