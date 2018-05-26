@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input } from '@angular/core';
 
 import { User } from '../../models/User';
 import { UserStates } from '../../models/UserStates';
@@ -14,14 +14,15 @@ import { BackEndService } from '../../services/backEndService.service';
 })
 export class HomeComponent implements OnInit {
 
+  @Input() user:User;
 
   constructor(private rls: RegisterLoginService, private http: HttpClient,private backendServer: BackEndService) { }
 
   showLgnScr: boolean;
+  newAdvertisement : boolean;
 
 
-
-  ngOnInit() {
+  ngOnInit() { 
     this.showLgnScr = false;
     this.getAdvertisements();
   
@@ -40,5 +41,10 @@ export class HomeComponent implements OnInit {
 
   changeToLoginScreen() {
     this.showLgnScr = true;
+  }
+
+
+  createAdvertisementScreen(){
+    this.newAdvertisement = true;
   }
 }

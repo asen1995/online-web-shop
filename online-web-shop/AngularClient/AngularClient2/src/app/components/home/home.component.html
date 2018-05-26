@@ -3,16 +3,14 @@
     <!-- 
     <button id="login-home" *ngIf="!showLgnScr" (click)="changeToLoginScreen()" > login </button>
     <registerLogin *ngIf="showLgnScr"></registerLogin> -->
-
-    Welcome tr бе we
-
-   
+<div *ngIf="!newAdvertisement">
+    Welcome tr 
+  
+        <a (click)="createAdvertisementScreen();" >  create you advertisement </a>
         <div class="advertisement-style" *ngFor="let advertisement of advertisements"> {{advertisement}}</div>
-    
-        <button type="button" class="btn btn-default">Default</button>
-        <button type="button" class="btn btn-primary">Primary</button>
-        <button type="button" class="btn btn-success">Success</button>
-        <button type="button" class="btn btn-info">Info</button>
-        <button type="button" class="btn btn-warning">Warning</button>
+
+    </div>
+
 
 </div>
+<addAdvertisement *ngIf="newAdvertisement" hero="petur"> new adv</addAdvertisement>
