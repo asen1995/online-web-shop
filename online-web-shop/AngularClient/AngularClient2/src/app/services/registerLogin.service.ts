@@ -11,16 +11,17 @@ import { constants } from '../constants';
 import { UserStates } from '../models/UserStates';
 @Injectable()
 export class RegisterLoginService {
-    
-  user: User = {
-    username: '',
-    password: '',
-    country: '',
-    city: '',
-    telephone: '',
-    mail: '',
-    user_state: UserStates.SIMPLE_USER
-  };
+
+    user: User = {
+        userId : null,
+        username: '',
+        password: '',
+        country: '',
+        city: '',
+        telephone: '',
+        mail: '',
+        user_state: UserStates.SIMPLE_USER
+    };
 
 
     currentOperation: UserAction;
@@ -29,7 +30,7 @@ export class RegisterLoginService {
     registrationSuccess: boolean;
     showRegistrationMessage: boolean = false;
 
-    userIsLogged : boolean = false;
+    userIsLogged: boolean = false;
 
     constructor(private http: HttpClient, private backendServer: BackEndService) { }
 
@@ -57,7 +58,7 @@ export class RegisterLoginService {
             .subscribe(
             (val) => {
                 this.updateMessageStatus(val);
-              
+
             },
             response => {
 
@@ -67,32 +68,40 @@ export class RegisterLoginService {
             });
 
     }
-    updateMessageStatus(response){
-        if (response == constants.REGISTRATION_SUCCESS ){
+    updateMessageStatus(response) {
+        if (response == constants.REGISTRATION_SUCCESS) {
             this.registrationSuccess = this.showRegistrationMessage = true;
-        }else {
+        } else {
             this.registrationSuccess = false;
             this.showRegistrationMessage = true;
         }
     }
 
 
-    loginUser(){
+    loginUser() {
 
         const params =
-        {
-            params: new HttpParams()
-                .set('username',this.user.username)
-                .set("password",this.user.password)
-          
-        };
+            {
+                params: new HttpParams()
+                    .set('username', this.user.username)
+                    .set("password", this.user.password)
 
-         this.http.get(this.backendServer.getServer() + "login/loginUser",params).subscribe(data => {
-             console.log(data);
-             this.userIsLogged = true;
-             alert(   this. userIsLogged);
-           });
-        }
-    
+            };
+
+        this.http.get(this.backendServer.getServer() + "login/loginUser", params).subscribe(data => {
+          
+            this.userIsLogged = true;
+            this.user.userId = data.userId;
+            this.user.username = data.username;
+          //  this.password: data.password,
+            this.user.password = null;
+            this.user.country = data.country;
+            this.user.city = data.city;
+            this.user.telephone = data.telephone;
+            this.user.mail = data.mail;
+            this.user.user_state = data.user_state;  
+        });
+    }
+
 
 }
