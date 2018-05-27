@@ -1,5 +1,7 @@
 package com.db.ows.controllers;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.db.ows.model.Advertisement;
 import com.db.ows.services.AdvertisementService;
+import com.db.ows.services.ImageService;
 
 @RestController
 @RequestMapping("/edit")
@@ -19,6 +22,9 @@ public class EditController {
 	@Autowired
 	private AdvertisementService as;
 	
+	@Autowired
+	private ImageService imgs;
+	
 	@RequestMapping(value = "/getAdvertisements", method = RequestMethod.GET)
 	public List<Advertisement> getAdvertisements() {
 		return as.getAdvertisements();
@@ -26,8 +32,9 @@ public class EditController {
 	
 	@RequestMapping(value = "/createAdvertisement", method = RequestMethod.POST)
 	public boolean createAdvertisement(Advertisement advertisement, String userId, MultipartFile image) {
-
-		as.createAdvertisement(advertisement, userId);
+		imgs.saveImage(image);
+		
+	//	as.createAdvertisement(advertisement, userId);
 		return true;
 
 	}
