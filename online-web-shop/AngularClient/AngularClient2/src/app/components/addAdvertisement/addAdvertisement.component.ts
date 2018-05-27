@@ -18,7 +18,8 @@ export class AddAdvertisementComponent implements OnInit {
     constructor(private http: HttpClient, private backendServer: BackEndService) { }
 
     @Input() loggedUser: User;
-
+    
+    selectedImage : File = null;
 
     advertisement: Advertisement = {
         advertisementId: null,
@@ -41,11 +42,13 @@ export class AddAdvertisementComponent implements OnInit {
                 .set("information", this.advertisement.information)
                 .set("price", String(this.advertisement.price))
                 .set("userId",  String(this.advertisement.userId))
-                
+                .set("image",  String(this.selectedImage))
         };
 
-
-    this.http.post(this.backendServer.getServer() + "edit/createAdvertisement", '', params)
+        const fileUpload = new FormData();
+        fileUpload.append("image",this.selectedImage,this.selectedImage.name);
+      
+        this.http.post(this.backendServer.getServer() + "edit/createAdvertisement", fileUpload, params)
 
         .subscribe(
         (val) => {
@@ -57,6 +60,11 @@ export class AddAdvertisementComponent implements OnInit {
 
     }
 
+
+
+    onFileSelected(event){      
+        this.selectedImage = <File> event.target.files[0];
+    }
 
 
     ngOnInit() {
