@@ -20,8 +20,8 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 	}
 
 	@Override
-	public void createAdvertisement(Advertisement advertisement, String userId) {
-		ar.createAdvertisement(advertisement, userId);
+	public Integer createAdvertisement(Advertisement advertisement, String userId) {
+		return ar.createAdvertisement(advertisement, userId);
 	}
 
 }

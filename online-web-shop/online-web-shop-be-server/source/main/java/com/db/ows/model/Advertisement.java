@@ -1,5 +1,7 @@
 package com.db.ows.model;
 
+import java.util.List;
+
 public class Advertisement {
 
 	private String advertisementId;
@@ -9,7 +11,17 @@ public class Advertisement {
 	private String advertisementStatus;
 	private User creator;
 	private String price;
+	private List<Image> images;
 	
+	
+	public List<Image> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
+
 	public String getAdvertisementStatus() {
 		return advertisementStatus;
 	}

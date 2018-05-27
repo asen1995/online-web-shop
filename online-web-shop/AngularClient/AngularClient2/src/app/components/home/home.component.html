@@ -7,7 +7,17 @@
     Welcome tr 
   
         <a (click)="createAdvertisementScreen();" >  create you advertisement </a>
-        <div class="advertisement-style" *ngFor="let advertisement of advertisements"> {{advertisement}}</div>
+        <div class="advertisement-style" *ngFor="let advertisement of advertisements"> {{advertisement.title}}
+
+            <div *ngFor="let image of advertisement.images"  style="background-color:red;" >
+                <span style="background-color:red;"> </span>
+
+                <img id="ItemPreview" src="{{imageDecoder}},{{image.imageContent}}" />
+
+
+            </div>
+
+        </div>
 
     </div>
 

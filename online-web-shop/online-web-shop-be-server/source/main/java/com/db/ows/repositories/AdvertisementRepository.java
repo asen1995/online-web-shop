@@ -7,5 +7,5 @@ import com.db.ows.model.Advertisement;
 public interface AdvertisementRepository {
 	public List<Advertisement> getAdvertisements();
 
-	public void createAdvertisement(Advertisement advertisement, String userId);
+	public Integer createAdvertisement(Advertisement advertisement, String userId);
 }

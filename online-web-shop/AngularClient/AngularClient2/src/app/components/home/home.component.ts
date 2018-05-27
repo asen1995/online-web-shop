@@ -6,6 +6,8 @@ import { RegisterLoginService } from '../../services/registerLogin.service';
 
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BackEndService } from '../../services/backEndService.service';
+
+import { ImageDecoder } from '../../models/ImageDecoder';
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -21,6 +23,7 @@ export class HomeComponent implements OnInit {
   showLgnScr: boolean;
   newAdvertisement : boolean;
 
+  imageDecoder : string = ImageDecoder.DECODER;
 
   ngOnInit() { 
     this.showLgnScr = false;
