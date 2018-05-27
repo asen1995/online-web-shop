@@ -2,13 +2,14 @@ package com.db.ows.model;
 
 public class Advertisement {
 
-	private int advertisementId;
+	private String advertisementId;
 	private String title;
 	private String information;
 	private String createDate;
 	private String advertisementStatus;
 	private User creator;
-
+	private String price;
+	
 	public String getAdvertisementStatus() {
 		return advertisementStatus;
 	}
@@ -17,11 +18,11 @@ public class Advertisement {
 		this.advertisementStatus = advertisementStatus;
 	}
 
-	public int getAdvertisementId() {
+	public String getAdvertisementId() {
 		return advertisementId;
 	}
 
-	public void setAdvertisementId(int advertisementId) {
+	public void setAdvertisementId(String advertisementId) {
 		this.advertisementId = advertisementId;
 	}
 
@@ -56,5 +57,21 @@ public class Advertisement {
 	public void setCreator(User creator) {
 		this.creator = creator;
 	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "Advertisement [advertisementId=" + advertisementId + ", title=" + title + ", information=" + information
+				+ ", createDate=" + createDate + ", advertisementStatus=" + advertisementStatus + ", creator=" + creator
+				+ ", price=" + price + "]";
+	}
+	
 
 }

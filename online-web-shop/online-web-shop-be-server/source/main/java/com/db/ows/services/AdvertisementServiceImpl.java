@@ -19,4 +19,9 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 		return ar.getAdvertisements();
 	}
 
+	@Override
+	public void createAdvertisement(Advertisement advertisement, String userId) {
+		ar.createAdvertisement(advertisement, userId);
+	}
+
 }

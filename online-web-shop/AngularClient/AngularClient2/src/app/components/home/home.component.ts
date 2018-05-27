@@ -14,7 +14,7 @@ import { BackEndService } from '../../services/backEndService.service';
 })
 export class HomeComponent implements OnInit {
 
-  @Input() user:User;
+  @Input() loggedUser : User;
 
   constructor(private rls: RegisterLoginService, private http: HttpClient,private backendServer: BackEndService) { }
 

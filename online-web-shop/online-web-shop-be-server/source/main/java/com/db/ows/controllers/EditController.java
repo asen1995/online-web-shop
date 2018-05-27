@@ -21,6 +21,12 @@ public class EditController {
 	public List<Advertisement> getAdvertisements() {
 		return as.getAdvertisements();
 	}
+	
+	@RequestMapping(value = "/createAdvertisement", method = RequestMethod.POST)
+	public boolean createAdvertisement(Advertisement advertisement, String userId ) {
+		as.createAdvertisement(advertisement,userId);
+		return true;
+	}
 
 	
 }

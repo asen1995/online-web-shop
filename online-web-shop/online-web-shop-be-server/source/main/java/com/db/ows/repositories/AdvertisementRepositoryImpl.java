@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.db.ows.model.Advertisement;
+import com.db.ows.model.AdvertisementStatus;
 import com.db.ows.model.User;
 
 @Repository
@@ -42,15 +43,15 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 						List<Advertisement> advertisements = new ArrayList<Advertisement>();
 
 						while (res.next()) {
-						
+
 							Advertisement advertisement = new Advertisement();
-							advertisement.setAdvertisementId(res.getInt("Advertisement_Id"));
+							advertisement.setAdvertisementId(res.getString("Advertisement_Id"));
 							advertisement.setTitle(res.getString("Title"));
 							advertisement.setInformation(res.getString("Information"));
 							advertisement.setCreateDate(res.getString("Create_Date"));
 
 							User creatorOfAdvertisement = new User();
-							
+
 							creatorOfAdvertisement.setUserId(res.getInt("user_id"));
 							creatorOfAdvertisement.setUsername(res.getString("username"));
 							creatorOfAdvertisement.setCountry(res.getString("Country"));
@@ -69,8 +70,31 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 						return advertisements;
 					}
 				});
-	
+
 		return advertisements;
+	}
+
+	@Override
+	public void createAdvertisement(Advertisement advertisement, String userId) {
+		
+		
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO OWS_ADVERTISEMENTS  ( ADVERTISEMENT_ID, TITLE,INFORMATION, ");
+		sql.append(" ADVERTISEMENT_STATUS, CREATOR_USER_ID ,PRICE ) ");
+		sql.append("VALUES  ( Ows_Advertisements_Seq.Nextval, :title,  "
+				+ ":information ,  :advertisementStatus , :cre_user_id , :price ) ");
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("title", advertisement.getTitle());
+		params.put("information", advertisement.getInformation());
+		params.put("advertisementStatus", AdvertisementStatus.WAITING_APPROVE.getStatus());
+		params.put("cre_user_id", userId);
+		params.put("price", advertisement.getPrice());
+		
+
+		jdbcTmpl.update(sql.toString(), params);
+		
 	}
 
 }

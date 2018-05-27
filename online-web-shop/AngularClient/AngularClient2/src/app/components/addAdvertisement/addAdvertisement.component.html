@@ -1,1 +1,13 @@
-<div>aide {{hero}} </div>
+<div>
+    
+     <h1> Create your own advertisement </h1>
+
+       title : <input type="text" placeholder="title" [(ngModel)]="advertisement.title" ><br>
+         info  : <textarea [(ngModel)]="advertisement.information" >  </textarea>
+    <br>
+         price : <input type="text" placeholder="price" [(ngModel)]="advertisement.price" > 
+
+         <br>
+         
+  <button type="button" class="btn btn-primary" (click)="createAdvertisement();" > create </button>
+</div>
