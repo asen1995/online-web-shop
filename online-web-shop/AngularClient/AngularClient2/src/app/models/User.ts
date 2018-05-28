@@ -7,4 +7,5 @@ export class User {
     telephone: string;
     mail: string;
     user_state : number;
+    userImage : File;
   }

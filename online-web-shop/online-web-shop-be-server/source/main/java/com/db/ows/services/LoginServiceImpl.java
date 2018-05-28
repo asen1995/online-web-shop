@@ -13,8 +13,8 @@ public class LoginServiceImpl implements LoginService {
 	LoginRepository lr;
 
 	@Override
-	public void registerUser(User user) {
-		lr.registerUser(user);
+	public Integer registerUser(User user) {
+		return lr.registerUser(user);
 	}
 
 	@Override

@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.db.ows.model.Advertisement;
+import com.db.ows.model.ImageType;
 import com.db.ows.services.AdvertisementService;
 import com.db.ows.services.ImageService;
 
@@ -33,8 +34,7 @@ public class EditController {
 	@RequestMapping(value = "/createAdvertisement", method = RequestMethod.POST)
 	public boolean createAdvertisement(Advertisement advertisement, String userId, MultipartFile image) {
 		Integer advId = as.createAdvertisement(advertisement, userId);
-		imgs.saveImage(image, advId);
-	
+		imgs.saveImage(image, advId, ImageType.ADVERTISEMENT.getType() );	
 		return true;
 
 	}

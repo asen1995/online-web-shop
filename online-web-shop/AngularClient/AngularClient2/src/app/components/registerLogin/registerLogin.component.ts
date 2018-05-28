@@ -51,4 +51,10 @@ export class RegisterLoginComponent implements OnInit {
     this.rls.currentOperation = UserAction.LOGIN;
     this.determineSelectedOperation();
   }
+
+
+  onFileSelected(event){      
+    this.rls.user.userImage = <File> event.target.files[0];
+  } 
+
 }

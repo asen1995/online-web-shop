@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -19,13 +21,26 @@ public class LoginRepositoryImpl implements LoginRepository {
 	@Autowired
 	NamedParameterJdbcTemplate jdbcTmpl;
 
-	public void registerUser(User user) {
+	public Integer registerUser(User user) {
+		
+		String seq = " select OWS_USERS_SEQ.nextval from dual ";
+
+		Integer userId = jdbcTmpl.query(seq, new ResultSetExtractor<Integer>() {
+			@Override
+			public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+				while (rs.next()) {
+					return rs.getInt(1);
+				}
+				return null;
+			}
+		});
 
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO OWS_USERS  (USER_ID,USERNAME,PASSWORD, COUNTRY,   CITY, TELEPHONE, MAIL )");
-		sql.append(" VALUES (  OWS_USERS_SEQ.nextval, :username , :password , :country , :city , :telephone , :mail )");		
+		sql.append(" VALUES (  :userId , :username , :password , :country , :city , :telephone , :mail )");
 
 		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", userId);
 		params.put("username", user.getUsername());
 		params.put("password", user.getPassword());
 		params.put("country", user.getCountry());
@@ -34,6 +49,8 @@ public class LoginRepositoryImpl implements LoginRepository {
 		params.put("mail", user.getMail());
 
 		jdbcTmpl.update(sql.toString(), params);
+		
+		return userId;
 
 	}
 

@@ -1,5 +1,7 @@
 package com.db.ows.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class User {
 
 	private int userId;
@@ -14,11 +16,21 @@ public class User {
 	private int currentAdvertisementCount;
 	private String registerDate;
 	private String lastLoginDate;
-
+	private MultipartFile image;
+	
 	@Override
 	public String toString() {
 		return "User [username=" + username + ", password=" + password + ", country=" + country + ", city=" + city
-				+ ", telephone=" + telephone + ", mail=" + mail + ", user_state=" + user_state + "]";
+				+ ", telephone=" + telephone + ", mail=" + mail + ", user_state=" + user_state + ", " + image + "]";
+	}
+
+	
+	public MultipartFile getImage() {
+		return image;
+	}
+
+	public void setImage(MultipartFile image) {
+		this.image = image;
 	}
 
 	public String getUsername() {

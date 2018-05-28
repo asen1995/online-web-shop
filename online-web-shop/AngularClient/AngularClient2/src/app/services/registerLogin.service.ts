@@ -13,14 +13,15 @@ import { UserStates } from '../models/UserStates';
 export class RegisterLoginService {
 
     user: User = {
-        userId : null,
+        userId: null,
         username: '',
         password: '',
         country: '',
         city: '',
         telephone: '',
         mail: '',
-        user_state: UserStates.SIMPLE_USER
+        user_state: UserStates.SIMPLE_USER,
+        userImage: null
     };
 
 
@@ -52,56 +53,61 @@ export class RegisterLoginService {
                     .set("user_state", String(this.user.user_state))
             };
 
+        const fileUpload = new FormData();
+        
+        if (this.user.userImage != null){
+            fileUpload.append("image", this.user.userImage,  this.user.userImage.name);
+        };
 
-        this.http.post(this.backendServer.getServer() + "login/registerUser", '', params)
+        this.http.post(this.backendServer.getServer() + "login/registerUser", fileUpload, params)
 
-            .subscribe(
-            (val) => {
-                this.updateMessageStatus(val);
+    .subscribe(
+    (val) => {
+        this.updateMessageStatus(val);
 
-            },
-            response => {
+    },
+    response => {
 
-            },
-            () => {
+    },
+    () => {
 
-            });
+    });
 
     }
-    updateMessageStatus(response) {
-        if (response == constants.REGISTRATION_SUCCESS) {
-            this.registrationSuccess = this.showRegistrationMessage = true;
-        } else {
-            this.registrationSuccess = false;
-            this.showRegistrationMessage = true;
-        }
+updateMessageStatus(response) {
+    if (response == constants.REGISTRATION_SUCCESS) {
+        this.registrationSuccess = this.showRegistrationMessage = true;
+    } else {
+        this.registrationSuccess = false;
+        this.showRegistrationMessage = true;
     }
+}
 
 
-    loginUser() {
+loginUser() {
 
-        const params =
-            {
-                params: new HttpParams()
-                    .set('username', this.user.username)
-                    .set("password", this.user.password)
+    const params =
+        {
+            params: new HttpParams()
+                .set('username', this.user.username)
+                .set("password", this.user.password)
 
-            };
+        };
 
-        this.http.get(this.backendServer.getServer() + "login/loginUser", params).subscribe(data => {
-          
-            this.userIsLogged = true;
-            this.user.userId = data.userId;
-            this.user.username = data.username;
-          //  this.password: data.password,
-            this.user.password = null;
-            this.user.country = data.country;
-            this.user.city = data.city;
-            this.user.telephone = data.telephone;
-            this.user.mail = data.mail;
-            this.user.user_state = data.user_state;  
-        });
-    }
+    this.http.get(this.backendServer.getServer() + "login/loginUser", params).subscribe(data => {
+
+        this.userIsLogged = true;
+        this.user.userId = data.userId;
+        this.user.username = data.username;
+        //  this.password: data.password,
+        this.user.password = null;
+        this.user.country = data.country;
+        this.user.city = data.city;
+        this.user.telephone = data.telephone;
+        this.user.mail = data.mail;
+        this.user.user_state = data.user_state;
+    });
+}
 
 
 }

@@ -13,8 +13,8 @@ public class ImageServiceImpl implements ImageService {
 	private ImageRepository imgr;
 
 	@Override
-	public void saveImage(MultipartFile image, Integer advertisementId) {
-		imgr.saveImage(image,advertisementId);
+	public void saveImage(MultipartFile image, Integer refId, String type) {
+		imgr.saveImage(image,refId, type);
 	}
 
 }

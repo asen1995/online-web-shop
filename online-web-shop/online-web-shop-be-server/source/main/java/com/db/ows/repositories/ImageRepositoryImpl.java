@@ -19,7 +19,7 @@ public class ImageRepositoryImpl implements ImageRepository {
 	NamedParameterJdbcTemplate jdbcTmpl;
 
 	@Override
-	public void saveImage(MultipartFile image, Integer advertisementId) {
+	public void saveImage(MultipartFile image, Integer refId , String type) {
 
 		
 		StringBuilder sql = new StringBuilder();
@@ -29,8 +29,8 @@ public class ImageRepositoryImpl implements ImageRepository {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("imageinfo", "infosnimka");
-		params.put("imageType", ImageType.ADVERTISEMENT.getType());
-		params.put("refId", advertisementId);
+		params.put("imageType", type);
+		params.put("refId", refId);
 		
 		byte[] imageBytes = null;
 		try {

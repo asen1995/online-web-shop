@@ -8,7 +8,7 @@ import com.db.ows.repositories.LoginRepository;
 
 public interface LoginService {
 
-	public void registerUser(User user);
+	public Integer registerUser(User user);
 
 	public boolean userIsNotAlreadyRegistered(String username);
 
