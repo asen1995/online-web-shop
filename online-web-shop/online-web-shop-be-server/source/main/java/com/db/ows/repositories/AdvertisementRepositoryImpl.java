@@ -15,8 +15,11 @@ import org.springframework.stereotype.Repository;
 
 import com.db.ows.model.Advertisement;
 import com.db.ows.model.AdvertisementStatus;
+import com.db.ows.model.DatabaseSequences;
 import com.db.ows.model.Image;
 import com.db.ows.model.ImageType;
+import com.db.ows.model.Like;
+import com.db.ows.model.LikeType;
 import com.db.ows.model.User;
 
 @Repository
@@ -24,10 +27,15 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 
 	@Autowired
 	NamedParameterJdbcTemplate jdbcTmpl;
-	
+
 	@Autowired
 	private ImageRepository imgr;
-	
+
+	@Autowired
+	private LikeRepository lkr;
+
+	@Autowired
+	private SequenceRepository seqrepo;
 	
 	@Override
 	public List<Advertisement> getAdvertisements() {
@@ -71,44 +79,36 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 
 							advertisement.setCreator(creatorOfAdvertisement);
 
-							List<Image> imagesForAdvertisement = 
-									imgr.getImages(advertisement.getAdvertisementId(),ImageType.ADVERTISEMENT.getType());
-							
+							Like likes = lkr.getLikes(Integer.parseInt(advertisement.getAdvertisementId()),
+									LikeType.ADVERTISEMENT_LIKE.getType());
+
+							advertisement.setLikes(likes);
+
+							List<Image> imagesForAdvertisement = imgr.getImages(advertisement.getAdvertisementId(),
+									ImageType.ADVERTISEMENT.getType());
+
 							advertisement.setImages(imagesForAdvertisement);
-							
+
 							advertisements.add(advertisement);
 						}
 						return advertisements;
 					}
 
-					
 				});
 
 		return advertisements;
 	}
 
-	
 	@Override
 	public Integer createAdvertisement(Advertisement advertisement, String userId) {
-		
-		String seq = "select Ows_Advertisements_Seq.Nextval from dual ";
 
-		Integer advId = jdbcTmpl.query(seq, new ResultSetExtractor<Integer>() {
-			@Override
-			public Integer extractData(ResultSet rs) throws SQLException,
-					DataAccessException {
-				while (rs.next()) {
-					return rs.getInt(1);
-				}
-				return null;
-			}
-		});
-		
+			
+		Integer advId = seqrepo.getNextValueForSequence(DatabaseSequences.ADVERTISEMENTS_SEQ.getSequance());
+
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO OWS_ADVERTISEMENTS  ( ADVERTISEMENT_ID, TITLE,INFORMATION, ");
 		sql.append(" ADVERTISEMENT_STATUS, CREATOR_USER_ID ,PRICE ) ");
-		sql.append("VALUES  ( :advId , :title,  "
-				+ ":information ,  :advertisementStatus , :cre_user_id , :price ) ");
+		sql.append("VALUES  ( :advId , :title,  " + ":information ,  :advertisementStatus , :cre_user_id , :price ) ");
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("advId", advId);
@@ -117,10 +117,11 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 		params.put("advertisementStatus", AdvertisementStatus.WAITING_APPROVE.getStatus());
 		params.put("cre_user_id", userId);
 		params.put("price", advertisement.getPrice());
-		
 
 		jdbcTmpl.update(sql.toString(), params);
-		
+
+		lkr.initLikes(advId, LikeType.ADVERTISEMENT_LIKE.getType());
+
 		return advId;
 	}
 

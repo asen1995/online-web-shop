@@ -14,9 +14,10 @@ public class Advertisement {
 	private User creator;
 	private String price;
 	private List<Image> images;
-	
+	private Like likes;
+
 	private MultipartFile image;
-	
+
 	public List<Image> getImages() {
 		return images;
 	}
@@ -80,7 +81,7 @@ public class Advertisement {
 	public void setPrice(String price) {
 		this.price = price;
 	}
-	
+
 	public MultipartFile getImage() {
 		return image;
 	}
@@ -89,12 +90,19 @@ public class Advertisement {
 		this.image = image;
 	}
 
+	public Like getLikes() {
+		return likes;
+	}
+
+	public void setLikes(Like likes) {
+		this.likes = likes;
+	}
+
 	@Override
 	public String toString() {
 		return "Advertisement [advertisementId=" + advertisementId + ", title=" + title + ", information=" + information
 				+ ", createDate=" + createDate + ", advertisementStatus=" + advertisementStatus + ", creator=" + creator
 				+ ", price=" + price + "]";
 	}
-	
 
 }

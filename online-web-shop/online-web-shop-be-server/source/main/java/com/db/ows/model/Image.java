@@ -8,7 +8,16 @@ public class Image {
 	private String imageInfo;
 	private String imageType;
 	private byte[] imageContent;
-	private String dateUpload;
+	private String dateUpload;	
+	private Like likes;	
+	
+	public Like getLikes() {
+		return likes;
+	}
+	public void setLikes(Like likes) {
+		this.likes = likes;
+	}
+	
 	public int getImageId() {
 		return imageId;
 	}

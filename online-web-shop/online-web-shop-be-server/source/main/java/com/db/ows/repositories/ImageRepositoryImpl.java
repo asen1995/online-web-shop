@@ -1,6 +1,5 @@
 package com.db.ows.repositories;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,8 +15,10 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.db.ows.model.DatabaseSequences;
 import com.db.ows.model.Image;
-import com.db.ows.model.ImageType;
+import com.db.ows.model.Like;
+import com.db.ows.model.LikeType;
 
 @Repository
 public class ImageRepositoryImpl implements ImageRepository {
@@ -25,16 +26,26 @@ public class ImageRepositoryImpl implements ImageRepository {
 	@Autowired
 	NamedParameterJdbcTemplate jdbcTmpl;
 
+	@Autowired
+	private LikeRepository lkr;
+	
+	@Autowired
+	private SequenceRepository seqrep;
+	
 	@Override
 	public void saveImage(MultipartFile image, Integer refId , String type) {
 
 		
+		Integer imgId = seqrep.getNextValueForSequence(DatabaseSequences.IMAGES_SEQ.getSequance());		
+		
 		StringBuilder sql = new StringBuilder();
 		sql.append(" INSERT	INTO OWS_IMAGES  ( IMAGE_ID, IMAGE_INFO, IMAGE_TYPE, REFID,IMAGE_CONTENT ) ");
-		sql.append(" VALUES ( OWS_IMAGES_SEQ.nextval ,:imageinfo,  :imageType, ");
+		sql.append(" VALUES ( :imgId ,:imageinfo,  :imageType, ");
 		sql.append(" :refId , :imageBytes  ) ");
 
 		Map<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("imgId", imgId);
 		params.put("imageinfo", "infosnimka");
 		params.put("imageType", type);
 		params.put("refId", refId);
@@ -50,6 +61,7 @@ public class ImageRepositoryImpl implements ImageRepository {
 
 		jdbcTmpl.update(sql.toString(), params);
 		
+		lkr.initLikes(imgId, LikeType.IMAGE_LIKE.getType());
 	}
 	
 	public List<Image> getImages(String refId,String imageType) {
@@ -75,7 +87,11 @@ public class ImageRepositoryImpl implements ImageRepository {
 					image.setImageType(res.getString("IMAGE_TYPE"));
 					image.setImageContent(res.getBytes("IMAGE_CONTENT"));
 					image.setDateUpload(res.getString("Date_Upload"));
-
+					
+					Like likes = lkr.getLikes(image.getImageId(),LikeType.IMAGE_LIKE.getType());
+					
+					image.setLikes(likes);
+					
 					imagesForAdvertisement.add(image);
 				}
 				return imagesForAdvertisement;

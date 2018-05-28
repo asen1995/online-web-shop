@@ -18,17 +18,24 @@ public class User {
 	private int currentAdvertisementCount;
 	private String registerDate;
 	private String lastLoginDate;
-	private List<Image> images;
-	
+	private List<Image> images;	
 	private MultipartFile image;
+	private Like likes;
 	
 	@Override
 	public String toString() {
 		return "User [username=" + username + ", password=" + password + ", country=" + country + ", city=" + city
 				+ ", telephone=" + telephone + ", mail=" + mail + ", user_state=" + user_state + ", " + image + "]";
 	}
-
 	
+	public Like getLikes() {
+		return likes;
+	}
+
+	public void setLikes(Like likes) {
+		this.likes = likes;
+	}
+
 	public MultipartFile getImage() {
 		return image;
 	}
