@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   showLgnScr: boolean;
   newAdvertisement : boolean;
 
+  showUserProfile : boolean;
   imageDecoder : string = ImageDecoder.DECODER;
 
   ngOnInit() { 
@@ -49,5 +50,11 @@ export class HomeComponent implements OnInit {
 
   createAdvertisementScreen(){
     this.newAdvertisement = true;
+  }
+
+
+
+  showProfile() {
+      this.showUserProfile=true;     
   }
 }

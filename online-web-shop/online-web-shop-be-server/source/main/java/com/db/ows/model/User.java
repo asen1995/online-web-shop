@@ -1,5 +1,7 @@
 package com.db.ows.model;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class User {
@@ -16,6 +18,8 @@ public class User {
 	private int currentAdvertisementCount;
 	private String registerDate;
 	private String lastLoginDate;
+	private List<Image> images;
+	
 	private MultipartFile image;
 	
 	@Override
@@ -128,5 +132,16 @@ public class User {
 	public void setLastLoginDate(String lastLoginDate) {
 		this.lastLoginDate = lastLoginDate;
 	}
+
+
+	public List<Image> getImages() {
+		return images;
+	}
+
+
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
+	
 
 }

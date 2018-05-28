@@ -21,7 +21,8 @@ export class RegisterLoginService {
         telephone: '',
         mail: '',
         user_state: UserStates.SIMPLE_USER,
-        userImage: null
+        userImage: null,
+        userImages : null
     };
 
 
@@ -95,7 +96,7 @@ loginUser() {
         };
 
     this.http.get(this.backendServer.getServer() + "login/loginUser", params).subscribe(data => {
-
+      
         this.userIsLogged = true;
         this.user.userId = data.userId;
         this.user.username = data.username;
@@ -106,6 +107,9 @@ loginUser() {
         this.user.telephone = data.telephone;
         this.user.mail = data.mail;
         this.user.user_state = data.user_state;
+        this.user.userImages = data.images;
+        console.log("thisuser");
+        console.log(this.user);
     });
 }
 

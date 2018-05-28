@@ -24,7 +24,11 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 
 	@Autowired
 	NamedParameterJdbcTemplate jdbcTmpl;
-
+	
+	@Autowired
+	private ImageRepository imgr;
+	
+	
 	@Override
 	public List<Advertisement> getAdvertisements() {
 
@@ -67,7 +71,8 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 
 							advertisement.setCreator(creatorOfAdvertisement);
 
-							List<Image> imagesForAdvertisement = getImagesForAdvertisement(advertisement.getAdvertisementId());
+							List<Image> imagesForAdvertisement = 
+									imgr.getImages(advertisement.getAdvertisementId(),ImageType.ADVERTISEMENT.getType());
 							
 							advertisement.setImages(imagesForAdvertisement);
 							
@@ -82,40 +87,7 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 		return advertisements;
 	}
 
-	public List<Image> getImagesForAdvertisement(String advertisementId) {
-
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT IMAGE_ID, IMAGE_INFO, IMAGE_TYPE,IMAGE_CONTENT,Date_Upload ");
-		sql.append("From Ows_Images where REFID = :advertisementId and image_type = :imageType ");
-
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("advertisementId", advertisementId);
-		params.put("imageType", ImageType.ADVERTISEMENT.getType());
-
-		List<Image> imagesForAdvertisement = jdbcTmpl.query(sql.toString(), params, new ResultSetExtractor<List<Image>>() {
-
-			@Override
-			public List<Image> extractData(ResultSet res) throws SQLException, DataAccessException {
-				List<Image> imagesForAdvertisement = new ArrayList<Image>();
-
-				while (res.next()) {
-					Image image = new Image();
-					image.setImageId(res.getInt("IMAGE_ID"));
-					image.setImageInfo(res.getString("IMAGE_INFO"));
-					image.setImageType(res.getString("IMAGE_TYPE"));
-					image.setImageContent(res.getBytes("IMAGE_CONTENT"));
-					image.setDateUpload(res.getString("Date_Upload"));
-
-					imagesForAdvertisement.add(image);
-				}
-				return imagesForAdvertisement;
-			}
-
-		});
-
-		return imagesForAdvertisement;
-
-	}
+	
 	@Override
 	public Integer createAdvertisement(Advertisement advertisement, String userId) {
 		

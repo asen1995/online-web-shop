@@ -1,8 +1,11 @@
 package com.db.ows.repositories;
 
+import static com.db.ows.model.CONSTANTS.ZERO;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +15,18 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-
+import com.db.ows.model.Image;
+import com.db.ows.model.ImageType;
 import com.db.ows.model.User;
-import static com.db.ows.model.CONSTANTS.*;
 @Repository
 public class LoginRepositoryImpl implements LoginRepository {
 
 	@Autowired
 	NamedParameterJdbcTemplate jdbcTmpl;
-
+	
+	@Autowired
+	private ImageRepository imgr;
+	
 	public Integer registerUser(User user) {
 		
 		String seq = " select OWS_USERS_SEQ.nextval from dual ";
@@ -103,7 +109,10 @@ public class LoginRepositoryImpl implements LoginRepository {
 				user.setTelephone(res.getString("TELEPHONE"));
 				user.setMail(res.getString("MAIL"));
 				user.setUser_state(res.getInt("USER_STATUS"));
-
+				
+				List<Image> imagesForUser = imgr.getImages(String.valueOf(user.getUserId()), ImageType.PROFILE.getType());
+				
+				user.setImages(imagesForUser);
 				return user;
 			}
 		});

@@ -12,13 +12,14 @@ import { BackEndService } from '../app/services/backEndService.service';
 import { RegisterLoginComponent } from './components/registerLogin/registerLogin.component';
 import { HomeComponent  } from '../app/components/home/home.component';
 import { AddAdvertisementComponent } from '../app/components/addAdvertisement/addAdvertisement.component'
+import { ProfileComponent } from '../app/components/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
     RegisterLoginComponent,
     HomeComponent,
-    AddAdvertisementComponent
-  
+    AddAdvertisementComponent,
+    ProfileComponent  
   ],
   imports: [
     BrowserModule,
@@ -26,6 +27,6 @@ import { AddAdvertisementComponent } from '../app/components/addAdvertisement/ad
     HttpClientModule
   ],
   providers: [BackEndService],
-  bootstrap: [HomeComponent]
+  bootstrap: [RegisterLoginComponent]
 })
 export class AppModule { }

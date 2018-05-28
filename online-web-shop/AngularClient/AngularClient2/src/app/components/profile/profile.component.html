@@ -1,0 +1,30 @@
+<div>profile of {{loggedUser.username}}
+
+
+    <div> 
+        <span *ngIf="!loggedUser.userImages"> This User don't have images</span>
+        
+        <div *ngFor="let image of loggedUser.userImages">
+            <img id="ItemPreview" src="{{imageDecoder}},{{image.imageContent}}" />
+        </div>
+
+    </div>
+
+    <div class="user-fields">
+        <div>
+            username {{loggedUser.username}}
+        </div>
+        <div>
+            country {{loggedUser.country}}
+        </div>
+        <div>
+            city {{loggedUser.city}}
+        </div>
+        <div>
+            telephone {{loggedUser.telephone}}
+        </div>
+        <div>
+            mail {{loggedUser.mail}}
+        </div>
+
+    </div>

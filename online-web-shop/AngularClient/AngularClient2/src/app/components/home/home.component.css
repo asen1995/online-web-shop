@@ -1,6 +1,7 @@
 #home{
     text-align: center;
    font-size: 70px;
+   background-color:rgb(82, 199, 253);
 }
 
 #login-home{
@@ -11,4 +12,8 @@
 .advertisement-style{
     background-color:rgb(82, 199, 253);
     padding : 1%;
+}
+
+.loggedUserIcon{
+    color:yellowgreen;
 }

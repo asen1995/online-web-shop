@@ -1,10 +1,11 @@
-<div id="home">Online web platform
+<div id="home">Online web platform  <span class="loggedUserIcon" (click)="showProfile();"> {{loggedUser.username}}  </span>
 
     <!-- 
     <button id="login-home" *ngIf="!showLgnScr" (click)="changeToLoginScreen()" > login </button>
     <registerLogin *ngIf="showLgnScr"></registerLogin> -->
-<div *ngIf="!newAdvertisement">
-    Welcome tr 
+<div *ngIf="!newAdvertisement && !showUserProfile">
+    <div>   Welcome {{loggedUser.username}} </div> 
+   
   
         <a (click)="createAdvertisementScreen();" >  create you advertisement </a>
         <div class="advertisement-style" *ngFor="let advertisement of advertisements"> {{advertisement.title}}
@@ -24,3 +25,7 @@
 
 </div>
 <addAdvertisement *ngIf="newAdvertisement" [loggedUser]="loggedUser" ></addAdvertisement>
+<profile *ngIf="showUserProfile"  [loggedUser]="loggedUser" > 
+    
+</profile>
+

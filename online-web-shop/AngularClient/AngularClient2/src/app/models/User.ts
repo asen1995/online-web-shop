@@ -8,4 +8,6 @@ export class User {
     mail: string;
     user_state : number;
     userImage : File;
+
+    userImages: any[];
   }
