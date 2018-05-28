@@ -2,6 +2,8 @@ package com.db.ows.model;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Advertisement {
 
 	private String advertisementId;
@@ -13,6 +15,7 @@ public class Advertisement {
 	private String price;
 	private List<Image> images;
 	
+	private MultipartFile image;
 	
 	public List<Image> getImages() {
 		return images;
@@ -76,6 +79,14 @@ public class Advertisement {
 
 	public void setPrice(String price) {
 		this.price = price;
+	}
+	
+	public MultipartFile getImage() {
+		return image;
+	}
+
+	public void setImage(MultipartFile image) {
+		this.image = image;
 	}
 
 	@Override

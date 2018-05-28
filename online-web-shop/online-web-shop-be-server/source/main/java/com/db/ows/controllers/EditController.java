@@ -32,9 +32,11 @@ public class EditController {
 	}
 	
 	@RequestMapping(value = "/createAdvertisement", method = RequestMethod.POST)
-	public boolean createAdvertisement(Advertisement advertisement, String userId, MultipartFile image) {
+	public boolean createAdvertisement(Advertisement advertisement, String userId) {
 		Integer advId = as.createAdvertisement(advertisement, userId);
-		imgs.saveImage(image, advId, ImageType.ADVERTISEMENT.getType() );	
+		imgs.saveImage(advertisement.getImage(), advId, ImageType.ADVERTISEMENT.getType() );	
+		
+		
 		return true;
 
 	}

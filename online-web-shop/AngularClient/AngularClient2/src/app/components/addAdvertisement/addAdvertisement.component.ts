@@ -42,7 +42,7 @@ export class AddAdvertisementComponent implements OnInit {
                 .set("information", this.advertisement.information)
                 .set("price", String(this.advertisement.price))
                 .set("userId",  String(this.advertisement.userId))
-                .set("image",  String(this.selectedImage))
+               
         };
 
         const fileUpload = new FormData();
