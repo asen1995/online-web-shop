@@ -30,6 +30,6 @@ import { AppRoutingModule } from './/app-routing.module';
     AppRoutingModule
   ],
   providers: [BackEndService],
-  bootstrap: [RegisterLoginComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
