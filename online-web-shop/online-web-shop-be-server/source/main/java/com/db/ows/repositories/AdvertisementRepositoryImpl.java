@@ -41,14 +41,15 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 	public List<Advertisement> getAdvertisements() {
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("Select Ad.Advertisement_Id, Ad.Title,  Ad.Information,  Ad.Create_Date, ");
+		sql.append("Select Ad.Advertisement_Id, Ad.Title,  Ad.Information,  Ad.Create_Date, Ad.price , ");
 		sql.append(
 				" Us.user_id , Us.username, Us.Country , Us.city, Us.Telephone , Us.Mail, Us.Profile_Opened_Count, Us.Current_Ads, ");
-		sql.append(" Us.Reg_Date , Us.Last_Login_Date ");
+		sql.append(" Us.Reg_Date , Us.Last_Login_Date , Lk.Likes_Id, Lk.Likes_Count ");
 		sql.append(" From Ows_Advertisements Ad ");
 		sql.append(" Left Join  Ows_Users Us ");
 		sql.append(" on Ad.CREATOR_USER_ID = Us.user_id ");
-
+		sql.append(" Left Join Ows_Likes Lk ");
+		sql.append("  on Lk.Refid = ad.Advertisement_Id ");
 		List<Advertisement> advertisements = jdbcTmpl.query(sql.toString(),
 				new ResultSetExtractor<List<Advertisement>>() {
 
@@ -63,6 +64,7 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 							advertisement.setTitle(res.getString("Title"));
 							advertisement.setInformation(res.getString("Information"));
 							advertisement.setCreateDate(res.getString("Create_Date"));
+							advertisement.setPrice(res.getString("price"));
 
 							User creatorOfAdvertisement = new User();
 
@@ -79,8 +81,11 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 
 							advertisement.setCreator(creatorOfAdvertisement);
 
-							Like likes = lkr.getLikes(Integer.parseInt(advertisement.getAdvertisementId()),
-									LikeType.ADVERTISEMENT_LIKE.getType());
+							/*Like likes = lkr.getLikes(Integer.parseInt(advertisement.getAdvertisementId()),
+									LikeType.ADVERTISEMENT_LIKE.getType());*/
+							Like likes = new Like();
+							likes.setLikeId(res.getInt("Likes_Id"));
+							likes.setLikeCount(res.getInt("Likes_Count"));
 
 							advertisement.setLikes(likes);
 

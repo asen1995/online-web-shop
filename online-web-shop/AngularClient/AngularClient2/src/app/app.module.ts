@@ -13,6 +13,8 @@ import { RegisterLoginComponent } from './components/registerLogin/registerLogin
 import { HomeComponent  } from '../app/components/home/home.component';
 import { AddAdvertisementComponent } from '../app/components/addAdvertisement/addAdvertisement.component'
 import { ProfileComponent } from '../app/components/profile/profile.component';
+import { AppRoutingModule } from './/app-routing.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,8 @@ import { ProfileComponent } from '../app/components/profile/profile.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [BackEndService],
   bootstrap: [RegisterLoginComponent]

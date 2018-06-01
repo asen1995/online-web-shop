@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit {
         return  this.http.get(this.backendServer.getServer() + "edit/getAdvertisements")
           .subscribe(data => {
               this.advertisements = data;
+              console.log(this.advertisements);
           });
       }
 

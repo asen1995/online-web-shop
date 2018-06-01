@@ -8,14 +8,20 @@
    
   
         <a (click)="createAdvertisementScreen();" >  create you advertisement </a>
-        <div class="advertisement-style" *ngFor="let advertisement of advertisements"> {{advertisement.title}}
+        <div class="advertisement-style" *ngFor="let advertisement of advertisements"> 
 
-            <div *ngFor="let image of advertisement.images"  style="background-color:red;" >
-                <span style="background-color:red;"> </span>
+            <div class="images" *ngFor="let image of advertisement.images"   >
 
-                <img id="ItemPreview" src="{{imageDecoder}},{{image.imageContent}}" />
+                  
+                </div>
 
+                <div class="advertisement-cell">                
+                        <img src="{{imageDecoder}},{{image.imageContent}}" width="250" height="250" />
+                        <div class="title" > {{advertisement.title}}</div>   
+                        <div class="information" > {{advertisement.information}}</div>                          
+                        <div class="price" > {{advertisement.price}}</div> 
 
+       
             </div>
 
         </div>

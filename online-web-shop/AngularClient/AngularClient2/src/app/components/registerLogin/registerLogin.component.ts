@@ -24,7 +24,7 @@ export class RegisterLoginComponent implements OnInit {
 
 
   ngOnInit() {
-
+    console.log(this.rls.user);
     this.determineSelectedOperation();
     this.rls.showRegistrationMessage = false;
   }
