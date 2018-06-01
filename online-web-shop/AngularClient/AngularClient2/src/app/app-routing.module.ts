@@ -5,12 +5,13 @@ import { HomeComponent } from '../app/components/home/home.component';
 import { AddAdvertisementComponent } from '../app/components/addAdvertisement/addAdvertisement.component';
 import { ProfileComponent } from '../app/components/profile/profile.component'
 const routes: Routes = [
-  
+
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: RegisterLoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'addAdvertisement', component: AddAdvertisementComponent },
-  { path: 'profile', component: ProfileComponent }
+  { path: 'profile', component: ProfileComponent },
+  { path: '**', component: RegisterLoginComponent }
 ];
 
 @NgModule({
