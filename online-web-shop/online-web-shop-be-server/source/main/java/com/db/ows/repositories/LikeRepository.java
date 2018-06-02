@@ -8,4 +8,8 @@ public interface LikeRepository {
 
 	public Like getLikes(int refId, String type);
 
+	public void addLike(Like like, String type);
+
+	public void registerUserLike(Like like, String username);
+
 }

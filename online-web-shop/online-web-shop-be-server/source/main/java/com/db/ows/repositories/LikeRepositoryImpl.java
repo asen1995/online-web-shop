@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.db.ows.model.DatabaseSequences;
 import com.db.ows.model.Like;
 
 @Repository
@@ -18,6 +19,9 @@ public class LikeRepositoryImpl implements LikeRepository {
 	@Autowired
 	NamedParameterJdbcTemplate jdbcTmpl;
 
+	@Autowired
+	private SequenceRepository seqrepo;
+	
 	@Override
 	public void initLikes(Integer refId, String type) {
 
@@ -36,7 +40,7 @@ public class LikeRepositoryImpl implements LikeRepository {
 
 	@Override
 	public Like getLikes(int refId, String type) {
-	
+
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT LIKES_ID, LIKES_COUNT FROM OWS_LIKES ");
 		sql.append("where refid = :refId and like_type = :likeType ");
@@ -58,9 +62,43 @@ public class LikeRepositoryImpl implements LikeRepository {
 			}
 		});
 
-			
 		return like;
+
+	}
+
+	@Override
+	public void addLike(Like like, String type) {
 		
+		StringBuilder sql = new StringBuilder();
+		sql.append("UPDATE OWS_LIKES Set Likes_Count = Likes_Count+1 Where Likes_Id  = :likeId ");
+		sql.append(" AND LIKE_TYPE   = :type");
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("likeId", like.getLikeId());
+		params.put("type", type);
+
+		jdbcTmpl.update(sql.toString(), params);
+
+	}
+
+	@Override
+	public void registerUserLike(Like like, String username) {
+		
+		
+		Integer likeUsersId = seqrepo.getNextValueForSequence(DatabaseSequences.LIKES_USERS_SEQ.getSequance());
+
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO OWS_LIKES_USERS (LIKES_USERS_ID,USERNAME, LIKES_ID) ");
+		sql.append(" VALUES ( :likeUsersId ,:username, :likeId ) ");
+  
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("likeUsersId", likeUsersId);
+		params.put("username", username);
+		params.put("likeId", like.getLikeId());
+		
+		jdbcTmpl.update(sql.toString(), params);
+
 	}
 
 }

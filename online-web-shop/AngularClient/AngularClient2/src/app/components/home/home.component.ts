@@ -1,4 +1,4 @@
-import { Component, OnInit , Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { User } from '../../models/User';
 import { UserStates } from '../../models/UserStates';
@@ -16,53 +16,76 @@ import { ImageDecoder } from '../../models/ImageDecoder';
 })
 export class HomeComponent implements OnInit {
 
-  @Input() loggedUser : User;
+  @Input() loggedUser: User;
 
-  constructor(private rls: RegisterLoginService, private http: HttpClient,private backendServer: BackEndService) { }
+  constructor(private rls: RegisterLoginService, private http: HttpClient, private backendServer: BackEndService) { }
 
   showLgnScr: boolean;
-  newAdvertisement : boolean;
+  newAdvertisement: boolean;
 
-  showUserProfile : boolean;
-  imageDecoder : string = ImageDecoder.DECODER;
+  showUserProfile: boolean;
+  imageDecoder: string = ImageDecoder.DECODER;
 
-  ngOnInit() { 
+  ngOnInit() {
     this.showLgnScr = false;
     this.getAdvertisements();
-    if(this.loggedUser === null || this.loggedUser === undefined){
-        this.loggedUser = this.rls.getUser();
-        console.log("0;");
-        console.log(this.loggedUser);
-        
+    if (this.loggedUser === null || this.loggedUser === undefined) {
+      this.loggedUser = this.rls.getUser();
+      console.log("0;");
+      console.log(this.loggedUser);
+
     }
-  //   localStorage.removeItem('user');
-  // console.log(localStorage.getItem("user"));
+    //   localStorage.removeItem('user');
+    // console.log(localStorage.getItem("user"));
   }
 
 
   advertisements: Object;
-  
-      getAdvertisements() : any {
-  
-        return  this.http.get(this.backendServer.getServer() + "edit/getAdvertisements")
-          .subscribe(data => {
-              this.advertisements = data;
-              console.log(this.advertisements);
-          });
-      }
+
+  getAdvertisements(): any {
+
+    return this.http.get(this.backendServer.getServer() + "edit/getAdvertisements")
+      .subscribe(data => {
+        this.advertisements = data;
+        console.log('this.advertisements');
+        console.log(this.advertisements);
+      });
+  }
 
   changeToLoginScreen() {
     this.showLgnScr = true;
   }
 
 
-  createAdvertisementScreen(){
+  createAdvertisementScreen() {
     this.newAdvertisement = true;
   }
 
 
 
   showProfile() {
-      this.showUserProfile=true;     
+    this.showUserProfile = true;
+  }
+
+  addLike(like): void {
+
+    const params =
+      {
+        params: new HttpParams()
+          .set('likeId', like.likeId)
+          .set('likeCount', like.likeCount)
+          .set("username", this.loggedUser.username)
+          .set("type",'ADV')
+        
+
+      };
+
+    this.http.post(this.backendServer.getServer() + "edit/addLike",'', params)
+
+      .subscribe(
+      (val) => { },
+      response => { },
+      () => { });
+
   }
 }
