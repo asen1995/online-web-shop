@@ -111,8 +111,7 @@ export class RegisterLoginService {
             this.user.userImages = data.images;
 
             localStorage.setItem("user", JSON.stringify(this.user));
-            console.log("json");
-            console.log(JSON.parse(localStorage.getItem("user")));
+    
         });
     }
 

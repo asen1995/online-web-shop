@@ -48,8 +48,7 @@ export class HomeComponent implements OnInit {
     return this.http.get(this.backendServer.getServer() + "edit/getAdvertisements")
       .subscribe(data => {
         this.advertisements = data;
-        console.log('this.advertisements');
-        console.log(this.advertisements);
+     
       });
   }
 
@@ -66,8 +65,7 @@ export class HomeComponent implements OnInit {
         return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementsByUsername",params)
           .subscribe(data => {
             this.advertisements = data;
-            console.log('this.getAdvertisementsByUsername');
-            console.log(this.advertisements);
+      
           });
       }
     
@@ -87,8 +85,10 @@ export class HomeComponent implements OnInit {
     this.showUserProfile = true;
   }
 
-  addLike(like): void {
-
+  addLike(advertisement): void {
+   
+    var like = advertisement.likes;
+   
     const params =
       {
         params: new HttpParams()
@@ -103,14 +103,17 @@ export class HomeComponent implements OnInit {
     this.http.post(this.backendServer.getServer() + "edit/addLike",'', params)
 
       .subscribe(
-      (val) => { },
+      (val) => { 
+        advertisement.loggedUserLike = true;
+        advertisement.likes.likeCount++;
+      },
       response => { },
       () => { });
 
   }
 
-  dislike(like): void {
-    
+  dislike(advertisement): void {
+    var like = advertisement.likes;
         const params =
           {
             params: new HttpParams()
@@ -124,7 +127,10 @@ export class HomeComponent implements OnInit {
     
         this.http.post(this.backendServer.getServer() + "edit/dislike",'', params)    
           .subscribe(
-          (val) => { },
+          (val) => {
+            advertisement.loggedUserLike = false;
+            advertisement.likes.likeCount--;
+          },
           response => { },
           () => { });
     

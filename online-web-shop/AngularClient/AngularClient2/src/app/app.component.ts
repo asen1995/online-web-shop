@@ -18,10 +18,7 @@ export class AppComponent implements OnInit {
 
     if (this.loggedUser === null || this.loggedUser === undefined) {
       this.loggedUser = this.rls.getUser();
-      console.log("home0;");
-      console.log(this.loggedUser);
-
-
+     
     }
   }
 
@@ -30,6 +27,6 @@ export class AppComponent implements OnInit {
   logout(): void {
    
     this.rls.logout();
-    this.router.navigate(['/home']);
+   
   }
 }
