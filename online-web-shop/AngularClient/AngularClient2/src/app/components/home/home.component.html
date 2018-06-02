@@ -2,7 +2,7 @@
 
 
 
-    
+
     <span class="loggedUserIcon" (click)="showProfile();"> {{loggedUser.username}} </span>
 
     <!-- 
@@ -13,22 +13,37 @@
 
 
         <a (click)="createAdvertisementScreen();"> create you advertisement </a>
+
+        <div>advertisements </div>
         <div class="advertisement-style" *ngFor="let advertisement of advertisements">
+
+            <!-- <div class="images">
+                <img src="{{imageDecoder}},{{advertisement.creator.images[0].imageContent}}" width="250" height="250" />
+            </div> -->
 
             <div class="images" *ngFor="let image of advertisement.images">
                 <img src="{{imageDecoder}},{{image.imageContent}}" width="250" height="250" />
 
             </div>
+            <span> by user : {{advertisement.creator.username}}</span>
+
+            <span style="    float: right;">date : {{advertisement.createDate.substring(0,10)}}</span>
+
+            <div class="title"> title : {{advertisement.title}}</div>
 
             <div class="advertisement-cell">
 
-                <div class="title"> {{advertisement.title}}</div>
+
                 <div class="information"> {{advertisement.information}}</div>
                 <div class="price"> {{advertisement.price}}</div>
 
 
             </div>
-
+            <!-- <div>{{advertisement.likes.likeCount}} like's this</div> -->
+            <div>
+                    <i class="fa fa-thumbs-o-up"></i>
+                    <i class="fa fa-comment"></i>
+            </div>
         </div>
 
     </div>
