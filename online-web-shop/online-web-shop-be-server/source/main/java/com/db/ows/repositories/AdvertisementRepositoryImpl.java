@@ -50,6 +50,7 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 		sql.append(" on Ad.CREATOR_USER_ID = Us.user_id ");
 		sql.append(" Left Join Ows_Likes Lk ");
 		sql.append("  on Lk.Refid = ad.Advertisement_Id ");
+		sql.append(" order by Ad.Create_Date desc ");
 		List<Advertisement> advertisements = jdbcTmpl.query(sql.toString(),
 				new ResultSetExtractor<List<Advertisement>>() {
 
@@ -145,7 +146,7 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 		sql.append("  on Lk.Refid = ad.Advertisement_Id ");		
 		sql.append("   Left Join Ows_Likes_Users Lkus ");
 		sql.append("    on lk.LIKES_ID =  Lkus.LIKES_ID ");
-		
+		sql.append(" order by Ad.Create_Date desc ");
 		
 		List<Advertisement> advertisements = jdbcTmpl.query(sql.toString(),
 				new ResultSetExtractor<List<Advertisement>>() {
