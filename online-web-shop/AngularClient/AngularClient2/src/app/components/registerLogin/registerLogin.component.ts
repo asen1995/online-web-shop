@@ -4,6 +4,7 @@ import { User } from '../../models/User';
 import { UserStates } from '../../models/UserStates';
 import { UserAction } from '../../models/UserAction';
 import { RegisterLoginService } from '../../services/registerLogin.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'registerLogin',
@@ -14,7 +15,7 @@ import { RegisterLoginService } from '../../services/registerLogin.service';
 export class RegisterLoginComponent implements OnInit {
 
 
-  constructor(private rls: RegisterLoginService) { }
+  constructor(private rls: RegisterLoginService, private router: Router) { }
 
 
   registration: boolean;
@@ -24,9 +25,14 @@ export class RegisterLoginComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.rls.user);
-    this.determineSelectedOperation();
-    this.rls.showRegistrationMessage = false;
+    //this.router.navigate(['/home']);
+    if (this.rls.isUserLogged()) {
+          this.router.navigate(['/home']);
+    } else {
+      this.determineSelectedOperation();
+      this.rls.showRegistrationMessage = false;
+
+    }
   }
 
   register() {
@@ -53,8 +59,8 @@ export class RegisterLoginComponent implements OnInit {
   }
 
 
-  onFileSelected(event){      
-    this.rls.user.userImage = <File> event.target.files[0];
-  } 
+  onFileSelected(event) {
+    this.rls.user.userImage = <File>event.target.files[0];
+  }
 
 }

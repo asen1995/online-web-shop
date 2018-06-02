@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.db.ows.model.Advertisement;
 import com.db.ows.model.ImageType;
@@ -30,9 +31,9 @@ public class EditController {
 	}
 	
 	@RequestMapping(value = "/createAdvertisement", method = RequestMethod.POST)
-	public boolean createAdvertisement(Advertisement advertisement, String userId) {
+	public boolean createAdvertisement(Advertisement advertisement, String userId,MultipartFile image) {
 		Integer advId = as.createAdvertisement(advertisement, userId);
-		imgs.saveImage(advertisement.getImage(), advId, ImageType.ADVERTISEMENT.getType() );			
+		imgs.saveImage(image, advId, ImageType.ADVERTISEMENT.getType() );			
 		return true;
 
 	}

@@ -1,4 +1,4 @@
-import { Component, OnInit , Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { User } from '../../models/User';
 import { UserStates } from '../../models/UserStates';
@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BackEndService } from '../../services/backEndService.service';
 
 import { ImageDecoder } from '../../models/ImageDecoder';
+import { Router } from '@angular/router';
 @Component({
   selector: 'profile',
   templateUrl: './profile.component.html',
@@ -16,14 +17,21 @@ import { ImageDecoder } from '../../models/ImageDecoder';
 })
 export class ProfileComponent implements OnInit {
 
-  @Input() loggedUser : User;
+  @Input() loggedUser: User;
 
-  imageDecoder : string = ImageDecoder.DECODER;
+  imageDecoder: string = ImageDecoder.DECODER;
 
-  constructor(private rls: RegisterLoginService, private http: HttpClient,private backendServer: BackEndService) { }
+  constructor(private rls: RegisterLoginService, private http: HttpClient, private backendServer: BackEndService, private router: Router) { }
 
-  
-  ngOnInit() {  
-    console.log(this.loggedUser);
+
+  ngOnInit() {
+
+    if (this.rls.isUserLogged()) {
+      this.loggedUser = this.rls.getUser();
+    }
+    else {
+      this.router.navigate(['/login']);
+    }
+
   }
 }

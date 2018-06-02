@@ -29,7 +29,14 @@ export class HomeComponent implements OnInit {
   ngOnInit() { 
     this.showLgnScr = false;
     this.getAdvertisements();
-  
+    if(this.loggedUser === null || this.loggedUser === undefined){
+        this.loggedUser = this.rls.getUser();
+        console.log("0;");
+        console.log(this.loggedUser);
+        
+    }
+  //   localStorage.removeItem('user');
+  // console.log(localStorage.getItem("user"));
   }
 
 

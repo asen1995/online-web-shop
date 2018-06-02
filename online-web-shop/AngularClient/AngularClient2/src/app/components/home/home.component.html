@@ -1,27 +1,32 @@
-<div id="home">Online web platform  <span class="loggedUserIcon" (click)="showProfile();"> {{loggedUser.username}}  </span>
+<div id="home">Online web platform
+
+
+
+    
+    <span class="loggedUserIcon" (click)="showProfile();"> {{loggedUser.username}} </span>
 
     <!-- 
     <button id="login-home" *ngIf="!showLgnScr" (click)="changeToLoginScreen()" > login </button>
     <registerLogin *ngIf="showLgnScr"></registerLogin> -->
-<div *ngIf="!newAdvertisement && !showUserProfile">
-    <div>   Welcome {{loggedUser.username}} </div> 
-   
-  
-        <a (click)="createAdvertisementScreen();" >  create you advertisement </a>
-        <div class="advertisement-style" *ngFor="let advertisement of advertisements"> 
+    <div *ngIf="!newAdvertisement && !showUserProfile">
+        <div> Welcome {{loggedUser.username}} </div>
 
-            <div class="images" *ngFor="let image of advertisement.images"   >
 
-                  
-                </div>
+        <a (click)="createAdvertisementScreen();"> create you advertisement </a>
+        <div class="advertisement-style" *ngFor="let advertisement of advertisements">
 
-                <div class="advertisement-cell">                
-                        <img src="{{imageDecoder}},{{image.imageContent}}" width="250" height="250" />
-                        <div class="title" > {{advertisement.title}}</div>   
-                        <div class="information" > {{advertisement.information}}</div>                          
-                        <div class="price" > {{advertisement.price}}</div> 
+            <div class="images" *ngFor="let image of advertisement.images">
+                <img src="{{imageDecoder}},{{image.imageContent}}" width="250" height="250" />
 
-       
+            </div>
+
+            <div class="advertisement-cell">
+
+                <div class="title"> {{advertisement.title}}</div>
+                <div class="information"> {{advertisement.information}}</div>
+                <div class="price"> {{advertisement.price}}</div>
+
+
             </div>
 
         </div>
@@ -30,8 +35,7 @@
 
 
 </div>
-<addAdvertisement *ngIf="newAdvertisement" [loggedUser]="loggedUser" ></addAdvertisement>
-<profile *ngIf="showUserProfile"  [loggedUser]="loggedUser" > 
-    
-</profile>
+<addAdvertisement *ngIf="newAdvertisement" [loggedUser]="loggedUser"></addAdvertisement>
+<profile *ngIf="showUserProfile" [loggedUser]="loggedUser">
 
+</profile>

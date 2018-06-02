@@ -14,7 +14,7 @@ import { HomeComponent  } from '../app/components/home/home.component';
 import { AddAdvertisementComponent } from '../app/components/addAdvertisement/addAdvertisement.component'
 import { ProfileComponent } from '../app/components/profile/profile.component';
 import { AppRoutingModule } from './/app-routing.module';
-
+import { RegisterLoginService } from '../app/services/registerLogin.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +29,7 @@ import { AppRoutingModule } from './/app-routing.module';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [BackEndService],
+  providers: [BackEndService,RegisterLoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

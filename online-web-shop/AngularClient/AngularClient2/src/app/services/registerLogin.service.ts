@@ -9,6 +9,7 @@ import { UserAction } from '../models/UserAction';
 import { constants } from '../constants';
 
 import { UserStates } from '../models/UserStates';
+import { Router } from '@angular/router';
 @Injectable()
 export class RegisterLoginService {
 
@@ -22,7 +23,7 @@ export class RegisterLoginService {
         mail: '',
         user_state: UserStates.SIMPLE_USER,
         userImage: null,
-        userImages : null
+        userImages: null
     };
 
 
@@ -34,7 +35,7 @@ export class RegisterLoginService {
 
     userIsLogged: boolean = false;
 
-    constructor(private http: HttpClient, private backendServer: BackEndService) { }
+    constructor(private http: HttpClient, private backendServer: BackEndService, private router: Router) { }
 
     setCurrentOperation(selectedOperation: UserAction) {
         this.currentOperation = selectedOperation;
@@ -55,63 +56,81 @@ export class RegisterLoginService {
             };
 
         const fileUpload = new FormData();
-        
-        if (this.user.userImage != null){
-            fileUpload.append("image", this.user.userImage,  this.user.userImage.name);
+
+        if (this.user.userImage != null) {
+            fileUpload.append("image", this.user.userImage, this.user.userImage.name);
         };
 
         this.http.post(this.backendServer.getServer() + "login/registerUser", fileUpload, params)
 
-    .subscribe(
-    (val) => {
-        this.updateMessageStatus(val);
+            .subscribe(
+            (val) => {
+                this.updateMessageStatus(val);
 
-    },
-    response => {
+            },
+            response => {
 
-    },
-    () => {
+            },
+            () => {
 
-    });
+            });
 
     }
-updateMessageStatus(response) {
-    if (response == constants.REGISTRATION_SUCCESS) {
-        this.registrationSuccess = this.showRegistrationMessage = true;
-    } else {
-        this.registrationSuccess = false;
-        this.showRegistrationMessage = true;
+    updateMessageStatus(response) {
+        if (response == constants.REGISTRATION_SUCCESS) {
+            this.registrationSuccess = this.showRegistrationMessage = true;
+        } else {
+            this.registrationSuccess = false;
+            this.showRegistrationMessage = true;
+        }
     }
-}
 
 
-loginUser() {
+    loginUser() {
 
-    const params =
-        {
-            params: new HttpParams()
-                .set('username', this.user.username)
-                .set("password", this.user.password)
+        const params =
+            {
+                params: new HttpParams()
+                    .set('username', this.user.username)
+                    .set("password", this.user.password)
 
-        };
+            };
 
-    this.http.get(this.backendServer.getServer() + "login/loginUser", params).subscribe(data => {
-      
-        this.userIsLogged = true;
-        this.user.userId = data.userId;
-        this.user.username = data.username;
-        //  this.password: data.password,
-        this.user.password = null;
-        this.user.country = data.country;
-        this.user.city = data.city;
-        this.user.telephone = data.telephone;
-        this.user.mail = data.mail;
-        this.user.user_state = data.user_state;
-        this.user.userImages = data.images;
-        console.log("thisuser");
-        console.log(this.user);
-    });
-}
+        this.http.get(this.backendServer.getServer() + "login/loginUser", params).subscribe(data => {
+
+            this.userIsLogged = true;
+            this.user.userId = data.userId;
+            this.user.username = data.username;
+            //  this.password: data.password,
+            this.user.password = null;
+            this.user.country = data.country;
+            this.user.city = data.city;
+            this.user.telephone = data.telephone;
+            this.user.mail = data.mail;
+            this.user.user_state = data.user_state;
+            this.user.userImages = data.images;
+
+            localStorage.setItem("user", JSON.stringify(this.user));
+            console.log("json");
+            console.log(JSON.parse(localStorage.getItem("user")));
+        });
+    }
 
 
+    getUser(): User {
+        return JSON.parse(localStorage.getItem("user"));
+    }
+
+    isUserLogged(): boolean {
+
+        if (localStorage.getItem("user") != null || localStorage.getItem("user") != undefined) {
+            return true;
+        }
+        return false;
+    }
+
+    logout(): void {
+        localStorage.removeItem('user');
+        this.router.navigate(['/home']);
+    }
 }
