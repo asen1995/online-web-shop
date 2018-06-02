@@ -12,4 +12,8 @@ public interface LikeRepository {
 
 	public void registerUserLike(Like like, String username);
 
+	public void dislike(Like like, String type);
+
+	public void unregisterUserLike(Like like, String username);
+
 }

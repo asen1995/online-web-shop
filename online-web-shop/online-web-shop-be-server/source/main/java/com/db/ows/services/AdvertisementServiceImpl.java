@@ -20,10 +20,15 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 	public List<Advertisement> getAdvertisements() {		
 		return ar.getAdvertisements();
 	}
-
+	@Override
+	public List<Advertisement> getAdvertisements(String username) {		
+		return ar.getAdvertisements(username);
+	}
 	@Override
 	public Integer createAdvertisement(Advertisement advertisement, String userId) {
 		return ar.createAdvertisement(advertisement, userId);
 	}
+
+	
 
 }

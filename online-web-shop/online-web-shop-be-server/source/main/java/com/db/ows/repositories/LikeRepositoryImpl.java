@@ -101,4 +101,36 @@ public class LikeRepositoryImpl implements LikeRepository {
 
 	}
 
+	@Override
+	public void dislike(Like like, String type) {
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("UPDATE OWS_LIKES Set Likes_Count = Likes_Count-1 Where Likes_Id  = :likeId ");
+		sql.append(" AND LIKE_TYPE   = :type");
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("likeId", like.getLikeId());
+		params.put("type", type);
+
+		jdbcTmpl.update(sql.toString(), params);
+
+	}
+
+	@Override
+	public void unregisterUserLike(Like like, String username) {
+	
+
+		StringBuilder sql = new StringBuilder();
+		sql.append(" DELETE FROM OWS_LIKES_USERS WHERE Username = :username ");
+		sql.append(" AND LIKES_ID = :likeId  ");
+  
+
+		Map<String, Object> params = new HashMap<String, Object>();	
+		params.put("username", username);
+		params.put("likeId", like.getLikeId());
+		
+		jdbcTmpl.update(sql.toString(), params);
+		
+	}
+
 }

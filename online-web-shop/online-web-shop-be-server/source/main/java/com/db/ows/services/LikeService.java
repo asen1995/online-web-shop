@@ -6,4 +6,6 @@ public interface LikeService {
 
 	void addLike(Like like, String username, String type);
 
+	void dislike(Like like, String username, String type);
+
 }

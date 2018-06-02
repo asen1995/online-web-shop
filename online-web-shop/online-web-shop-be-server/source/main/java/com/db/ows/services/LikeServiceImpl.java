@@ -18,4 +18,11 @@ public class LikeServiceImpl implements LikeService {
 		lr.addLike(like, type);
 
 	}
+
+	@Override
+	public void dislike(Like like, String username, String type) {
+		lr.unregisterUserLike(like,username);
+		lr.dislike(like, type);
+		
+	}
 }

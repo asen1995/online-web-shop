@@ -34,6 +34,11 @@ public class EditController {
 		return as.getAdvertisements();
 	}
 
+	@RequestMapping(value = "/getAdvertisementsByUsername", method = RequestMethod.GET)
+	public List<Advertisement> getAdvertisementsByUsername(String username) {
+		return as.getAdvertisements(username);
+	}
+
 	@RequestMapping(value = "/createAdvertisement", method = RequestMethod.POST)
 	public boolean createAdvertisement(Advertisement advertisement, String userId, MultipartFile image) {
 		Integer advId = as.createAdvertisement(advertisement, userId);
@@ -50,5 +55,16 @@ public class EditController {
 		return true;
 
 	}
+	
+	@RequestMapping(value = "/dislike", method = RequestMethod.POST)
+	public boolean dislike(Like like, String username, String type) {
+
+		ls.dislike(like, username, type);
+		
+		return true;
+
+	}
+	
+	
 
 }

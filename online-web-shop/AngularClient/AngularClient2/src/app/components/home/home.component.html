@@ -41,9 +41,11 @@
             </div>
             <!-- <div>{{advertisement.likes.likeCount}} like's this</div> -->
             <div>
-                    <i class="fa fa-thumbs-o-up like-icon"
-                     (click)="addLike(advertisement.likes);">  </i>{{advertisement.likes.likeCount}}
-                     
+                    <i *ngIf="!advertisement.loggedUserLike" class="fa fa-thumbs-o-up like-icon"
+                     (click)="addLike(advertisement.likes);">  </i>
+                     <i *ngIf="advertisement.loggedUserLike" class="fa fa-thumbs-down" (click)="dislike(advertisement.likes);"></i>
+                     {{advertisement.likes.likeCount}}
+                    
                     <i class="fa fa-comment"></i>
             </div>
         </div>

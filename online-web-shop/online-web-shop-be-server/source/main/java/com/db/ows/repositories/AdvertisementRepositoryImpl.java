@@ -130,4 +130,75 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 		return advId;
 	}
 
+	@Override
+	public List<Advertisement> getAdvertisements(String username) {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append("Select Ad.Advertisement_Id, Ad.Title,  Ad.Information,  Ad.Create_Date, Ad.price , ");
+		sql.append(
+				" Us.user_id , Us.username, Us.Country , Us.city, Us.Telephone , Us.Mail, Us.Profile_Opened_Count, Us.Current_Ads, ");
+		sql.append(" Us.Reg_Date , Us.Last_Login_Date , Lk.Likes_Id, Lk.Likes_Count , lkus.username USER_LIKE_THIS  ");
+		sql.append(" From Ows_Advertisements Ad ");
+		sql.append(" Left Join  Ows_Users Us ");
+		sql.append(" on Ad.CREATOR_USER_ID = Us.user_id ");
+		sql.append(" Left Join Ows_Likes Lk ");
+		sql.append("  on Lk.Refid = ad.Advertisement_Id ");		
+		sql.append("   Left Join Ows_Likes_Users Lkus ");
+		sql.append("    on lk.LIKES_ID =  Lkus.LIKES_ID ");
+		
+		
+		List<Advertisement> advertisements = jdbcTmpl.query(sql.toString(),
+				new ResultSetExtractor<List<Advertisement>>() {
+
+					@Override
+					public List<Advertisement> extractData(ResultSet res) throws SQLException, DataAccessException {
+						List<Advertisement> advertisements = new ArrayList<Advertisement>();
+
+						while (res.next()) {
+
+							Advertisement advertisement = new Advertisement();
+							advertisement.setAdvertisementId(res.getString("Advertisement_Id"));
+							advertisement.setTitle(res.getString("Title"));
+							advertisement.setInformation(res.getString("Information"));
+							advertisement.setCreateDate(res.getString("Create_Date"));
+							advertisement.setPrice(res.getString("price"));
+							advertisement.setLoggedUserLike(res.getString("USER_LIKE_THIS") != null );
+							
+							User creatorOfAdvertisement = new User();
+							creatorOfAdvertisement.setUserId(res.getInt("user_id"));
+							creatorOfAdvertisement.setUsername(res.getString("username"));
+							creatorOfAdvertisement.setCountry(res.getString("Country"));
+							creatorOfAdvertisement.setCity(res.getString("city"));
+							creatorOfAdvertisement.setTelephone(res.getString("Telephone"));
+							creatorOfAdvertisement.setMail(res.getString("Mail"));
+							creatorOfAdvertisement.setProfileOpenedcount(res.getInt("Profile_Opened_Count"));
+							creatorOfAdvertisement.setCurrentAdvertisementCount(res.getInt("Current_Ads"));
+							creatorOfAdvertisement.setRegisterDate(res.getString("Reg_Date"));
+							creatorOfAdvertisement.setLastLoginDate(res.getString("Last_Login_Date"));
+
+							advertisement.setCreator(creatorOfAdvertisement);
+
+							/*Like likes = lkr.getLikes(Integer.parseInt(advertisement.getAdvertisementId()),
+									LikeType.ADVERTISEMENT_LIKE.getType());*/
+							Like likes = new Like();
+							likes.setLikeId(res.getInt("Likes_Id"));
+							likes.setLikeCount(res.getInt("Likes_Count"));
+
+							advertisement.setLikes(likes);
+
+							List<Image> imagesForAdvertisement = imgr.getImages(advertisement.getAdvertisementId(),
+									ImageType.ADVERTISEMENT.getType());
+
+							advertisement.setImages(imagesForAdvertisement);
+
+							advertisements.add(advertisement);
+						}
+						return advertisements;
+					}
+
+				});
+
+		return advertisements;
+	}
+
 }

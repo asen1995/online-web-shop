@@ -18,6 +18,19 @@ public class Advertisement {
 
 	private MultipartFile image;
 
+	
+	private boolean loggedUserLike; 
+	
+	
+	
+	public boolean isLoggedUserLike() {
+		return loggedUserLike;
+	}
+
+	public void setLoggedUserLike(boolean loggedUserLike) {
+		this.loggedUserLike = loggedUserLike;
+	}
+
 	public List<Image> getImages() {
 		return images;
 	}

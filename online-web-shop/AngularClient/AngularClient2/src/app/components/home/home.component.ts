@@ -28,15 +28,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.showLgnScr = false;
-    this.getAdvertisements();
+   
     if (this.loggedUser === null || this.loggedUser === undefined) {
-      this.loggedUser = this.rls.getUser();
-      console.log("0;");
-      console.log(this.loggedUser);
-
+      this.loggedUser = this.rls.getUser();   
+      if(this.loggedUser === null ){
+         this.getAdvertisements();
+    
+      }else {
+        this.getAdvertisementsByUsername();
+      }
     }
-    //   localStorage.removeItem('user');
-    // console.log(localStorage.getItem("user"));
   }
 
 
@@ -51,6 +52,25 @@ export class HomeComponent implements OnInit {
         console.log(this.advertisements);
       });
   }
+
+  
+  getAdvertisementsByUsername(): any {
+
+    const params =
+    {
+        params: new HttpParams()
+            .set('username',this.loggedUser.username)
+
+    };
+    
+        return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementsByUsername",params)
+          .subscribe(data => {
+            this.advertisements = data;
+            console.log('this.getAdvertisementsByUsername');
+            console.log(this.advertisements);
+          });
+      }
+    
 
   changeToLoginScreen() {
     this.showLgnScr = true;
@@ -88,4 +108,26 @@ export class HomeComponent implements OnInit {
       () => { });
 
   }
+
+  dislike(like): void {
+    
+        const params =
+          {
+            params: new HttpParams()
+              .set('likeId', like.likeId)
+              .set('likeCount', like.likeCount)
+              .set("username", this.loggedUser.username)
+              .set("type",'ADV')
+            
+    
+          };
+    
+        this.http.post(this.backendServer.getServer() + "edit/dislike",'', params)    
+          .subscribe(
+          (val) => { },
+          response => { },
+          () => { });
+    
+      }
+
 }
