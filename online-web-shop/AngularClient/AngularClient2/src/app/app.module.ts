@@ -15,13 +15,15 @@ import { AddAdvertisementComponent } from '../app/components/addAdvertisement/ad
 import { ProfileComponent } from '../app/components/profile/profile.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { RegisterLoginService } from '../app/services/registerLogin.service';
+import { AdminComponent } from './components/admin/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
     RegisterLoginComponent,
     HomeComponent,
     AddAdvertisementComponent,
-    ProfileComponent  
+    ProfileComponent,
+    AdminComponent  
   ],
   imports: [
     BrowserModule,
