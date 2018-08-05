@@ -1,3 +1,48 @@
-<p>
-  admin works!
-</p>
+
+  welcome admin {{loggedUser.username}}
+
+
+
+  <div class="advertisement-style" *ngFor="let advertisement of advertisements">
+
+    {{advertisement.title}}
+    <div class="images" *ngFor="let image of advertisement.images">
+      <img src="{{imageDecoder}},{{image.imageContent}}" width="250" height="250" />
+
+
+
+
+      
+  <span> by user : {{advertisement.creator.username}}</span>
+<!-- 
+            <span style="float: right;">date : {{advertisement.createDate.substring(0,10)}}</span> -->
+           
+           
+            <div class="advertisement-cell">
+
+
+                <div class="information"> {{advertisement.information}}</div>
+                <div class="price"> price : {{advertisement.price}}</div>
+
+
+            </div>
+            <div>
+                    <i *ngIf="!advertisement.loggedUserLike" class="fa fa-thumbs-o-up like-icon"
+                     (click)="addLike(advertisement);">  </i>
+                     <i *ngIf="advertisement.loggedUserLike" class="fa fa-thumbs-down" (click)="dislike(advertisement);"></i>
+                     {{advertisement.likes.likeCount}}
+                    
+                    <i class="fa fa-comment"></i>
+            </div>
+
+
+
+<div>
+  <button type="button" class="btn btn-primary">Approve</button>
+  <button type="button" class="btn btn-danger" style="float:right;">Decline</button>
+</div>
+
+  </div>
+
+  
+
