@@ -136,4 +136,26 @@ export class HomeComponent implements OnInit {
     
       }
 
+
+      deleteAdvertisement(advertisementId): void {     
+
+        const params =
+        {
+          params: new HttpParams()
+           
+            .set("advertisementId",'advertisementId')          
+  
+        };
+  
+      this.http.post(this.backendServer.getServer() + "edit/deleteAdvertisement",'', params)
+  
+        .subscribe(
+        (val) => { 
+          
+        },
+        response => { },
+        () => { });
+  
+
+      }
 }

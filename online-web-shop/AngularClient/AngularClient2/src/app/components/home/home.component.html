@@ -5,9 +5,7 @@
 
     <span class="loggedUserIcon" (click)="showProfile();"> {{loggedUser.username}} </span>
 
-    <!-- 
-    <button id="login-home" *ngIf="!showLgnScr" (click)="changeToLoginScreen()" > login </button>
-    <registerLogin *ngIf="showLgnScr"></registerLogin> -->
+   
     <div *ngIf="!newAdvertisement && !showUserProfile">
         <div> Welcome {{loggedUser.username}} </div>
 
@@ -15,6 +13,10 @@
         <a (click)="createAdvertisementScreen();"> create you advertisement </a>
 
         <div>advertisements </div>
+
+<div>
+
+     
         <div class="advertisement-style" *ngFor="let advertisement of advertisements">
 
             <!-- <div class="images">
@@ -26,9 +28,14 @@
 
             </div>
             <span> by user : {{advertisement.creator.username}}</span>
-
-            <span style="    float: right;">date : {{advertisement.createDate.substring(0,10)}}</span>
-
+<!-- 
+            <span style="float: right;">date : {{advertisement.createDate.substring(0,10)}}</span> -->
+            
+            <span *ngIf="advertisement.creator.username === loggedUser.username" 
+            style="float: right;" (click)="deleteAdvertisement(advertisement.advertisementId);">
+             <i class="fa fa-remove" style="font-size:48px;color:red"></i> 
+            </span> 
+            
             <div class="title"> title : {{advertisement.title}}</div>
 
             <div class="advertisement-cell">
@@ -49,7 +56,7 @@
                     <i class="fa fa-comment"></i>
             </div>
         </div>
-
+    </div>
     </div>
 
 

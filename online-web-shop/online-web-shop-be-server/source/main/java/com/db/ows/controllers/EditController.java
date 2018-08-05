@@ -46,6 +46,15 @@ public class EditController {
 		return true;
 
 	}
+	
+	
+	@RequestMapping(value = "/deleteAdvertisement", method = RequestMethod.POST)
+	public boolean deleteAdvertisement(String advertisementId) {
+		System.out.println("Delete " + advertisementId);
+		return true;
+
+	}
+	
 
 	@RequestMapping(value = "/addLike", method = RequestMethod.POST)
 	public boolean addLike(Like like, String username, String type) {
