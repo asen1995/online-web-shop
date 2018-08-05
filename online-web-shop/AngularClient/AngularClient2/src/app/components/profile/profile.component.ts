@@ -1,3 +1,4 @@
+import { Advertisement } from './../../models/Advertisement';
 import { Component, OnInit, Input } from '@angular/core';
 
 import { User } from '../../models/User';
@@ -18,6 +19,9 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
 
   @Input() loggedUser: User;
+
+
+  @Input() advertisementByUser : Advertisement;
 
   imageDecoder: string = ImageDecoder.DECODER;
 

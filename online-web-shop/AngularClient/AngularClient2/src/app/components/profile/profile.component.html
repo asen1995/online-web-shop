@@ -1,9 +1,9 @@
-<div>profile of {{loggedUser.username}}
+<div>
 
 
-    <div> 
+    <div>
         <span *ngIf="!loggedUser.userImages"> This User don't have images</span>
-        
+
         <div *ngFor="let image of loggedUser.userImages">
             <img id="ItemPreview" src="{{imageDecoder}},{{image.imageContent}}" />
         </div>
@@ -11,20 +11,66 @@
     </div>
 
     <div class="user-fields">
-        <div>
-            username {{loggedUser.username}}
+        <div *ngIf="loggedUser.username">
+            username: {{loggedUser.username}}
+        </div>
+        <div *ngIf="loggedUser.country">
+            country: {{loggedUser.country}}
+        </div>
+        <div *ngIf="loggedUser.telephone">
+            city: {{loggedUser.city}}
         </div>
         <div>
-            country {{loggedUser.country}}
+            telephone: {{loggedUser.telephone}}
         </div>
-        <div>
-            city {{loggedUser.city}}
-        </div>
-        <div>
-            telephone {{loggedUser.telephone}}
-        </div>
-        <div>
-            mail {{loggedUser.mail}}
+        <div *ngIf="loggedUser.mail">
+            mail: {{loggedUser.mail}}
         </div>
 
+        <div>
+            advertisements by this user:
+
+            <div *ngIf="!advertisementByUser">
+                This user don't have public advertisements.
+
+            </div>
+
+            <div *ngIf="advertisementByUser">
+
+
+
+                <div class="advertisement-style" *ngFor="let advertisement of advertisementByUser">
+
+
+
+                    <div class="images" *ngFor="let image of advertisement.images">
+                        <img src="{{imageDecoder}},{{image.imageContent}}" width="250" height="250" />
+
+                    </div>                    
+
+                    <span style="    float: right;">date : {{advertisement.createDate.substring(0,10)}}</span>
+
+                    <div class="title"> title : {{advertisement.title}}</div>
+
+                    <div class="advertisement-cell">
+
+
+                        <div class="information"> {{advertisement.information}}</div>
+                        <div class="price"> {{advertisement.price}}</div>
+
+
+                    </div>
+
+                    <div>
+                        <i *ngIf="!advertisement.loggedUserLike" class="fa fa-thumbs-o-up like-icon" (click)="addLike(advertisement);"> </i>
+                        <i *ngIf="advertisement.loggedUserLike" class="fa fa-thumbs-down" (click)="dislike(advertisement);"></i>
+                        {{advertisement.likes.likeCount}}
+
+                        <i class="fa fa-comment"></i>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
     </div>
