@@ -13,10 +13,7 @@
           </li>
           <li>
             <a routerLink="/addAdvertisement">new advertisement </a>
-          </li>
-          <li *ngIf="loggedUser" >
-            <a routerLink="/profile">profile </a>
-          </li>
+          </li>       
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li *ngIf="!loggedUser">
@@ -25,7 +22,7 @@
           </li>
           <li *ngIf="loggedUser">
             <a>
-              <span class="glyphicon glyphicon-log-out" (click)="logout();"></span> Logout </a>
+              <span> <a routerLink="/profile"> {{loggedUser.username}} </a> </span> <span class="glyphicon glyphicon-log-out" (click)="logout();"></span> Logout </a>
           </li>
   
         </ul>
