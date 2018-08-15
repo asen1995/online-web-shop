@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.db.ows.model.AdverisementGroup;
 import com.db.ows.model.Advertisement;
 import com.db.ows.repositories.AdvertisementRepository;
 
@@ -35,6 +36,10 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 	@Override
 	public boolean createAdvertisementGroup(String advertisementGroupName) {
 		return ar.createAdvertisementGroup(advertisementGroupName);
+	}
+	@Override
+	public List<AdverisementGroup> getExistingGroups() {
+		return ar.getExistingGroups();
 	}
 
 	

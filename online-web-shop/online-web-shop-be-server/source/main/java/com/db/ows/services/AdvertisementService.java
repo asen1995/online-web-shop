@@ -2,6 +2,7 @@ package com.db.ows.services;
 
 import java.util.List;
 
+import com.db.ows.model.AdverisementGroup;
 import com.db.ows.model.Advertisement;
 
 public interface AdvertisementService {
@@ -14,4 +15,6 @@ public interface AdvertisementService {
 	public List<Advertisement> getAdvertisementsForApprove();
 
 	public boolean createAdvertisementGroup(String advertisementGroupName);
+
+	public List<AdverisementGroup> getExistingGroups();
 }

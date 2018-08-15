@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.db.ows.model.AdverisementGroup;
 import com.db.ows.model.Advertisement;
 import com.db.ows.model.ImageType;
 import com.db.ows.model.Like;
@@ -88,6 +89,13 @@ public class EditController {
 		as.createAdvertisementGroup(advertisementGroupName);
 		return true;
 
+	}
+
+	
+	
+	@RequestMapping(value = "/getExistingGroups", method = RequestMethod.GET)
+	public List<AdverisementGroup> getExistingGroups() {		
+		return as.getExistingGroups();
 	}
 
 }

@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.db.ows.model.AdverisementGroup;
 import com.db.ows.model.Advertisement;
 import com.db.ows.model.AdvertisementStatus;
 import com.db.ows.model.DatabaseSequences;
@@ -239,6 +240,36 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 
 		jdbcTmpl.update(sql.toString(), params);		
 		return true;
+	}
+
+	@Override
+	public List<AdverisementGroup> getExistingGroups() {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT ADVERTISEMENT_GROUP_ID, GROUP_NAME FROM OWS_ADVERTISEMENTS_GROUPS ;");
+
+		List<AdverisementGroup> advertisementsGroups = jdbcTmpl.query(sql.toString(),
+				new ResultSetExtractor<List<AdverisementGroup>>() {
+
+					@Override
+					public List<AdverisementGroup> extractData(ResultSet res) throws SQLException, DataAccessException {
+						List<AdverisementGroup> advertisementsGroups = new ArrayList<AdverisementGroup>();
+
+						while (res.next()) {
+
+							AdverisementGroup advertisementsGroup = new AdverisementGroup();
+							advertisementsGroup.setGroupId(res.getInt("ADVERTISEMENT_GROUP_ID"));
+							advertisementsGroup.setGroupName(res.getString("GROUP_NAME"));
+
+							advertisementsGroups.add(advertisementsGroup);
+						}
+						return advertisementsGroups;
+					}
+
+				});
+
+		return advertisementsGroups;
+
 	}
 	
 	
