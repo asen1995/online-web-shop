@@ -1,3 +1,28 @@
-<p>
-  search-by-advertisement-group works!
-</p>
+  <div class="advertisement-style" *ngFor="let advertisement of advertisements">        
+
+            <div class="images" *ngFor="let image of advertisement.images">
+                <img src="{{imageDecoder}},{{image.imageContent}}" width="250" height="250" />
+
+            </div>
+            <span> by user : {{advertisement.creator.username}}</span>
+
+            <div class="title"> title : {{advertisement.title}}</div>
+
+            <div class="advertisement-cell">
+
+
+                <div class="information"> {{advertisement.information}}</div>
+                <div class="price"> {{advertisement.price}}</div>
+
+
+            </div>
+            <div>
+                    <i *ngIf="!advertisement.loggedUserLike" class="fa fa-thumbs-o-up like-icon"
+                     (click)="addLike(advertisement);">  </i>
+                     <i *ngIf="advertisement.loggedUserLike" class="fa fa-thumbs-down" (click)="dislike(advertisement);"></i>
+                     {{advertisement.likes.likeCount}}
+                    
+                    <i class="fa fa-comment"></i>
+            </div>
+        </div>
+

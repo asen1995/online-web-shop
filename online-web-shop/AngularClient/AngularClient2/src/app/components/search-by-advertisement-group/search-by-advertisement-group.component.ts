@@ -1,3 +1,4 @@
+import { ImageDecoder } from './../../models/ImageDecoder';
 import { Group } from './../../models/Group';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BackEndService } from '../../services/backEndService.service';
@@ -15,13 +16,27 @@ export class SearchByAdvertisementGroupComponent implements OnInit {
 
   private selectedGroup: Object;
 
-  private  advertisements: Object;
-
+    advertisements: Object;
+    imageDecoder: string = ImageDecoder.DECODER;
 
   constructor(private http: HttpClient, private backendServer: BackEndService) { }
 
   ngOnInit() {
     this.getExistingGroups();
+
+
+//     const params =
+//     {
+//       params: new HttpParams()
+//         .set('username', 'asen1995')
+
+//    };
+
+//  return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementsByUsername", params)
+//     .subscribe(data => {
+//       this.advertisements = data;
+//       console.log(this.advertisements);
+//     });
   }
 
   private getExistingGroups(): any {
@@ -37,15 +52,15 @@ export class SearchByAdvertisementGroupComponent implements OnInit {
 
 
     this.selectedGroup.groupId = 1;
-
+    
     const params =
     {
         params: new HttpParams()
-            .set('groupId',this.selectedGroup.groupId);
+            .set('',this.selectedGroup.groupId);
 
     };
     
-        return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementByGroup",params)
+        return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementsByUsername",params)
           .subscribe(data => {
             this.advertisements = data;
       
