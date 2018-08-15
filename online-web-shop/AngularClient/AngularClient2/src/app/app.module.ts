@@ -16,6 +16,8 @@ import { ProfileComponent } from '../app/components/profile/profile.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { RegisterLoginService } from '../app/services/registerLogin.service';
 import { AdminComponent } from './components/admin/admin.component';
+import { ModalDialogModule } from 'ngx-modal-dialog';
+import { CreateNewAdvertisementGroupComponent } from './components/create-new-advertisement-group/create-new-advertisement-group.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,13 +25,15 @@ import { AdminComponent } from './components/admin/admin.component';
     HomeComponent,
     AddAdvertisementComponent,
     ProfileComponent,
-    AdminComponent  
+    AdminComponent,
+    CreateNewAdvertisementGroupComponent  
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ModalDialogModule.forRoot()  
   ],
   providers: [BackEndService,RegisterLoginService],
   bootstrap: [AppComponent]
