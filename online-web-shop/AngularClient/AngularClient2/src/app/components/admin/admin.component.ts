@@ -25,19 +25,18 @@ export class AdminComponent implements OnInit {
   constructor(private rls: RegisterLoginService, private http: HttpClient, private backendServer: BackEndService) { }
   
 
-  ngOnInit() {
-    alert("loged " + this.loggedUser);
-    this.getAdvertisements();
+  ngOnInit() {   
+    this.getAdvertisementsForApprove();
   }
 
 
-  getAdvertisements(): any {
+  getAdvertisementsForApprove(): any {
     
         return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementsForApprove")
           .subscribe(data => {
-            this.advertisements = data;
-            alert("recieve");
-            console.log(this.advertisements);
+            // this.advertisements = data;
+            // alert("recieve");
+            // console.log(this.advertisements);
           });
       }
 }
