@@ -22,6 +22,9 @@ export class AdminComponent implements OnInit {
   @Input() loggedUser: User;
   imageDecoder: string = ImageDecoder.DECODER;
 
+
+  
+
   constructor(private rls: RegisterLoginService, private http: HttpClient, private backendServer: BackEndService) { }
   
 
@@ -34,9 +37,8 @@ export class AdminComponent implements OnInit {
     
         return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementsForApprove")
           .subscribe(data => {
-            // this.advertisements = data;
-            // alert("recieve");
-            // console.log(this.advertisements);
+             this.advertisements = data;           
+             console.log(this.advertisements);
           });
       }
 }
