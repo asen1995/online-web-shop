@@ -1,3 +1,4 @@
+import { SearchByAdvertisementGroupComponent } from './components/search-by-advertisement-group/search-by-advertisement-group.component';
 import { CreateNewAdvertisementGroupComponent } from './components/create-new-advertisement-group/create-new-advertisement-group.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { NgModule } from '@angular/core';
@@ -16,8 +17,8 @@ const routes: Routes = [
   { path: 'addAdvertisement', component: AddAdvertisementComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'newAdvertisementGroup', component: CreateNewAdvertisementGroupComponent },
-  
+  { path: 'newAdvertisementGroup', component: CreateNewAdvertisementGroupComponent },  
+  { path: 'searchByAdvertisementGroup', component: SearchByAdvertisementGroupComponent },  
   { path: '**', component: RegisterLoginComponent }
 ];
 

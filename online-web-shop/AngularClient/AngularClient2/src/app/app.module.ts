@@ -18,6 +18,7 @@ import { RegisterLoginService } from '../app/services/registerLogin.service';
 import { AdminComponent } from './components/admin/admin.component';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { CreateNewAdvertisementGroupComponent } from './components/create-new-advertisement-group/create-new-advertisement-group.component';
+import { SearchByAdvertisementGroupComponent } from './components/search-by-advertisement-group/search-by-advertisement-group.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { CreateNewAdvertisementGroupComponent } from './components/create-new-ad
     AddAdvertisementComponent,
     ProfileComponent,
     AdminComponent,
-    CreateNewAdvertisementGroupComponent  
+    CreateNewAdvertisementGroupComponent,
+    SearchByAdvertisementGroupComponent  
   ],
   imports: [
     BrowserModule,
