@@ -41,6 +41,10 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 	public List<AdverisementGroup> getExistingGroups() {
 		return ar.getExistingGroups();
 	}
+	@Override
+	public List<Advertisement> getAdvertisementByGroup(String groupId) {		
+		return ar.getAdvertisementByGroup(groupId);
+	}
 
 	
 

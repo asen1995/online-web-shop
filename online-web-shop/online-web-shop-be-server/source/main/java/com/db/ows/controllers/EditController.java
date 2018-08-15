@@ -97,5 +97,13 @@ public class EditController {
 	public List<AdverisementGroup> getExistingGroups() {		
 		return as.getExistingGroups();
 	}
+	
+	
+	
+	@RequestMapping(value = "/getAdvertisementByGroup", method = RequestMethod.GET)
+	public List<Advertisement> getAdvertisementByGroup(String groupId) {		
+		return as.getAdvertisementByGroup(groupId);
+	}
+	
 
 }

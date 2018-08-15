@@ -17,4 +17,6 @@ public interface AdvertisementRepository {
 	public boolean createAdvertisementGroup(String advertisementGroupName);
 
 	public List<AdverisementGroup> getExistingGroups();
+
+	public List<Advertisement> getAdvertisementByGroup(String groupId);
 }
