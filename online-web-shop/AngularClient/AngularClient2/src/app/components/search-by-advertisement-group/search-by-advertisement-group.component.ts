@@ -12,12 +12,13 @@ import { Component, OnInit } from '@angular/core';
 export class SearchByAdvertisementGroupComponent implements OnInit {
 
 
-  private groups: Object;
+  private groups: Object[] = ['default1', 'default2'];
 
+  private selectedGroupId: any;
   private selectedGroup: Object;
 
-    advertisements: Object;
-    imageDecoder: string = ImageDecoder.DECODER;
+  advertisements: Object;
+  imageDecoder: string = ImageDecoder.DECODER;
 
   constructor(private http: HttpClient, private backendServer: BackEndService) { }
 
@@ -25,47 +26,51 @@ export class SearchByAdvertisementGroupComponent implements OnInit {
     this.getExistingGroups();
 
 
-//     const params =
-//     {
-//       params: new HttpParams()
-//         .set('username', 'asen1995')
+    // const params =
+    //   {
+    //     params: new HttpParams()
+    //       .set('username', 'asen1995')
 
-//    };
+    //   };
 
-//  return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementsByUsername", params)
-//     .subscribe(data => {
-//       this.advertisements = data;
-//       console.log(this.advertisements);
-//     });
+    // return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementsByUsername", params)
+    //   .subscribe(data => {
+    //     this.advertisements = data;
+    //     console.log(this.advertisements);
+    //   });
   }
 
   private getExistingGroups(): any {
     return this.http.get(this.backendServer.getServer() + "edit/getExistingGroups")
-    .subscribe(data => {
-      this.groups = data;   
-      console.log(this.groups);  
-    });
+      .subscribe(data => {
+        this.groups = data;
+        console.log(this.groups);
+      });
   }
 
 
-  private getAdvertisementByGroup(groupId): any{
+  private getAdvertisementByGroup(groupId): any {
 
 
     this.selectedGroup.groupId = 1;
-    
-    const params =
-    {
-        params: new HttpParams()
-            .set('',this.selectedGroup.groupId);
 
-    };
-    
-        return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementsByUsername",params)
-          .subscribe(data => {
-            this.advertisements = data;
-      
-          });
-      }
-      
+    const params =
+      {
+        params: new HttpParams()
+          .set('', this.selectedGroup.groupId);
+
+      };
+
+    return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementByGroup", params)
+      .subscribe(data => {
+        this.advertisements = data;
+
+      });
   }
+
+  private onGroupSelected(groupId) {
+    alert(groupId);
+    this.getAdvertisementByGroup(groupId);
+  }
+
 }
