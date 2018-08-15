@@ -29,11 +29,18 @@ public class EditController {
 	@Autowired
 	private LikeService ls;
 
+	@RequestMapping(value = "/getAdvertisementsForApprove", method = RequestMethod.GET)
+	public List<Advertisement> getAdvertisementsForApprove() {
+		return as.getAdvertisementsForApprove();
+	}
+
 	@RequestMapping(value = "/getAdvertisements", method = RequestMethod.GET)
 	public List<Advertisement> getAdvertisements() {
+		System.out.println("nov metod");
 		return as.getAdvertisements();
 	}
 
+	
 	@RequestMapping(value = "/getAdvertisementsByUsername", method = RequestMethod.GET)
 	public List<Advertisement> getAdvertisementsByUsername(String username) {
 		return as.getAdvertisements(username);

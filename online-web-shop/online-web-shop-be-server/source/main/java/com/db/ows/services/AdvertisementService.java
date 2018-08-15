@@ -10,4 +10,6 @@ public interface AdvertisementService {
 	public Integer createAdvertisement(Advertisement advertisement, String userId);
 
 	public List<Advertisement> getAdvertisements(String username);
+
+	public List<Advertisement> getAdvertisementsForApprove();
 }

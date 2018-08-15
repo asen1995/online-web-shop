@@ -28,6 +28,10 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 	public Integer createAdvertisement(Advertisement advertisement, String userId) {
 		return ar.createAdvertisement(advertisement, userId);
 	}
+	@Override
+	public List<Advertisement> getAdvertisementsForApprove() {
+		return ar.getAdvertisementsForApprove();
+	}
 
 	
 
