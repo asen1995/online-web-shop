@@ -18,8 +18,8 @@ public class AdminController {
 	AdminService adminService;
 	
 	@RequestMapping(value = "/approveAdvertisement", method = RequestMethod.POST)
-	public boolean approveAdvertisement(String advertisementId) {
-		return adminService.approveAdvertisement(advertisementId);
+	public boolean approveAdvertisement(String advertisementId,String selectedGroupId) {
+		return adminService.approveAdvertisement(advertisementId,selectedGroupId);
 	}
 	
 	

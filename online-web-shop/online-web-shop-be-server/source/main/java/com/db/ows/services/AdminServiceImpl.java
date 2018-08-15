@@ -12,8 +12,8 @@ public class AdminServiceImpl implements AdminService {
 	AdminRepository ar;
 	
 	@Override
-	public boolean approveAdvertisement(String advertisementId) {		
-		return ar.approveAdvertisement(advertisementId);
+	public boolean approveAdvertisement(String advertisementId, String selectedGroupId) {		
+		return ar.approveAdvertisement(advertisementId,selectedGroupId);
 	}
 
 	@Override

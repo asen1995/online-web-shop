@@ -10,6 +10,7 @@ import { BackEndService } from '../../services/backEndService.service';
 import { ImageDecoder } from '../../models/ImageDecoder';
 
 
+
 @Component({
   selector: 'admin',
   templateUrl: './admin.component.html',
@@ -22,38 +23,52 @@ export class AdminComponent implements OnInit {
   @Input() loggedUser: User;
   imageDecoder: string = ImageDecoder.DECODER;
 
+  private groups: Object[] = ['default1', 'default2'];
 
-
+  private selectedGroup: any;
 
   constructor(private rls: RegisterLoginService, private http: HttpClient, private backendServer: BackEndService) { }
 
 
   ngOnInit() {
     this.getAdvertisementsForApprove();
+    this.getExistingGroups();
+  }
+  private getExistingGroups(): any {
+    return this.http.get(this.backendServer.getServer() + "edit/getExistingGroups")
+      .subscribe(data => {
+        this.groups = data;
+        console.log(this.groups);
+      });
   }
 
 
   getAdvertisementsForApprove(): any {
 
-    return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementsForApprove")
-      .subscribe(data => {
-        this.advertisements = data;
-        console.log(this.advertisements);
-      });
+    // return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementsForApprove")
+    //   .subscribe(data => {
+    //     this.advertisements = data;
+    //     console.log(this.advertisements);
+    //   });
 
 
-    // const params =
-    //   {
-    //     params: new HttpParams()
-    //       .set('username', 'asen1995')
+    //  const params =
+    //    {
+    //      params: new HttpParams()
+    //        .set('username', 'asen1995')
 
     //   };
 
     // return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementsByUsername", params)
-    //   .subscribe(data => {
-    //     this.advertisements = data;
+    //    .subscribe(data => {
+    //      this.advertisements = data;
 
-    //   });
+    //    });
+  }
+
+  private onGroupSelected(groupId) {
+    alert(groupId);
+    this.selectedGroupId = groupId;
   }
 
 
@@ -62,7 +77,9 @@ export class AdminComponent implements OnInit {
     const params =
       {
         params: new HttpParams()
-          .set('advertisementId', advertisementId)
+        .set('advertisementId', advertisementId)
+        .set('selectedGroupId', this.selectedGroupId)
+        
       };
 
     this.http.post(this.backendServer.getServer() + "admin/approveAdvertisement", '', params)

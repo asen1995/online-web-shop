@@ -16,8 +16,21 @@ public class AdminRepositoryImpl implements AdminRepository {
 	NamedParameterJdbcTemplate jdbcTmpl;
 
 	@Override
-	public boolean approveAdvertisement(String advertisementId) {
-		changeStatusOfAdvertisement(advertisementId, AdvertisementStatus.APPROVED.getStatus());
+	public boolean approveAdvertisement(String advertisementId, String selectedGroupId) {
+		//changeStatusOfAdvertisement(advertisementId, AdvertisementStatus.APPROVED.getStatus());
+		
+		StringBuilder sql = new StringBuilder();
+
+		sql.append("Update Ows_Advertisements ");
+		sql.append("Set Advertisement_Status = :statusApprove , Advertisement_Group_Id = :selectedGroupId ");
+		sql.append(" WHERE ADVERTISEMENT_ID     = :advertisementId ");
+
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		params.put("advertisementId", advertisementId);
+		params.put("statusApprove", AdvertisementStatus.APPROVED.getStatus());
+		params.put("selectedGroupId", selectedGroupId);
+		jdbcTmpl.update(sql.toString(), params);
 		
 		return true;
 	}
