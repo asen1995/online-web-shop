@@ -26,17 +26,6 @@
 
 
             </div>
-            <div>
-                    <i *ngIf="!advertisement.loggedUserLike" class="fa fa-thumbs-o-up like-icon"
-                     (click)="addLike(advertisement);">  </i>
-                     <i *ngIf="advertisement.loggedUserLike" class="fa fa-thumbs-down" (click)="dislike(advertisement);"></i>
-                     {{advertisement.likes.likeCount}}
-                    
-                    <i class="fa fa-comment"></i>
-            </div>
-
-
-
 <div>
   <button type="button" class="btn btn-primary" (click)="approveAdvertisement(advertisement.advertisementId)">Approve</button>
   <button type="button" class="btn btn-danger" style="float:right;" (click)="rejectAdvertisement(advertisement.advertisementId)" >Reject</button>
