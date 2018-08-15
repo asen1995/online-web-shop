@@ -222,6 +222,24 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 		return advertisements;
 
 	}
+
+	@Override
+	public boolean createAdvertisementGroup(String groupName) {	
+		
+		Integer groupId = seqrepo.getNextValueForSequence(DatabaseSequences.ADVERTISEMENT_GROUP_SEQ.getSequance());	
+		
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append("INSERT INTO OWS_ADVERTISEMENTS_GROUPS ( ADVERTISEMENT_GROUP_ID, GROUP_NAME ) VALUES ( ");
+		sql.append("   :groupId ,  :groupName ) ");
+	
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("groupId", groupId);
+		params.put("groupName", groupName);		
+
+		jdbcTmpl.update(sql.toString(), params);		
+		return true;
+	}
 	
 	
 }

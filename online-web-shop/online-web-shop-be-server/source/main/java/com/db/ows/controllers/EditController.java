@@ -82,5 +82,12 @@ public class EditController {
 	}
 	
 	
+	
+	@RequestMapping(value = "/createAdvertisementGroup", method = RequestMethod.POST)
+	public boolean createAdvertisementGroup(String advertisementGroupName) {
+		as.createAdvertisementGroup(advertisementGroupName);
+		return true;
+
+	}
 
 }

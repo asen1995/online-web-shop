@@ -12,4 +12,6 @@ public interface AdvertisementService {
 	public List<Advertisement> getAdvertisements(String username);
 
 	public List<Advertisement> getAdvertisementsForApprove();
+
+	public boolean createAdvertisementGroup(String advertisementGroupName);
 }

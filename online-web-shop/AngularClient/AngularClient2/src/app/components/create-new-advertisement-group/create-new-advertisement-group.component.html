@@ -1,3 +1,12 @@
-<p>
-  create-new-advertisement-group works!
-</p>
+<div>
+
+  <h1> Create new advertisement group
+  </h1>
+
+  group name :
+  <input type="text" placeholder=" group name " [(ngModel)]="advertisementGroupName"> 
+
+  <button type="button" class="btn btn-primary" (click)="createAdvertisementGroup();"> create </button>
+
+  <p *ngIf="success">Group createt succesfully</p>
+</div>

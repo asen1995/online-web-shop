@@ -32,6 +32,10 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 	public List<Advertisement> getAdvertisementsForApprove() {
 		return ar.getAdvertisementsForApprove();
 	}
+	@Override
+	public boolean createAdvertisementGroup(String advertisementGroupName) {
+		return ar.createAdvertisementGroup(advertisementGroupName);
+	}
 
 	
 
