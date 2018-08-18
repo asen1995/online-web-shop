@@ -21,7 +21,7 @@ export class CreateNewAdvertisementGroupComponent implements OnInit {
 
   private createAdvertisementGroup(): any {
 
-    console.log("creating " + this.advertisementGroupName);
+    console.log("creating " +  String(this.advertisementGroupName));
 
     this.success = true;
     const params =
@@ -30,8 +30,7 @@ export class CreateNewAdvertisementGroupComponent implements OnInit {
           .set('advertisementGroupName', this.advertisementGroupName)
       };
 
-    this.http.post(this.backendServer.getServer() + "edit/createAdvertisementGroup", params)
-
+    this.http.post(this.backendServer.getServer() + "edit/createAdvertisementGroup",'', params)
       .subscribe(
       (val) => {
 
