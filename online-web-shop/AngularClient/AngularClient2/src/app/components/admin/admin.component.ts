@@ -45,25 +45,13 @@ export class AdminComponent implements OnInit {
 
   getAdvertisementsForApprove(): any {
 
-    // return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementsForApprove")
-    //   .subscribe(data => {
-    //     this.advertisements = data;
-    //     console.log(this.advertisements);
-    //   });
+    return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementsForApprove")
+       .subscribe(data => {
+         this.advertisements = data;
+        console.log(this.advertisements);
+       });
 
 
-    //  const params =
-    //    {
-    //      params: new HttpParams()
-    //        .set('username', 'asen1995')
-
-    //   };
-
-    // return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementsByUsername", params)
-    //    .subscribe(data => {
-    //      this.advertisements = data;
-
-    //    });
   }
 
   private onGroupSelected(groupId) {
@@ -109,20 +97,6 @@ export class AdminComponent implements OnInit {
       response => { },
       () => { });
 
-  }
+  }       
 
-
-}
-
-
-
-
-
-   
-            
-
-
- 
-
-  
 }
