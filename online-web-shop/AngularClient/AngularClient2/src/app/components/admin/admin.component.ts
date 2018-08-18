@@ -54,11 +54,17 @@ export class AdminComponent implements OnInit {
 
   }
 
-  private onGroupSelected(groupId) {
-    alert(groupId);
-    this.selectedGroupId = groupId;
+  private onGroupSelected(groupName) {  
+    this.selectedGroupId = this.getGroupId(groupName);
   }
 
+  private getGroupId(groupName): any {
+    for( var group = 0 ; group < this.groups.length; group ++){
+      if(groupName === this.groups[group].groupName){
+        return this.groups[group].groupId;
+      }
+    }
+  }
 
   private approveAdvertisement(advertisementId): any {
     console.log("approve advertisementId  " + advertisementId);
