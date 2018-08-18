@@ -23,7 +23,7 @@ export class AdminComponent implements OnInit {
   @Input() loggedUser: User;
   imageDecoder: string = ImageDecoder.DECODER;
 
-  private groups: Object[] = ['default1', 'default2'];
+  private groups: Object;
 
   private selectedGroup: any;
 
