@@ -31,10 +31,10 @@
               <a routerLink="/myAdvertisement" > myAdvertisement </a>
             </li>
             <li *ngIf="loggedUser.user_state === 2">
-                <a routerLink="/admin" >admin approval screen </a>
+                <a routerLink="/admin" > Approval <i class="fa fa-shield" aria-hidden="true"></i> </a>
               </li>
               <li *ngIf="loggedUser.user_state === 2"> 
-                <a routerLink="/newAdvertisementGroup" >newAdvertisementGroup </a>
+                <a routerLink="/newAdvertisementGroup" >new Group <i class="fa fa-shield" aria-hidden="true"></i> </a>
               </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
