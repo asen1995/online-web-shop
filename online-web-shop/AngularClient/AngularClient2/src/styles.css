@@ -36,3 +36,23 @@
  .like-icon{
      cursor: pointer;
  }
+
+ .shop-image-icon{
+    width: 250px;
+    height: 250px;    
+ }
+
+ .shop-image-second-icon{
+    width: 250px;
+    height: 250px;
+    margin-left: 86%;    
+    margin-top: -14%;
+ }
+ .header-title{
+     color:yellow;
+      
+     margin-left: 21%;
+     margin-bottom: -38px;    
+     font-size: 800%;
+     font-style: italic;
+ }

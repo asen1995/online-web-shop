@@ -1,7 +1,15 @@
 <div class="content">
 
-  <img src="https://cdn2.iconfinder.com/data/icons/shopping-e-commerce-3/512/laptop-store-512.png" width="250" height="250">
-
+  <div> 
+    
+      <img class="shop-image-icon"
+      src="https://cdn2.iconfinder.com/data/icons/shopping-e-commerce-3/512/laptop-store-512.png">
+     
+    <span class="header-title">Web Shop</span>
+    <img class="shop-image-second-icon"
+   src="https://cdn2.iconfinder.com/data/icons/shopping-e-commerce-3/512/laptop-store-512.png">
+  </div>
+  
   <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -14,14 +22,17 @@
           <li>
             <a routerLink="/addAdvertisement">new advertisement </a>
           </li>
-          <li>
+          <li *ngIf="loggedUser.user_state === 2">
             <a routerLink="/admin" >admin approval screen </a>
           </li>
-          <li>
+          <li *ngIf="loggedUser.user_state === 2"> 
             <a routerLink="/newAdvertisementGroup" >newAdvertisementGroup </a>
           </li>
           <li>
               <a routerLink="/searchByAdvertisementGroup" >searchByAdvertisementGroup </a>
+            </li>
+            <li>
+              <a routerLink="/myAdvertisement" > myAdvertisement </a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
