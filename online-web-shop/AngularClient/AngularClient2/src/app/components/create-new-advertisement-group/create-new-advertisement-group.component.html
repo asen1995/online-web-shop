@@ -1,12 +1,13 @@
-<div>
+<div class="new-advertisement-group">
 
-  <h1> Create new advertisement group
+  <h1 class="create-new-group"> Create new advertisement group
   </h1>
-
-  group name :
+<div style="margin-left:30%;">
+  <span class="new-group-fields"> group name : </span>
   <input type="text" placeholder=" group name " [(ngModel)]="advertisementGroupName"> 
+</div>
 
-  <button type="button" class="btn btn-primary" (click)="createAdvertisementGroup();"> create </button>
+<button type="button" class="btn btn-primary" (click)="createAdvertisementGroup();"> create </button>
 
-  <p *ngIf="success">Group createt succesfully</p>
+  <p class="create-new-group"  style="margin-left:30%;" *ngIf="success">Group createt succesfully</p>
 </div>

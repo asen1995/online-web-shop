@@ -102,7 +102,8 @@ color: yellow;
     color: yellow;
 }
 
-.new-advertisement-inputs input{
+.new-advertisement-inputs input,
+.new-advertisement-group input{
     width:30%;
     height: 40px;
 }
@@ -116,13 +117,13 @@ color: yellow;
 }
 
 
-.new-advertisement-inputs input:focus{
+.new-advertisement-inputs input:focus , .new-advertisement-group input:focus{
   background-color: yellow;
 }
 .new-advertisement-inputs textarea:focus{
     background-color: yellow;
 }
-.advertisement-field-text{
+.advertisement-field-text, .new-group-fields {
     font-family: italic;
     font-size: 40px;
     color: yellow;
@@ -135,7 +136,7 @@ color: yellow;
 }
 
 
-.search-by-advertisement-group span{
+.search-by-advertisement-group span, .create-new-group{
     font-family: italic;
     font-size: 500%;
     float: center;
@@ -156,5 +157,13 @@ color: yellow;
 
 .groups-message{
     color:red;
+}
+
+
+.new-advertisement-group button{
+    margin-left:30%;
+    margin-top: 5%;
+    width: 31%;
+    font-size: 400%;
 }
 /* collapsible */
