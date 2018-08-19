@@ -127,7 +127,7 @@ color: yellow;
 .new-advertisement-inputs textarea:focus{
     background-color: yellow;
 }
-.advertisement-field-text, .new-group-fields , .login-reg-field-text {
+.advertisement-field-text, .new-group-fields , .login-reg-field-text , .profile-field-text {
     font-family: italic;
     font-size: 40px;
     color: yellow;
@@ -147,7 +147,7 @@ color: yellow;
     margin-left: 27%;
     color: yellow;
 }
-.my-advertisement , .admin-screen,{
+.my-advertisement , .admin-screen{
     font-family: italic;
     font-size: 500%;
     float: center;
@@ -209,4 +209,16 @@ color: yellow;
     font-size: 145%;
     margin-top: 4%;
     margin-left: -3%;
+}
+.profile-image{
+    margin-left: 30%;
+}
+.user-fields{
+    margin-left: 41%;
+}
+
+.user-name-style{
+    color: yellow;
+    font-size: 106px;
+    margin-top: -3%;
 }

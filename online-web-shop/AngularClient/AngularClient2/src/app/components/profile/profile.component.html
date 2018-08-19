@@ -1,7 +1,7 @@
 <div>
 
 
-    <div>
+    <div class="profile-image">
         <span *ngIf="!loggedUser.userImages"> This User don't have images</span>
 
         <div *ngFor="let image of loggedUser.userImages">
@@ -11,27 +11,27 @@
     </div>
 
     <div class="user-fields">
-        <div *ngIf="loggedUser.username">
-            username: {{loggedUser.username}}
+        <div *ngIf="loggedUser.username" class="user-name-style" >
+            {{loggedUser.username}}
         </div>
         <div *ngIf="loggedUser.country">
-            country: {{loggedUser.country}}
+           <span class="profile-field-text" >  country: </span> {{loggedUser.country}}
         </div>
         <div *ngIf="loggedUser.telephone">
-            city: {{loggedUser.city}}
+                <span class="profile-field-text" >  city: </span> {{loggedUser.city}}
         </div>
         <div>
-            telephone: {{loggedUser.telephone}}
+                <span class="profile-field-text" >   telephone: </span> {{loggedUser.telephone}}
         </div>
         <div *ngIf="loggedUser.mail">
-            mail: {{loggedUser.mail}}
+                <span class="profile-field-text" >    mail: </span> {{loggedUser.mail}}
         </div>
 
         <div>
-            advertisements by this user:
+                <span class="profile-field-text" >     advertisements by this user: </span>
 
             <div *ngIf="!advertisementByUser">
-                This user don't have public advertisements.
+                    <span class="profile-field-text" >       This user don't have public advertisements. </span>
 
             </div>
 
