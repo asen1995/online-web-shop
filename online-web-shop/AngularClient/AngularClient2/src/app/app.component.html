@@ -15,10 +15,10 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="#"></a>
         </div>
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav">         
           <li class="active">
-            <a routerLink="/home">home </a>
-          </li>
+              <a routerLink="/home">home </a>
+            </li>
           <li>
             <a routerLink="/addAdvertisement">new advertisement </a>
           </li>       
@@ -27,13 +27,13 @@
                 <span class="glyphicon glyphicon-search"></span>
               </a>
             </li>
-            <li>
+            <li *ngIf="loggedUser != null">
               <a routerLink="/myAdvertisement" > myAdvertisement </a>
             </li>
-            <li *ngIf="loggedUser.user_state === 2">
+            <li *ngIf="loggedUser != null && loggedUser.user_state === 2">
                 <a routerLink="/admin" > Approval <i class="fa fa-shield" aria-hidden="true"></i> </a>
               </li>
-              <li *ngIf="loggedUser.user_state === 2"> 
+              <li *ngIf=" loggedUser != null && loggedUser.user_state === 2"> 
                 <a routerLink="/newAdvertisementGroup" >new Group <i class="fa fa-shield" aria-hidden="true"></i> </a>
               </li>
         </ul>

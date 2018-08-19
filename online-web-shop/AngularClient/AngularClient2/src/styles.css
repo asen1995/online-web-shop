@@ -4,6 +4,9 @@
     /* background-color:rgb(82, 199, 253); */
  }
  
+ body{
+     background-color: rgba(2, 164, 136);
+ }
  #login-home{
      float: right;
      size: 300px;
@@ -103,7 +106,8 @@ color: yellow;
 }
 
 .new-advertisement-inputs input,
-.new-advertisement-group input{
+.new-advertisement-group input,
+.login-reg-input-field {
     width:30%;
     height: 40px;
 }
@@ -117,13 +121,13 @@ color: yellow;
 }
 
 
-.new-advertisement-inputs input:focus , .new-advertisement-group input:focus{
+.new-advertisement-inputs input:focus , .login-reg-input-field:focus , .new-advertisement-group input:focus{
   background-color: yellow;
 }
 .new-advertisement-inputs textarea:focus{
     background-color: yellow;
 }
-.advertisement-field-text, .new-group-fields {
+.advertisement-field-text, .new-group-fields , .login-reg-field-text {
     font-family: italic;
     font-size: 40px;
     color: yellow;
@@ -143,7 +147,7 @@ color: yellow;
     margin-left: 27%;
     color: yellow;
 }
-.my-advertisement , .admin-screen{
+.my-advertisement , .admin-screen,{
     font-family: italic;
     font-size: 500%;
     float: center;
@@ -174,4 +178,35 @@ color: yellow;
 /* collapsible */
 .reject-button{
     margin-top: -4%;
+}
+
+.loginForm{
+    font-family: italic;
+    font-size: 355%;
+    float: center;
+    margin-left: -5%;
+    color: yellow;
+}
+#registration{
+    margin-left: 39%;
+}
+.loginInputForm , .registerInputForm{
+    margin-top: 4%;
+    margin-left: -15%;
+}
+
+
+.login-register-button{
+    width: 12%;
+    height: 46px;
+    margin-left: 10%;
+    margin-top: 4%;
+
+}
+.already-registered{
+    width: 14%;
+    height: 48px;
+    font-size: 145%;
+    margin-top: 4%;
+    margin-left: -3%;
 }

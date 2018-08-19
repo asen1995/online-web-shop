@@ -20,16 +20,12 @@
             <span class="title"> {{advertisement.title}}</span>
             <span class="price"> {{advertisement.price}} lv</span>
             
-            <!-- <span> by user : {{advertisement.creator.username}}</span> -->
-            
-            <span *ngIf="advertisement.creator.username === loggedUser.username" 
+           
+            <span *ngIf="advertisement.creator != null && loggedUser != null && advertisement.creator.username === loggedUser.username" 
             style="float: right;" (click)="deleteAdvertisement(advertisement.advertisementId);">
              <i class="fa fa-remove" style="font-size:48px;color:red"></i> 
             </span> 
-            
-           
-         
-            <!-- <div>{{advertisement.likes.likeCount}} like's this</div> -->
+        
             <div>
                    
                      <span> <i class="fa fa-map-marker" aria-hidden="true"></i> {{advertisement.creator.city}} </span>

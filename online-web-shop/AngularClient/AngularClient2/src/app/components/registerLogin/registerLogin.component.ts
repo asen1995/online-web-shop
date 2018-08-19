@@ -26,6 +26,7 @@ export class RegisterLoginComponent implements OnInit {
 
   ngOnInit() {
     //this.router.navigate(['/home']);
+  
     if (this.rls.isUserLogged()) {
           this.router.navigate(['/home']);
     } else {

@@ -111,6 +111,7 @@ export class RegisterLoginService {
             this.user.userImages = data.images;
 
             localStorage.setItem("user", JSON.stringify(this.user));
+            location.reload();
     
         });
     }
@@ -131,5 +132,6 @@ export class RegisterLoginService {
     logout(): void {
         localStorage.removeItem('user');
         this.router.navigate(['/home']);
+        location.reload();
     }
 }
