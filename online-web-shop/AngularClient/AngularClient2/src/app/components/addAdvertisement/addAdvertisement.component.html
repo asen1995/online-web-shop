@@ -1,16 +1,19 @@
 <div>
     
-     <h1> Create your own advertisement </h1>
+     <h1 class="create-advertisement"> Create your own advertisement </h1>
 
-       title : <input type="text" placeholder="title" [(ngModel)]="advertisement.title" ><br>
-         info  : <textarea [(ngModel)]="advertisement.information" >  </textarea>
+     <div class="new-advertisement-inputs">
+
+      <span class="advertisement-field-text">  title : </span> <input type="text" placeholder="title" [(ngModel)]="advertisement.title" ><br>
+      <span class="advertisement-field-text">   info  : </span> <textarea [(ngModel)]="advertisement.information" >  </textarea>
     <br>
-         price : <input type="text" placeholder="price" [(ngModel)]="advertisement.price" > 
+    <span class="advertisement-field-text">    price : </span><input type="text" placeholder="price" [(ngModel)]="advertisement.price" > 
 
          <br>
 
-         image : <input type="file" (change)="onFileSelected($event);"/>
-         
-  <button type="button" class="btn btn-primary" (click)="createAdvertisement();" > create </button>
-
+         <span class="advertisement-field-text"> image :  </span><input type="file" (change)="onFileSelected($event);" style="display:inline-block;"/>
+         <div>
+  <button type="button" class="btn btn-primary create-button" (click)="createAdvertisement();" > create </button>
+</div>
+    </div>
 </div>

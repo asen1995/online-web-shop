@@ -1,7 +1,11 @@
-<div>
+<div class="search-by-advertisement-group">
+    <span > Please select advertisement group : </span>
     <select (change)="onGroupSelected($event.target.value)" >
-        <option *ngFor="let group of groups" [ngValue]="c">{{group}}</option>
+        <option *ngFor="let group of groups" [ngValue]="c">{{group.groupName}}</option>
     </select>
+    <span class="groups-message" [hidden]="!advertisements">Advertisement for selected group {{selectedGroupName}} : {{advertisements.length}}</span>
+    
+
 </div>
 
 <div class="advertisement-style" *ngFor="let advertisement of advertisements">
@@ -10,23 +14,20 @@
         <img src="{{imageDecoder}},{{image.imageContent}}" width="250" height="250" />
 
     </div>
-    <span> by user : {{advertisement.creator.username}}</span>
+    <span class="title"> {{advertisement.title}}</span>
+    <span class="price"> {{advertisement.price}} lv</span>
 
-    <div class="title"> title : {{advertisement.title}}</div>
-
-    <div class="advertisement-cell">
-
-
-        <div class="information"> {{advertisement.information}}</div>
-        <div class="price"> {{advertisement.price}}</div>
-
-
-    </div>
     <div>
-        <i *ngIf="!advertisement.loggedUserLike" class="fa fa-thumbs-o-up like-icon" (click)="addLike(advertisement);"> </i>
-        <i *ngIf="advertisement.loggedUserLike" class="fa fa-thumbs-down" (click)="dislike(advertisement);"></i>
-        {{advertisement.likes.likeCount}}
+            
+              <span> <i class="fa fa-map-marker" aria-hidden="true"></i> {{advertisement.creator.city}} </span>
+              <span> <i class="fa fa-calendar" aria-hidden="true"></i> {{advertisement.createDate}} </span>
+              
+              <div class="like-icon">
+              <i *ngIf="!advertisement.loggedUserLike" class="fa fa-thumbs-o-up "
+              (click)="addLike(advertisement);">  </i>
+              <i *ngIf="advertisement.loggedUserLike" class="fa fa-thumbs-down" (click)="dislike(advertisement);"></i>
+              {{advertisement.likes.likeCount}}
+             </div>
 
-        <i class="fa fa-comment"></i>
-    </div>
+     </div>   
 </div>

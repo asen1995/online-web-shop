@@ -1,3 +1,36 @@
 <p>
-  my-advertisements works!
+  My advertisements 
 </p>
+<div class="advertisement-style" *ngFor="let advertisement of advertisements">
+    
+  <div style="float:right;font-size:30px;color:red">
+    
+    <button type="button" class="btn btn-danger" (click)="deleteAdvertisement(advertisement.advertisementId);">Delete <span class="glyphicon glyphicon-remove"></span> </button>
+
+      </div>
+      <div class="images" *ngFor="let image of advertisement.images">
+          <img src="{{imageDecoder}},{{image.imageContent}}" width="250" height="250" />
+  
+      </div>
+      <span> by user : {{advertisement.creator.username}}</span>
+      
+      <div class="title"> title : {{advertisement.title}}</div>
+  
+      <div class="advertisement-cell">
+            <div class="information"> {{advertisement.information}}</div>
+          <div class="price"> {{advertisement.price}}</div>
+      </div>
+      <div>
+          <i *ngIf="!advertisement.loggedUserLike" class="fa fa-thumbs-o-up like-icon" (click)="addLike(advertisement);"> </i>
+          <i *ngIf="advertisement.loggedUserLike" class="fa fa-thumbs-down" (click)="dislike(advertisement);"></i>
+          {{advertisement.likes.likeCount}}
+  
+          <i class="fa fa-comment"></i>
+      </div>
+      <div style="float:right;font-size:30px;">
+        <span *ngIf="advertisement.advertisementStatus === 'APR' " class="glyphicon glyphicon-ok"></span>
+        <span *ngIf="advertisement.advertisementStatus === 'RJT' " class="glyphicon glyphicon-remove"></span>
+        <span *ngIf="advertisement.advertisementStatus === 'WAP' " class="glyphicon glyphicon-refresh"></span>
+        <span *ngIf="advertisement.advertisementStatus === 'DEL' " class="glyphicon glyphicon-trash"></span>
+      </div>
+  </div>

@@ -12,9 +12,13 @@ import { Component, OnInit } from '@angular/core';
 export class SearchByAdvertisementGroupComponent implements OnInit {
 
 
-  private groups: Object[] = ['default1', 'default2'];
+  private groups: Object[];
 
   private selectedGroupId: any;
+  private selectedGroupName: any;
+  
+
+  
   private selectedGroup: Object;
 
   advertisements: Object;
@@ -24,41 +28,22 @@ export class SearchByAdvertisementGroupComponent implements OnInit {
 
   ngOnInit() {
     this.getExistingGroups();
-
-
-    // const params =
-    //   {
-    //     params: new HttpParams()
-    //       .set('username', 'asen1995')
-
-    //   };
-
-    // return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementsByUsername", params)
-    //   .subscribe(data => {
-    //     this.advertisements = data;
-    //     console.log(this.advertisements);
-    //   });
   }
 
   private getExistingGroups(): any {
     return this.http.get(this.backendServer.getServer() + "edit/getExistingGroups")
-      .subscribe(data => {
+      .subscribe(data => {       
         this.groups = data;
-        console.log(this.groups);
       });
   }
 
 
   private getAdvertisementByGroup(groupId): any {
 
-
-    this.selectedGroup.groupId = 1;
-
     const params =
       {
         params: new HttpParams()
-          .set('', this.selectedGroup.groupId);
-
+          .set('groupId', groupId)
       };
 
     return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementByGroup", params)
@@ -68,9 +53,18 @@ export class SearchByAdvertisementGroupComponent implements OnInit {
       });
   }
 
-  private onGroupSelected(groupId) {
-    alert(groupId);
-    this.getAdvertisementByGroup(groupId);
+  private onGroupSelected(groupName) {  
+    this.selectedGroupName = groupName;
+    this.selectedGroupId = this.getGroupId(groupName);
+    this.getAdvertisementByGroup(this.selectedGroupId);
+  
   }
 
+  private getGroupId(groupName): any {
+    for( var group = 0 ; group < this.groups.length; group ++){
+      if(groupName === this.groups[group].groupName){
+        return this.groups[group].groupId;
+      }
+    }
+  }
 }

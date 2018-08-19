@@ -9,7 +9,7 @@
      size: 300px;
  }
  
- .advertisement-style{  
+ .advertisement-style{  font-size: 70px;
      width: 84%;
     margin-left: 9%;
     margin-top: 2%;
@@ -75,6 +75,7 @@ color: yellow;
 .price {
     display: inline-block;
     float: right;
+  
 }
 .title{
     color:#008B8B;
@@ -92,3 +93,61 @@ color: yellow;
 .fa-calendar{
     margin-left: 2%;
 }
+
+.create-advertisement{
+    font-family: italic;
+    font-size: 500%;
+    float: center;
+    margin-left: 31%;
+    color: yellow;
+}
+
+.new-advertisement-inputs input{
+    width:30%;
+    height: 40px;
+}
+.new-advertisement-inputs textarea{
+    width:30%;
+    height: 40px;
+}
+.new-advertisement-inputs{
+    margin-top: 2%;
+    margin-left: 40%;
+}
+
+
+.new-advertisement-inputs input:focus{
+  background-color: yellow;
+}
+.new-advertisement-inputs textarea:focus{
+    background-color: yellow;
+}
+.advertisement-field-text{
+    font-family: italic;
+    font-size: 40px;
+    color: yellow;
+}
+
+.create-button{
+    margin-top: 5%;
+    width: 39%;
+    font-size: 400%;
+}
+
+
+.search-by-advertisement-group span{
+    font-family: italic;
+    font-size: 500%;
+    float: center;
+    margin-left: 27%;
+    color: yellow;
+}
+.search-by-advertisement-group select{
+    width: 12%;
+    height: 30px;
+}
+
+.groups-message{
+    color:red;
+}
+/* collapsible */
