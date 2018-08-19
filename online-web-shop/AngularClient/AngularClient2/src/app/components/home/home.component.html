@@ -1,59 +1,47 @@
-<div id="home">Online web platform
-
-
-
-
-    <span class="loggedUserIcon" (click)="showProfile();"> {{loggedUser.username}} </span>
+<div id="home">
 
    
-    <div *ngIf="!newAdvertisement && !showUserProfile">
-        <div> Welcome {{loggedUser.username}} </div>
+    <div *ngIf="!newAdvertisement && !showUserProfile">       
+<!-- 
 
+        <a (click)="createAdvertisementScreen();"> create you advertisement </a> -->
 
-        <a (click)="createAdvertisementScreen();"> create you advertisement </a>
-
-        <div>advertisements </div>
+        <div class="current-advertisement">Current advertisements </div>
 
 <div>
-
      
         <div class="advertisement-style" *ngFor="let advertisement of advertisements">
 
-            <!-- <div class="images">
-                <img src="{{imageDecoder}},{{advertisement.creator.images[0].imageContent}}" width="250" height="250" />
-            </div> -->
-
+           
             <div class="images" *ngFor="let image of advertisement.images">
                 <img src="{{imageDecoder}},{{image.imageContent}}" width="250" height="250" />
 
             </div>
-            <span> by user : {{advertisement.creator.username}}</span>
-<!-- 
-            <span style="float: right;">date : {{advertisement.createDate.substring(0,10)}}</span> -->
+            <span class="title"> {{advertisement.title}}</span>
+            <span class="price"> {{advertisement.price}} lv</span>
+            
+            <!-- <span> by user : {{advertisement.creator.username}}</span> -->
             
             <span *ngIf="advertisement.creator.username === loggedUser.username" 
             style="float: right;" (click)="deleteAdvertisement(advertisement.advertisementId);">
              <i class="fa fa-remove" style="font-size:48px;color:red"></i> 
             </span> 
             
-            <div class="title"> title : {{advertisement.title}}</div>
-
-            <div class="advertisement-cell">
-
-
-                <div class="information"> {{advertisement.information}}</div>
-                <div class="price"> {{advertisement.price}}</div>
-
-
-            </div>
+           
+         
             <!-- <div>{{advertisement.likes.likeCount}} like's this</div> -->
             <div>
-                    <i *ngIf="!advertisement.loggedUserLike" class="fa fa-thumbs-o-up like-icon"
+                   
+                     <span> <i class="fa fa-map-marker" aria-hidden="true"></i> {{advertisement.creator.city}} </span>
+                     <span> <i class="fa fa-calendar" aria-hidden="true"></i> {{advertisement.createDate}} </span>
+                     
+                     <div class="like-icon">
+                     <i *ngIf="!advertisement.loggedUserLike" class="fa fa-thumbs-o-up "
                      (click)="addLike(advertisement);">  </i>
                      <i *ngIf="advertisement.loggedUserLike" class="fa fa-thumbs-down" (click)="dislike(advertisement);"></i>
                      {{advertisement.likes.likeCount}}
-                    
-                    <i class="fa fa-comment"></i>
+                    </div>
+
             </div>
         </div>
     </div>

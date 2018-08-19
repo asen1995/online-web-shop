@@ -21,19 +21,21 @@
           </li>
           <li>
             <a routerLink="/addAdvertisement">new advertisement </a>
-          </li>
-          <li *ngIf="loggedUser.user_state === 2">
-            <a routerLink="/admin" >admin approval screen </a>
-          </li>
-          <li *ngIf="loggedUser.user_state === 2"> 
-            <a routerLink="/newAdvertisementGroup" >newAdvertisementGroup </a>
-          </li>
+          </li>       
           <li>
-              <a routerLink="/searchByAdvertisementGroup" >searchByAdvertisementGroup </a>
+              <a routerLink="/searchByAdvertisementGroup" >searchByAdvertisementGroup               
+                <span class="glyphicon glyphicon-search"></span>
+              </a>
             </li>
             <li>
               <a routerLink="/myAdvertisement" > myAdvertisement </a>
             </li>
+            <li *ngIf="loggedUser.user_state === 2">
+                <a routerLink="/admin" >admin approval screen </a>
+              </li>
+              <li *ngIf="loggedUser.user_state === 2"> 
+                <a routerLink="/newAdvertisementGroup" >newAdvertisementGroup </a>
+              </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li *ngIf="!loggedUser">
@@ -51,4 +53,13 @@
   
     <router-outlet></router-outlet>
 
+    <div style="margin-top: 4%;"> 
+        
+          <img class="shop-image-icon"
+          src="https://cdn2.iconfinder.com/data/icons/shopping-e-commerce-3/512/laptop-store-512.png">
+         
+        <!-- <span class="header-title">Web Shop</span> -->
+        <img class="shop-image-second-icon"
+       src="https://cdn2.iconfinder.com/data/icons/shopping-e-commerce-3/512/laptop-store-512.png">
+      </div>
 </div>

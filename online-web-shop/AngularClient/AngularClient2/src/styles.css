@@ -9,10 +9,11 @@
      size: 300px;
  }
  
- .advertisement-style{
-     /* background-color:rgb(82, 199, 253); */
-     padding : 1%;
-     /* margin-left:16%; */
+ .advertisement-style{  
+     width: 84%;
+    margin-left: 9%;
+    margin-top: 2%;
+     padding : 1%;    
      background-color: yellow;
      border-style: solid;
  }
@@ -22,7 +23,7 @@
  }
  
  .advertisement-cell{
-     
+     color:red;
  }
  .advertisement-cell .title{
      font-size:80px;
@@ -31,10 +32,12 @@
  }
  .images{
      display: inline-block;
+     cursor: pointer;
  }
  
  .like-icon{
      cursor: pointer;
+     float: right;
  }
 
  .shop-image-icon{
@@ -59,4 +62,33 @@
 
 .navbar-nav li:hover{
     background-color: blue;            
+}
+
+.current-advertisement{
+font-family: italic;
+font-size: 119%;
+float: center;
+margin-left: 31%;
+color: yellow;
+}
+
+.price {
+    display: inline-block;
+    float: right;
+}
+.title{
+    color:#008B8B;
+    margin-left: 2%;
+}
+.title:hover{
+    color:white;
+    background-color: #008B8B;
+    cursor: pointer;
+}
+
+.fa-map-marker{
+    color:#008B8B;
+}
+.fa-calendar{
+    margin-left: 2%;
 }
