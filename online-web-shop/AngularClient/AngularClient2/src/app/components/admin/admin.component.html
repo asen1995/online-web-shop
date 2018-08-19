@@ -1,39 +1,29 @@
- welcome admin
+ <span class="admin-screen"> Approval screen</span>
 
 
 
 <div class="advertisement-style" *ngFor="let advertisement of advertisements">
 
-  {{advertisement.title}}
   <div class="images" *ngFor="let image of advertisement.images">
     <img src="{{imageDecoder}},{{image.imageContent}}" width="250" height="250" />
 
-
-
-
-
-    <span> by user : {{advertisement.creator.username}}</span>
-    <!-- 
-            <span style="float: right;">date : {{advertisement.createDate.substring(0,10)}}</span> -->
-
-
-    <div class="advertisement-cell">
-
-
-      <div class="information"> {{advertisement.information}}</div>
-      <div class="price"> price : {{advertisement.price}}</div>
-
-
-    </div>
+    <span class="title"> {{advertisement.title}}</span>
+    <span class="price"> {{advertisement.price}} lv</span>
+    
     <div>
-      <button type="button" class="btn btn-primary" (click)="approveAdvertisement(advertisement.advertisementId)">Approve</button>
+
+    
+        <div>
+      <button type="button" class="btn btn-primary approve-button" (click)="approveAdvertisement(advertisement.advertisementId)">Approve</button>
 
       Please select the group: 
       <select (change)="onGroupSelected($event.target.value)">
         <option *ngFor="let group of groups" [ngValue]="c">{{group.groupName}}</option>
       </select>
 
-      <button type="button" class="btn btn-danger" style="float:right;" (click)="rejectAdvertisement(advertisement.advertisementId)">Reject</button>
+      <button type="button" class="btn btn-danger reject-button" style="float:right;margin-left: 800px;" (click)="rejectAdvertisement(advertisement.advertisementId)">Reject</button>
+    </div>
+      
     </div>
 
   </div>

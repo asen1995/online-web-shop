@@ -143,7 +143,7 @@ color: yellow;
     margin-left: 27%;
     color: yellow;
 }
-.my-advertisement{
+.my-advertisement , .admin-screen{
     font-family: italic;
     font-size: 500%;
     float: center;
@@ -166,4 +166,12 @@ color: yellow;
     width: 31%;
     font-size: 400%;
 }
+
+.approve-button , .reject-button{
+    width: 14%;
+    height: 54px;
+}
 /* collapsible */
+.reject-button{
+    margin-top: -4%;
+}
