@@ -142,6 +142,13 @@ color: yellow;
     margin-left: 27%;
     color: yellow;
 }
+.my-advertisement{
+    font-family: italic;
+    font-size: 500%;
+    float: center;
+    margin-left: 37%;
+    color: yellow;
+}
 .search-by-advertisement-group select{
     width: 12%;
     height: 30px;
