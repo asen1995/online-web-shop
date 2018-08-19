@@ -56,3 +56,7 @@
      font-size: 800%;
      font-style: italic;
  }
+
+.navbar-nav li:hover{
+    background-color: blue;            
+}
