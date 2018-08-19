@@ -14,12 +14,15 @@ import { Router } from '@angular/router';
     styleUrls: ['./addAdvertisement.component.css']
 })
 export class AddAdvertisementComponent implements OnInit {
+   
+    private maxByteSizeOfFile: number = 1048576;
 
     constructor(private http: HttpClient, private backendServer: BackEndService, private rls: RegisterLoginService, private router: Router) { }
 
     @Input() loggedUser: User;
 
     selectedImage: File = null;
+    private validFields:boolean;
 
     advertisement: Advertisement = {
         advertisementId: null,
@@ -63,7 +66,8 @@ export class AddAdvertisementComponent implements OnInit {
 
 
     onFileSelected(event) {
-        this.selectedImage = <File>event.target.files[0];
+        this.selectedImage = <File>event.target.files[0];         
+            this.validateFields();        
     }
 
 
@@ -79,4 +83,14 @@ export class AddAdvertisementComponent implements OnInit {
         }
     }
 
+    private validateFields(){  
+        debugger;
+        this.validFields =
+        this.advertisement.title != null && this.advertisement.title != undefined && this.advertisement.title.length > 4 &&
+        this.advertisement.information != null && this.advertisement.information != undefined && this.advertisement.information.length > 15 &&
+        this.advertisement.price != null && this.advertisement.price != undefined && Number(this.advertisement.price) >= 0 &&
+         this.selectedImage != null && this.selectedImage != undefined ;
+        //  && Number(this.selectedImage.size) >  this.maxByteSizeOfFile;         
+         
+    }
 }
