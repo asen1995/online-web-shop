@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-new-advertisement-group.component.css']
 })
 export class CreateNewAdvertisementGroupComponent implements OnInit {
+  private valid: boolean;
   
   private success: boolean;
 
@@ -39,5 +40,10 @@ export class CreateNewAdvertisementGroupComponent implements OnInit {
       () => { });
 
 
+  }
+
+  private validateGroupName(){
+    this.valid = this.advertisementGroupName != null && this.advertisementGroupName != undefined && this.advertisementGroupName.length > 3;
+    
   }
 }
