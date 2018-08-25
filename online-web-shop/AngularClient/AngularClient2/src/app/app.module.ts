@@ -20,6 +20,7 @@ import { ModalDialogModule } from 'ngx-modal-dialog';
 import { CreateNewAdvertisementGroupComponent } from './components/create-new-advertisement-group/create-new-advertisement-group.component';
 import { SearchByAdvertisementGroupComponent } from './components/search-by-advertisement-group/search-by-advertisement-group.component';
 import { MyAdvertisementsComponent } from './components/my-advertisements/my-advertisements.component';
+import { AdvertisementFullInformationComponent } from './components/advertisement-full-information/advertisement-full-information.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { MyAdvertisementsComponent } from './components/my-advertisements/my-adv
     AdminComponent,
     CreateNewAdvertisementGroupComponent,
     SearchByAdvertisementGroupComponent,
-    MyAdvertisementsComponent  
+    MyAdvertisementsComponent,
+    AdvertisementFullInformationComponent  
   ],
   imports: [
     BrowserModule,
