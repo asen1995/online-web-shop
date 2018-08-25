@@ -1,3 +1,4 @@
+import { AdvertisementFullInformationComponent } from './components/advertisement-full-information/advertisement-full-information.component';
 import { MyAdvertisementsComponent } from './components/my-advertisements/my-advertisements.component';
 import { SearchByAdvertisementGroupComponent } from './components/search-by-advertisement-group/search-by-advertisement-group.component';
 import { CreateNewAdvertisementGroupComponent } from './components/create-new-advertisement-group/create-new-advertisement-group.component';
@@ -21,9 +22,7 @@ const routes: Routes = [
   { path: 'newAdvertisementGroup', component: CreateNewAdvertisementGroupComponent },  
   { path: 'searchByAdvertisementGroup', component: SearchByAdvertisementGroupComponent },  
   { path: 'myAdvertisement', component: MyAdvertisementsComponent },  
-  
-  
-
+  { path: 'advertisementFullInformation', component: AdvertisementFullInformationComponent },    
   { path: '**', component: RegisterLoginComponent }
 ];
 
