@@ -1,3 +1,27 @@
-<p>
-  advertisement-full-information works!
-</p>
+<div class="advertisement-style-full">
+
+
+  <div class="images" *ngFor="let image of advertisement.images">
+    <img src="{{imageDecoder}},{{image.imageContent}}" width="250" height="250" />
+
+  </div>
+  <a class="title" (click)="showAdvertisement(advertisement);"> {{advertisement.title}} ss</a>
+  <span class="price"> {{advertisement.price}} lv</span>
+  <div>
+
+    <span>
+      <i class="fa fa-map-marker" aria-hidden="true"></i> {{advertisement.creator.city}} </span>
+    <span>
+      <i class="fa fa-calendar" aria-hidden="true"></i> {{advertisement.createDate}} </span>
+
+      <div class="information-blog"> {{advertisement.information}}</div>
+
+      <div>created by : <a (click)="openProfile(advertisement.creator);"> {{advertisement.creator.username}} </a> </div>
+    <div class="like-icon">
+      <i *ngIf="!advertisement.loggedUserLike" class="fa fa-thumbs-o-up " (click)="addLike(advertisement);"> </i>
+      <i *ngIf="advertisement.loggedUserLike" class="fa fa-thumbs-down" (click)="dislike(advertisement);"></i>
+      {{advertisement.likes.likeCount}}
+    </div>
+
+  </div>
+</div>

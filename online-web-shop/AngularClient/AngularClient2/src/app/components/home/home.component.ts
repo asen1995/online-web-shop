@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { Advertisement } from './../../models/Advertisement';
 import { Component, OnInit, Input } from '@angular/core';
 
 import { User } from '../../models/User';
@@ -18,7 +20,8 @@ export class HomeComponent implements OnInit {
 
   @Input() loggedUser: User;
 
-  constructor(private rls: RegisterLoginService, private http: HttpClient, private backendServer: BackEndService) { }
+  constructor(private rls: RegisterLoginService, private http: HttpClient, private backendServer: BackEndService
+  , private router: Router) { }
 
   showLgnScr: boolean;
   newAdvertisement: boolean;
@@ -28,7 +31,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.showLgnScr = false;
-   
+   debugger;
     if (this.loggedUser === null || this.loggedUser === undefined) {
       this.loggedUser = this.rls.getUser();   
       if(this.loggedUser === null ){
@@ -48,6 +51,7 @@ export class HomeComponent implements OnInit {
     return this.http.get(this.backendServer.getServer() + "edit/getAdvertisements")
       .subscribe(data => {
         this.advertisements = data;
+        console.log(this.advertisements);
      
       });
   }
@@ -158,4 +162,11 @@ export class HomeComponent implements OnInit {
   
 
       }
+
+      private showAdvertisement(advertisement : Advertisement) {
+        localStorage.removeItem('selectedAdvertisement');
+        localStorage.setItem("selectedAdvertisement", JSON.stringify(advertisement));
+        this.router.navigate(['/advertisementFullInformation']);    
+      }
+
 }

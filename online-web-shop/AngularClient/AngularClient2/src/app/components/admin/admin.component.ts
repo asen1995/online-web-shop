@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { Advertisement } from './../../models/Advertisement';
 import { User } from './../../models/User';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -27,7 +29,7 @@ export class AdminComponent implements OnInit {
 
   private selectedGroup: any;
 
-  constructor(private rls: RegisterLoginService, private http: HttpClient, private backendServer: BackEndService) { }
+  constructor(private rls: RegisterLoginService, private http: HttpClient, private backendServer: BackEndService,private router: Router) { }
 
 
   ngOnInit() {
@@ -103,6 +105,11 @@ export class AdminComponent implements OnInit {
       response => { },
       () => { });
 
-  }       
+  }     
 
+  private showAdvertisement(advertisement : Advertisement) {
+    localStorage.removeItem('selectedAdvertisement');
+    localStorage.setItem("selectedAdvertisement", JSON.stringify(advertisement));
+    this.router.navigate(['/advertisementFullInformation']);    
+  }
 }

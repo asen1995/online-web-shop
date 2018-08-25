@@ -1,0 +1,14 @@
+.advertisement-style-full{  font-size: 70px;
+    width: 84%;
+   margin-left: 9%;
+   margin-top: 2%;
+    padding : 1%;    
+    background-color: yellow;
+    border-style: solid;
+    height: 800px;
+}
+.information-blog{
+    width: 98%;
+    height: 10%;
+    overflow-wrap: break-word;
+}

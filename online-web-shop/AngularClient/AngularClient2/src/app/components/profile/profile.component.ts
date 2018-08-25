@@ -21,16 +21,19 @@ export class ProfileComponent implements OnInit {
   @Input() loggedUser: User;
 
 
-  @Input() advertisementByUser : Advertisement;
+  @Input() advertisementByUser: Advertisement;
 
   imageDecoder: string = ImageDecoder.DECODER;
+
+  private selectedUser : User;
 
   constructor(private rls: RegisterLoginService, private http: HttpClient, private backendServer: BackEndService, private router: Router) { }
 
 
   ngOnInit() {
-
-    if (this.rls.isUserLogged()) {
+    if (this.isSelectedUser()) {
+    }
+    else if (this.rls.isUserLogged()) {
       this.loggedUser = this.rls.getUser();
     }
     else {
@@ -38,4 +41,15 @@ export class ProfileComponent implements OnInit {
     }
 
   }
+
+  private isSelectedUser() {
+  this.selectedUser = this.rls.getSelectedUser();
+    if (this.selectedUser != null) {
+      this.loggedUser = this.selectedUser;
+      localStorage.removeItem('selectedUser');
+      return true;
+    }
+    return false;
+  }
+
 }

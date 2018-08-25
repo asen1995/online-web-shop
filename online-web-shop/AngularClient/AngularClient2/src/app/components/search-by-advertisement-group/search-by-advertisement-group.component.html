@@ -14,7 +14,7 @@
         <img src="{{imageDecoder}},{{image.imageContent}}" width="250" height="250" />
 
     </div>
-    <span class="title"> {{advertisement.title}}</span>
+    <a class="title" (click)="showAdvertisement(advertisement);"> {{advertisement.title}}</a>
     <span class="price"> {{advertisement.price}} lv</span>
 
     <div>

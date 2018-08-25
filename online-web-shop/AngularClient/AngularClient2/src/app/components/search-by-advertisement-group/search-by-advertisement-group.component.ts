@@ -1,3 +1,5 @@
+import { Advertisement } from './../../models/Advertisement';
+import { Router } from '@angular/router';
 import { ImageDecoder } from './../../models/ImageDecoder';
 import { Group } from './../../models/Group';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -24,7 +26,7 @@ export class SearchByAdvertisementGroupComponent implements OnInit {
   advertisements: Object;
   imageDecoder: string = ImageDecoder.DECODER;
 
-  constructor(private http: HttpClient, private backendServer: BackEndService) { }
+  constructor(private http: HttpClient, private backendServer: BackEndService ,private router: Router) { }
 
   ngOnInit() {
     this.getExistingGroups();
@@ -66,5 +68,10 @@ export class SearchByAdvertisementGroupComponent implements OnInit {
         return this.groups[group].groupId;
       }
     }
+  }
+  private showAdvertisement(advertisement : Advertisement) {
+    localStorage.removeItem('selectedAdvertisement');
+    localStorage.setItem("selectedAdvertisement", JSON.stringify(advertisement));
+    this.router.navigate(['/advertisementFullInformation']);    
   }
 }

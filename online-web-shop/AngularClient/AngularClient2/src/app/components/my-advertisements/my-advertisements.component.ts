@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { Advertisement } from './../../models/Advertisement';
 import { RegisterLoginService } from './../../services/registerLogin.service';
 import { BackEndService } from './../../services/backEndService.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -20,7 +22,8 @@ export class MyAdvertisementsComponent implements OnInit {
     advertisements: Object;
     imageDecoder: string = ImageDecoder.DECODER;
   
-    constructor(private http: HttpClient, private backendServer: BackEndService,private userInformation: RegisterLoginService) { }
+    constructor(private http: HttpClient, private backendServer: BackEndService,private userInformation: RegisterLoginService
+    , private router: Router) { }
   
     ngOnInit() {
 
@@ -63,5 +66,10 @@ export class MyAdvertisementsComponent implements OnInit {
       response => { },
       () => { });
 
+    }
+    private showAdvertisement(advertisement : Advertisement) {
+      localStorage.removeItem('selectedAdvertisement');
+      localStorage.setItem("selectedAdvertisement", JSON.stringify(advertisement));
+      this.router.navigate(['/advertisementFullInformation']);    
     }
 }

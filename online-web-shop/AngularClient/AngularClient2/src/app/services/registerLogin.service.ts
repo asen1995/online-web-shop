@@ -120,7 +120,10 @@ export class RegisterLoginService {
     getUser(): User {
         return JSON.parse(localStorage.getItem("user"));
     }
-
+    
+    getSelectedUser(): User {
+        return JSON.parse(localStorage.getItem("selectedUser"));
+    }
     isUserLogged(): boolean {
 
         if (localStorage.getItem("user") != null || localStorage.getItem("user") != undefined) {
