@@ -57,7 +57,7 @@
  .header-title{
      color:yellow;
       
-     margin-left: 21%;
+     margin-left: 25%;
      margin-bottom: -38px;    
      font-size: 800%;
      font-style: italic;
@@ -132,7 +132,13 @@ color: yellow;
     font-size: 40px;
     color: yellow;
 }
-
+.validation-fail-message{
+    font-family: italic;
+    font-size: 29px;
+    font-weight:bold;
+    color: black;
+    display: block;
+}
 .create-button{
     margin-top: 5%;
     width: 39%;

@@ -8,18 +8,26 @@
         <div>
               <span class="login-reg-field-text">  username : </span>
                 <input class="login-reg-input-field" [(ngModel)]="rls.user.username" type="text" placeholder="username" minlength="5" maxlength="25" required>
+                <span class="validation-fail-message" *ngIf="!usernameValid" > 
+                        {{errorMessages.INVALID_USERNAME_REGISTRATION}} </span>
         </div>
 
         <div>
                         <span class="login-reg-field-text">    password : </span>
                 <input class="login-reg-input-field" [(ngModel)]="rls.user.password" type="password" placeholder="password" minlength="5" maxlength="25" required>
+                <span class="validation-fail-message" *ngIf="!passwordValid" > 
+                                {{errorMessages.INVALID_PASSWORD_REGISTRATION}} </span>
+            
         </div>
 </div>
         <div class="registerInputForm" *ngIf="registration">
 
                 <div >
                                 <span class="login-reg-field-text">        image : </span> <input type="file" style="display: inline-block;margin-left: 3%;" (change)="onFileSelected($event);"/>
-                </div>
+            
+                                <span class="validation-fail-message" *ngIf="!userImageValid" > 
+                                                {{errorMessages.INVALID_IMAGE_REGISTRATION}} </span>
+                        </div>
                 <div>
                                 <span class="login-reg-field-text">              country : </span>
                         <input class="login-reg-input-field" style="margin-left:2%;" [(ngModel)]="rls.user.country" type="text" placeholder="country" required>
@@ -28,16 +36,23 @@
                 <div>
                                 <span class="login-reg-field-text">           city : </span>
                         <input class="login-reg-input-field"  style="margin-left:6%;" [(ngModel)]="rls.user.city" type="text" placeholder="city" maxlength="30" required>
+                        <span class="validation-fail-message" *ngIf="!cityValid" > 
+                                        {{errorMessages.INVALID_CITY_REGISTRATION}} </span>
+                    
                 </div>
 
                 <div>
                                 <span class="login-reg-field-text">          telephone : </span>
                         <input class="login-reg-input-field"  [(ngModel)]="rls.user.telephone" type="text" placeholder="telephone" maxlength="20" required>
+                        <span class="validation-fail-message" *ngIf="!telephoneValid" > 
+                                        {{errorMessages.INVALID_TELEPHONE_REGISTRATION}} </span>
                 </div>
 
                 <div>
                                 <span class="login-reg-field-text">       mail : </span>
                         <input class="login-reg-input-field"  style="margin-left:5%;"[(ngModel)]="rls.user.mail" type="text" placeholder="mail" minlength="10" maxlength="30" required>
+                        <span class="validation-fail-message" *ngIf="!mailValid" > 
+                                        {{errorMessages.INVALID_MAIL_REGISTRATION}} </span>
                 </div> 
         </div>
 
@@ -59,7 +74,7 @@
                         registered successfully
                 </div>
                 <div *ngIf="!rls.registrationSuccess">
-                        registration failed
+                        user with name {{rls.user.username}} already exists
                 </div>
 
 

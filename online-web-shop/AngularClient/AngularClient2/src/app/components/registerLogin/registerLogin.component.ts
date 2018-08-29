@@ -1,3 +1,4 @@
+import { constants } from './../../constants';
 import { Component, OnInit } from '@angular/core';
 
 import { User } from '../../models/User';
@@ -22,8 +23,16 @@ export class RegisterLoginComponent implements OnInit {
 
   registrationSuccess: boolean;
 
-
-
+  private usernameValid: boolean = true;
+  private passwordValid: boolean = true;
+  private countryValid: boolean = true;
+  private cityValid: boolean = true;
+  private telephoneValid: boolean = true;
+  private mailValid: boolean = true;
+  private userImageValid: boolean = true;
+  
+  private errorMessages : any = constants.ERROR_MESSAGES;
+  
   ngOnInit() {
     //this.router.navigate(['/home']);
   
@@ -37,7 +46,9 @@ export class RegisterLoginComponent implements OnInit {
   }
 
   register() {
-    this.rls.registerUser();
+    if(this.validUserInformation()){
+         this.rls.registerUser();
+    }
   }
 
 
@@ -64,4 +75,17 @@ export class RegisterLoginComponent implements OnInit {
     this.rls.user.userImage = <File>event.target.files[0];
   }
 
+  private validUserInformation(){
+    var userInformation : User = this.rls.user; 
+    
+    this.usernameValid = (userInformation.username.match(constants.REGULAR_EXPRESSIONS.usernameRegex) != null);
+    this.passwordValid = (userInformation.password.match(constants.REGULAR_EXPRESSIONS.passwordRegex) != null);
+    this.cityValid = (userInformation.city.match(constants.REGULAR_EXPRESSIONS.cityRegex) != null);
+    this.telephoneValid = (userInformation.telephone.match(constants.REGULAR_EXPRESSIONS.telephoneRegex) != null);
+    this.mailValid = (userInformation.mail.match(constants.REGULAR_EXPRESSIONS.mailRegex) != null);
+    this.userImageValid = this.rls.user.userImage != null;
+    
+    return (this.usernameValid && this.passwordValid && this.cityValid
+       && this.telephoneValid && this.mailValid && this.userImageValid);
+  }
 }
