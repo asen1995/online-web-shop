@@ -70,11 +70,11 @@
 
         <div *ngIf="rls.showRegistrationMessage">
 
-                <div *ngIf="rls.registrationSuccess">
+                <div class="successful-register" *ngIf="rls.registrationSuccess">
                         registered successfully
                 </div>
-                <div *ngIf="!rls.registrationSuccess">
-                        user with name {{rls.user.username}} already exists
+                <div class="unsuccessful-register"  *ngIf="!rls.registrationSuccess">
+                        user with name <span class="existing-username"> "{{rls.user.username}}" </span> already exists
                 </div>
 
 

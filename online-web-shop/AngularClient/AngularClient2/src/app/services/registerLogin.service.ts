@@ -79,6 +79,7 @@ export class RegisterLoginService {
     updateMessageStatus(response) {
         if (response == constants.REGISTRATION_SUCCESS) {
             this.registrationSuccess = this.showRegistrationMessage = true;
+            this.loginUser();
         } else {
             this.registrationSuccess = false;
             this.showRegistrationMessage = true;

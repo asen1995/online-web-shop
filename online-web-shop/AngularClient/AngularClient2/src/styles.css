@@ -228,3 +228,16 @@ color: yellow;
     font-size: 106px;
     margin-top: -3%;
 }
+.successful-register{
+    color:yellow;
+    font-size:30px;
+    font-weight: bold;
+}
+.unsuccessful-register{
+    font-size:30px;
+    font-weight: bold;
+    margin-left: -11%;
+}
+.existing-username{
+    color:yellow;    
+}
