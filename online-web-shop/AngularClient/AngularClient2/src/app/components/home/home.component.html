@@ -1,46 +1,66 @@
 <div id="home">
 
-   
-    <div *ngIf="!newAdvertisement && !showUserProfile">       
-<!-- 
+
+    <div *ngIf="!newAdvertisement && !showUserProfile">
+        <!-- 
 
         <a (click)="createAdvertisementScreen();"> create you advertisement </a> -->
 
         <div class="current-advertisement">Current advertisements </div>
 
-<div>
-     
-        <div class="advertisement-style" *ngFor="let advertisement of advertisements">
+        <div>
 
-           
-            <div class="images" *ngFor="let image of advertisement.images">
-                <img src="{{imageDecoder}},{{image.imageContent}}" width="250" height="250" />
+            <div class="advertisement-style" *ngFor="let advertisement of advertisements">
 
-            </div>
-            <a class="title" (click)="showAdvertisement(advertisement);"> {{advertisement.title}}</a>
-            <span class="price"> {{advertisement.price}} lv</span>
-            
-           
-            <span *ngIf="advertisement.creator != null && loggedUser != null && advertisement.creator.username === loggedUser.username" 
-            style="float: right;" (click)="deleteAdvertisement(advertisement.advertisementId);">
-             <i class="fa fa-remove" style="font-size:48px;color:red"></i> 
-            </span> 
-        
-            <div>
-                   
-                     <span> <i class="fa fa-map-marker" aria-hidden="true"></i> {{advertisement.creator.city}} </span>
-                     <span> <i class="fa fa-calendar" aria-hidden="true"></i> {{advertisement.createDate}} </span>
-                     
-                     <div class="like-icon">
-                     <i *ngIf="!advertisement.loggedUserLike" class="fa fa-thumbs-o-up "
-                     (click)="addLike(advertisement);">  </i>
-                     <i *ngIf="advertisement.loggedUserLike" class="fa fa-thumbs-down" (click)="dislike(advertisement);"></i>
-                     {{advertisement.likes.likeCount}}
+
+                <div class="images" *ngFor="let image of advertisement.images">
+                    <img src="{{imageDecoder}},{{image.imageContent}}" width="250" height="250" />
+
+                </div>
+                <a class="title" (click)="showAdvertisement(advertisement);"> {{advertisement.title}}</a>
+                <span class="price"> {{advertisement.price}} lv</span>
+
+
+                <span *ngIf="advertisement.creator != null && loggedUser != null && advertisement.creator.username === loggedUser.username"
+                    style="float: right;" (click)="deleteAdvertisement(advertisement.advertisementId);">
+                    <i class="fa fa-remove" style="font-size:48px;color:red"></i>
+                </span>
+
+                <div>
+
+                    <span>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i> {{advertisement.creator.city}} </span>
+                    <span>
+                        <i class="fa fa-calendar" aria-hidden="true"></i> {{advertisement.createDate}} </span>
+
+                    <div class="like-icon">
+                        <i *ngIf="!advertisement.loggedUserLike" class="fa fa-thumbs-o-up " (click)="addLike(advertisement);"> </i>
+                        <i *ngIf="advertisement.loggedUserLike" class="fa fa-thumbs-down" (click)="dislike(advertisement);"></i>
+                        {{advertisement.likes.likeCount}}
+
+
+                        <i *ngIf="!advertisement.showUserLiked" class="fa fa-caret-down" (click)="getUsersThatLikeThis(advertisement)"></i>
+                        <i *ngIf="advertisement.showUserLiked" class="fa fa-caret-up" (click)="advertisement.showUserLiked = false"></i>
+                        <div *ngIf="advertisement.showUserLiked && advertisement.peopleWhoLiked != null">
+
+                            <div class="navbar navbar-inverse" style="position:absolute">
+                                <div class="container-fluid">
+                                    <div class="navbar-header">
+                                        <a class="navbar-brand" href="#"></a>
+                                    </div>
+                                    <ul class="nav nav-pils nav-stacked">
+                                        <li *ngFor="let user of advertisement.peopleWhoLiked">
+                                            <a> {{user}} </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
 

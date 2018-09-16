@@ -29,6 +29,8 @@ export class HomeComponent implements OnInit {
   showUserProfile: boolean;
   imageDecoder: string = ImageDecoder.DECODER;
 
+  private clickedAdvertisementSeePeople : any;
+
   ngOnInit() {
     this.showLgnScr = false;
    debugger;
@@ -91,6 +93,7 @@ export class HomeComponent implements OnInit {
 
   addLike(advertisement): void {
    
+    debugger;
     var like = advertisement.likes;
    
     const params =
@@ -128,7 +131,7 @@ export class HomeComponent implements OnInit {
             
     
           };
-    
+          debugger;
         this.http.post(this.backendServer.getServer() + "edit/dislike",'', params)    
           .subscribe(
           (val) => {
@@ -169,4 +172,26 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['/advertisementFullInformation']);    
       }
 
+      public getUsersThatLikeThis(advertisement : any){
+        advertisement.showUserLiked = true;
+        this.clickedAdvertisementSeePeople = advertisement;
+        this.getPeopleThatLiked(advertisement.likes.likeId);
+      }
+    
+
+      getPeopleThatLiked(likeId): any {
+        
+            const params =
+            {
+                params: new HttpParams()
+                    .set('likeId',likeId)
+        
+            };           
+                return this.http.get(this.backendServer.getServer() + "edit/getPeopleThatLiked",params)
+                  .subscribe(data => {
+                    this.clickedAdvertisementSeePeople.peopleWhoLiked = data;
+                    debugger;
+              
+                  });
+              }
 }
