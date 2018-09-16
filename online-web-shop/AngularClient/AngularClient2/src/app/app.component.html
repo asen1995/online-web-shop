@@ -16,33 +16,33 @@
           <a class="navbar-brand" href="#"></a>
         </div>
         <ul class="nav navbar-nav">         
-          <li class="active">
+          <li class="active" (click)="setActive($event)" >
               <a routerLink="/home">home </a>
             </li>
-          <li>
+          <li (click)="setActive($event)">
             <a routerLink="/addAdvertisement"> create new advertisement </a>
           </li>       
-          <li>
+          <li (click)="setActive($event)" >
               <a routerLink="/searchByAdvertisementGroup" >Advanced search              
                 <span class="glyphicon glyphicon-search"></span>
               </a>
             </li>
-            <li *ngIf="loggedUser != null">
+            <li *ngIf="loggedUser != null" (click)="setActive($event)">
               <a routerLink="/myAdvertisement" > My Advertisement </a>
             </li>
-            <li *ngIf="loggedUser != null && loggedUser.user_state === 2">
+            <li *ngIf="loggedUser != null && loggedUser.user_state === 2" (click)="setActive($event)">
                 <a routerLink="/admin" > Approval <i class="fa fa-shield" aria-hidden="true"></i> </a>
               </li>
-              <li *ngIf=" loggedUser != null && loggedUser.user_state === 2"> 
+              <li *ngIf=" loggedUser != null && loggedUser.user_state === 2" (click)="setActive($event)"> 
                 <a routerLink="/newAdvertisementGroup" >new Group <i class="fa fa-shield" aria-hidden="true"></i> </a>
               </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li *ngIf="!loggedUser">
+          <li *ngIf="!loggedUser" (click)="setActive($event)">
             <a routerLink="/login">
               <span class="glyphicon glyphicon-log-in"></span> Login</a>
           </li>
-          <li *ngIf="loggedUser">
+          <li *ngIf="loggedUser" (click)="setActive($event)" >
             <a>
               <span> <a routerLink="/profile"> {{loggedUser.username}} </a> </span> <span class="glyphicon glyphicon-log-out" (click)="logout();"></span> Logout </a>
           </li>

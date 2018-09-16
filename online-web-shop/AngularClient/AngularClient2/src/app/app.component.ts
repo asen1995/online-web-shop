@@ -30,4 +30,13 @@ export class AppComponent implements OnInit {
     this.rls.logout();
    
   }
+
+
+  setActive(element) {
+    var elements = document.getElementsByClassName("active");
+    for (var el = 0; el<elements.length ; el++) {
+      elements[el].classList.remove("active");
+  }
+    element.currentTarget.classList.add("active");
+  };
 }
