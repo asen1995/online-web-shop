@@ -49,7 +49,7 @@
                                         <a class="navbar-brand" href="#"></a>
                                     </div>
                                     <ul class="nav nav-pils nav-stacked">
-                                        <li *ngFor="let user of advertisement.peopleWhoLiked">
+                                        <li *ngFor="let user of advertisement.peopleWhoLiked" (click)="openProfile(user)">
                                             <a> {{user}} </a>
                                         </li>
                                     </ul>

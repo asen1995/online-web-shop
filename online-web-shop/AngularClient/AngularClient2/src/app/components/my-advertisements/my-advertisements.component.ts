@@ -42,6 +42,7 @@ export class MyAdvertisementsComponent implements OnInit {
       return this.http.get(this.backendServer.getServer() + "edit/getLoggedUserAdvertisements", params)
         .subscribe(data => {
           this.advertisements = data;  
+          debugger;
           console.log(this.advertisements);
         });
     }

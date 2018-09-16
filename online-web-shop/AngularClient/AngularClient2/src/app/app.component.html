@@ -37,7 +37,7 @@
                 <a routerLink="/newAdvertisementGroup" >new Group <i class="fa fa-shield" aria-hidden="true"></i> </a>
               </li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right" style="cursor: pointer;">
           <li *ngIf="!loggedUser" (click)="setActive($event)">
             <a routerLink="/login">
               <span class="glyphicon glyphicon-log-in"></span> Login</a>
@@ -52,8 +52,8 @@
     </nav>
   
     <router-outlet></router-outlet>
-
-    <div style="margin-top: 4%;"> 
+  <footer>
+    <div style="margin-top: 4%; "> 
         
           <img class="shop-image-icon"
           src="https://cdn2.iconfinder.com/data/icons/shopping-e-commerce-3/512/laptop-store-512.png">
@@ -62,4 +62,5 @@
         <img class="shop-image-second-icon"
        src="https://cdn2.iconfinder.com/data/icons/shopping-e-commerce-3/512/laptop-store-512.png">
       </div>
+    </footer>
 </div>

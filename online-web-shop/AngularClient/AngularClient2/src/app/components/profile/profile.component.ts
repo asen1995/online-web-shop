@@ -31,7 +31,9 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit() {
+    debugger;
     if (this.isSelectedUser()) {
+      this.updateProfileCount(this.selectedUser.username);
     }
     else if (this.rls.isUserLogged()) {
       this.loggedUser = this.rls.getUser();
@@ -52,4 +54,23 @@ export class ProfileComponent implements OnInit {
     return false;
   }
 
-}
+  private updateProfileCount(username){
+   debugger;
+       const params =
+         {
+           params: new HttpParams()
+             .set("username", this.loggedUser.username) 
+         };
+   
+       this.http.post(this.backendServer.getServer() + "login/updateProfileCount",'', params)
+   
+         .subscribe(
+         (val) => {            
+         },
+         response => { },
+         () => { });
+   
+     }
+  }
+
+

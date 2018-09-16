@@ -60,7 +60,7 @@ export class SearchByAdvertisementGroupComponent implements OnInit {
     return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementByGroup", params)
       .subscribe(data => {
         this.advertisements = data;
-
+debugger;
       });
   }
 

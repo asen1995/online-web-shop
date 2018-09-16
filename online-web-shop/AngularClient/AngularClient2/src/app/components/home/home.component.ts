@@ -1,8 +1,8 @@
+import { User } from './../../models/User';
 import { Router } from '@angular/router';
 import { Advertisement } from './../../models/Advertisement';
 import { Component, OnInit, Input } from '@angular/core';
 
-import { User } from '../../models/User';
 import { UserStates } from '../../models/UserStates';
 import { RegisterLoginService } from '../../services/registerLogin.service';
 
@@ -30,6 +30,8 @@ export class HomeComponent implements OnInit {
   imageDecoder: string = ImageDecoder.DECODER;
 
   private clickedAdvertisementSeePeople : any;
+
+  private selectedUser: any;
 
   ngOnInit() {
     this.showLgnScr = false;
@@ -193,5 +195,34 @@ export class HomeComponent implements OnInit {
                     debugger;
               
                   });
+              }
+
+              openProfile(username){
+                const params =
+                {
+                    params: new HttpParams()
+                        .set('username', username)
+                           
+                };
+    
+            this.http.get(this.backendServer.getServer() + "login/getUserByUsername", params).subscribe(data => {
+    
+                // this.userIsLogged = true;
+                // this.user.userId = data.userId;
+                // this.user.username = data.username;
+                // //  this.password: data.password,
+                // this.user.password = null;
+                // this.user.country = data.country;
+                // this.user.city = data.city;
+                // this.user.telephone = data.telephone;
+                // this.user.mail = data.mail;
+                // this.user.user_state = data.user_state;
+                // this.user.userImages = data.images;
+                this.selectedUser = data;
+              localStorage.removeItem('selectedUser');
+              localStorage.setItem("selectedUser", JSON.stringify(this.selectedUser));
+              this.router.navigate(['/profile']);
+        
+            });
               }
 }
