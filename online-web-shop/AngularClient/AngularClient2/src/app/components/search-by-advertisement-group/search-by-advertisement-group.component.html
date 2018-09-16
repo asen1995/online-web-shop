@@ -4,8 +4,14 @@
         <option *ngFor="let group of groups" [ngValue]="c">{{group.groupName}}</option>
     </select>
     <span class="groups-message" [hidden]="!advertisements">Advertisement for selected group {{selectedGroupName}} : {{advertisements.length}}</span>
-    
-
+   
+</div>
+ 
+<div [hidden]="!advertisements" style="margin-left:24%" >
+        <span class="order-by-class"  (click)="mostExpencive();"> most expensive  </span>
+        <span class="order-by-class" (click)="lessExpencive();">  less expensive </span>
+        <span class="order-by-class"  (click)="getTheLatest();">  the latest  </span>
+        <span class="order-by-class" (click)="getTheOldest();">  the oldest </span>
 </div>
 
 <div class="advertisement-style" *ngFor="let advertisement of advertisements">

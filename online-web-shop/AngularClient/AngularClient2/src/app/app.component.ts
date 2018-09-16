@@ -12,10 +12,11 @@ export class AppComponent implements OnInit {
 
   @Input() loggedUser: User;
 
+   
 
   constructor(private rls: RegisterLoginService, private router: Router) { }
   ngOnInit() {
-
+    // alert(this.loggedUser.user_state);
     if (this.loggedUser === null || this.loggedUser === undefined) {
       this.loggedUser = this.rls.getUser();
      

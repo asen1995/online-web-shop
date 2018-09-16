@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class RegisterLoginComponent implements OnInit {
 
 
+
   constructor(private rls: RegisterLoginService, private router: Router) { }
 
 
@@ -30,14 +31,14 @@ export class RegisterLoginComponent implements OnInit {
   private telephoneValid: boolean = true;
   private mailValid: boolean = true;
   private userImageValid: boolean = true;
+
+  private errorMessages: any = constants.ERROR_MESSAGES;
+
+  private forgottenPassword: boolean;
   
-  private errorMessages : any = constants.ERROR_MESSAGES;
-  
-  ngOnInit() {
-    //this.router.navigate(['/home']);
-  
+  ngOnInit() { 
     if (this.rls.isUserLogged()) {
-          this.router.navigate(['/home']);
+      this.router.navigate(['/home']);
     } else {
       this.determineSelectedOperation();
       this.rls.showRegistrationMessage = false;
@@ -46,16 +47,16 @@ export class RegisterLoginComponent implements OnInit {
   }
 
   register() {
-    if(this.validUserInformation()){
-         this.rls.registerUser();
+    if (this.validUserInformation()) {
+      this.rls.registerUser();
     }
   }
 
 
   login() {
-if(this.validLoginUserInformation()){
-    this.rls.loginUser();
-}
+    if (this.validLoginUserInformation()) {
+      this.rls.loginUser();
+    }
   }
   determineSelectedOperation() {
     this.registration = (this.rls.currentOperation === UserAction.REGISTRATION) ? true : false;
@@ -68,40 +69,63 @@ if(this.validLoginUserInformation()){
 
   }
 
+
+  changeToForgottenPasswordScreen() {
+    this.clearInvalidMessages();
+    this.forgottenPassword = true;
+  }
+
+
+  backFromForgottenPasswordScreen() {
+    this.forgottenPassword = false;
+  }
   changeToLoginScreen() {
     this.clearInvalidMessages();
     this.rls.currentOperation = UserAction.LOGIN;
     this.determineSelectedOperation();
   }
 
+  resetPassword() {
+    alert("reset " + this.validForgottenPasswordInformation());
+  }
 
   onFileSelected(event) {
     this.rls.user.userImage = <File>event.target.files[0];
   }
 
-  private validLoginUserInformation(){
-    var userInformation : User = this.rls.user; 
-    
+  private validLoginUserInformation() {
+    var userInformation: User = this.rls.user;
+
     this.usernameValid = (userInformation.username.match(constants.REGULAR_EXPRESSIONS.usernameRegex) != null);
     this.passwordValid = (userInformation.password.match(constants.REGULAR_EXPRESSIONS.passwordRegex) != null);
-  
+
     return (this.usernameValid && this.passwordValid);
   }
-  private validUserInformation(){
-    var userInformation : User = this.rls.user; 
-    
+
+  private validForgottenPasswordInformation() {
+    var userInformation: User = this.rls.user;
+
+    this.usernameValid = (userInformation.username.match(constants.REGULAR_EXPRESSIONS.usernameRegex) != null);
+    this.telephoneValid = (userInformation.telephone.match(constants.REGULAR_EXPRESSIONS.telephoneRegex) != null);
+    this.mailValid = (userInformation.mail.match(constants.REGULAR_EXPRESSIONS.mailRegex) != null);
+
+    return (this.usernameValid && this.telephoneValid && this.mailValid);
+  }
+  private validUserInformation() {
+    var userInformation: User = this.rls.user;
+
     this.usernameValid = (userInformation.username.match(constants.REGULAR_EXPRESSIONS.usernameRegex) != null);
     this.passwordValid = (userInformation.password.match(constants.REGULAR_EXPRESSIONS.passwordRegex) != null);
     this.cityValid = (userInformation.city.match(constants.REGULAR_EXPRESSIONS.cityRegex) != null);
     this.telephoneValid = (userInformation.telephone.match(constants.REGULAR_EXPRESSIONS.telephoneRegex) != null);
     this.mailValid = (userInformation.mail.match(constants.REGULAR_EXPRESSIONS.mailRegex) != null);
     this.userImageValid = this.rls.user.userImage != null;
-    
+
     return (this.usernameValid && this.passwordValid && this.cityValid
-       && this.telephoneValid && this.mailValid && this.userImageValid);
+      && this.telephoneValid && this.mailValid && this.userImageValid);
   }
 
-  private clearInvalidMessages(){ 
-    this.usernameValid = this.passwordValid =  this.cityValid = this.telephoneValid =  this.mailValid =  this.userImageValid = true;
+  private clearInvalidMessages() {
+    this.usernameValid = this.passwordValid = this.cityValid = this.telephoneValid = this.mailValid = this.userImageValid = true;
   }
 }

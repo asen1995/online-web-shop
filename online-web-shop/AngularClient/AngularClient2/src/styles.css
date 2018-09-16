@@ -205,16 +205,17 @@ color: yellow;
 .login-register-button{
     width: 12%;
     height: 46px;
-    margin-left: 10%;
-    margin-top: 4%;
-
+    margin-left: 4%;
+    margin-top: 4%;  
+    font-size: 200%;
 }
 .already-registered{
-    width: 14%;
+    width: 20%;
     height: 48px;
     font-size: 145%;
     margin-top: 4%;
     margin-left: -3%;
+    font-size: 200%;
 }
 .profile-image{
     margin-left: 30%;
@@ -240,4 +241,15 @@ color: yellow;
 }
 .existing-username{
     color:yellow;    
+}
+.forgotten-password{
+    width: 36%;
+    margin-left: -3%;
+    margin-top: 1%;
+    font-size: 200%;
+}
+.order-by-class{
+    cursor: pointer;display: inline-block;color:yellow;
+    margin-left: 3%;
+    font-size: 50px;
 }

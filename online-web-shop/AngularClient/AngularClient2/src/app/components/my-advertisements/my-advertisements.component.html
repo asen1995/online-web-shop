@@ -21,6 +21,13 @@
           
             <span> <i class="fa fa-map-marker" aria-hidden="true"></i> {{advertisement.creator.city}} </span>
             <span> <i class="fa fa-calendar" aria-hidden="true"></i> {{advertisement.createDate}} </span>
+            <div style="font-size: 122%;display: inline-block;margin-left: 4%;">
+                state: 
+                <abbr title="Approved"><span *ngIf="advertisement.advertisementStatus === 'APR' " class="glyphicon glyphicon-ok"></span> </abbr>
+                <abbr title="rejected"> <span *ngIf="advertisement.advertisementStatus === 'RJT' " class="glyphicon glyphicon-remove"></span> </abbr>
+                 <abbr title="Waiting approve">   <span *ngIf="advertisement.advertisementStatus === 'WAP' " class="glyphicon glyphicon-refresh"></span> </abbr>
+                 <abbr title="Deleted">   <span *ngIf="advertisement.advertisementStatus === 'DEL' " class="glyphicon glyphicon-trash"></span> </abbr>
+               </div>
             
             <div class="like-icon">
             <i *ngIf="!advertisement.loggedUserLike" class="fa fa-thumbs-o-up "
@@ -28,12 +35,7 @@
             <i *ngIf="advertisement.loggedUserLike" class="fa fa-thumbs-down" (click)="dislike(advertisement);"></i>
             {{advertisement.likes.likeCount}}
            </div>
-           <div style="float:right;font-size:30px; display:inline-block">
-              <span *ngIf="advertisement.advertisementStatus === 'APR' " class="glyphicon glyphicon-ok"></span>
-              <span *ngIf="advertisement.advertisementStatus === 'RJT' " class="glyphicon glyphicon-remove"></span>
-              <span *ngIf="advertisement.advertisementStatus === 'WAP' " class="glyphicon glyphicon-refresh"></span>
-              <span *ngIf="advertisement.advertisementStatus === 'DEL' " class="glyphicon glyphicon-trash"></span>
-            </div>
+          
    </div>   
     
   </div>

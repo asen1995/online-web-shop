@@ -1,8 +1,12 @@
-<div id="registration" *ngIf="!rls.userIsLogged">
+<div id="registration" *ngIf="!rls.userIsLogged" >
 
-        <h1>
-                <span class="loginForm" *ngIf="!registration"> Login </span>
+        <h1 *ngIf="!forgottenPassword">
+                <span class="loginForm" *ngIf="!registration" style="margin-left: 4%;"> Login </span>
                 <span class="loginForm" *ngIf="registration"> Registration </span>
+        </h1>
+        <h1>
+                        <span class="loginForm" *ngIf="forgottenPassword" style="margin-left: -13%;"> Reset password </span>
+                       
         </h1>
  <div class="loginInputForm">
         <div>
@@ -12,7 +16,7 @@
                         {{errorMessages.INVALID_USERNAME_REGISTRATION}} </span>
         </div>
 
-        <div>
+        <div *ngIf="!forgottenPassword">
                         <span class="login-reg-field-text">    password : </span>
                 <input class="login-reg-input-field" [(ngModel)]="rls.user.password" type="password" placeholder="password" minlength="5" maxlength="25" required>
                 <span class="validation-fail-message" *ngIf="!passwordValid" > 
@@ -20,20 +24,21 @@
             
         </div>
 </div>
-        <div class="registerInputForm" *ngIf="registration">
+        <div class="registerInputForm" *ngIf="registration || forgottenPassword ">
 
-                <div >
+                <div *ngIf="!forgottenPassword" >
                                 <span class="login-reg-field-text">        image : </span> <input type="file" style="display: inline-block;margin-left: 3%;" (change)="onFileSelected($event);"/>
             
                                 <span class="validation-fail-message" *ngIf="!userImageValid" > 
                                                 {{errorMessages.INVALID_IMAGE_REGISTRATION}} </span>
-                        </div>
-                <div>
+                </div>
+
+                <div *ngIf="!forgottenPassword">
                                 <span class="login-reg-field-text">              country : </span>
                         <input class="login-reg-input-field" style="margin-left:2%;" [(ngModel)]="rls.user.country" type="text" placeholder="country" required>
                 </div>
 
-                <div>
+                <div *ngIf="!forgottenPassword">
                                 <span class="login-reg-field-text">           city : </span>
                         <input class="login-reg-input-field"  style="margin-left:6%;" [(ngModel)]="rls.user.city" type="text" placeholder="city" maxlength="30" required>
                         <span class="validation-fail-message" *ngIf="!cityValid" > 
@@ -57,8 +62,25 @@
         </div>
 
         <div *ngIf="!registration">
-                <button type="button" class="btn btn-warning already-registered" (click)="changeToRegistrationScreen()">not registered </button>
-                <button type="button" class="btn btn-primary login-register-button" (click)="login()"> Login </button>
+
+                <div *ngIf="!forgottenPassword" >
+                        <button type="button" class="btn btn-info already-registered" (click)="changeToRegistrationScreen()">not registered </button>
+
+                        <button type="button" class="btn btn-primary login-register-button" (click)="login()"> Login </button>
+
+                        <div>
+                                <button type="button" class="btn btn-warning forgotten-password" (click)="changeToForgottenPasswordScreen()"> Forgotten password </button>
+                                
+                        </div>
+                 </div>
+                
+                 <div *ngIf="forgottenPassword">
+                        <button  type="button" class="btn btn-info forgotten-password" (click)="resetPassword()"> Reset password </button>
+                        <div>
+                        <button  type="button" class="btn btn-warning forgotten-password" (click)="backFromForgottenPasswordScreen()"> Back </button>
+                           </div>
+                </div>
+                
         </div>
 
 
@@ -80,6 +102,37 @@
 
         </div>
 
+
+</div>
+
+
+<div *ngIf="false">
+
+                <div class="loginInputForm">
+                                <div>
+                                      <span class="login-reg-field-text">  username : </span>
+                                        <input class="login-reg-input-field" [(ngModel)]="rls.user.username" type="text" placeholder="username" minlength="5" maxlength="25" required>
+                                        <span class="validation-fail-message" *ngIf="!usernameValid" > 
+                                                {{errorMessages.INVALID_USERNAME_REGISTRATION}} </span>
+                                </div>
+                        
+                              
+                        </div>
+                        <div class="registerInputForm" *ngIf="registration">
+                                        <div>
+                                                        <span class="login-reg-field-text">          telephone : </span>
+                                                <input class="login-reg-input-field"  [(ngModel)]="rls.user.telephone" type="text" placeholder="telephone" maxlength="20" required>
+                                                <span class="validation-fail-message" *ngIf="!telephoneValid" > 
+                                                                {{errorMessages.INVALID_TELEPHONE_REGISTRATION}} </span>
+                                        </div>
+                        
+                                        <div>
+                                                        <span class="login-reg-field-text">       mail : </span>
+                                                <input class="login-reg-input-field"  style="margin-left:5%;"[(ngModel)]="rls.user.mail" type="text" placeholder="mail" minlength="10" maxlength="30" required>
+                                                <span class="validation-fail-message" *ngIf="!mailValid" > 
+                                                                {{errorMessages.INVALID_MAIL_REGISTRATION}} </span>
+                                        </div> 
+                                </div>
 
 </div>
 <div>

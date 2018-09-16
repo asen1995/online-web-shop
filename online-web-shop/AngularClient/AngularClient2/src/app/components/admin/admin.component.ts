@@ -76,7 +76,7 @@ export class AdminComponent implements OnInit {
         .set('advertisementId', advertisementId)
         .set('selectedGroupId', this.selectedGroupId)
         
-      };
+      };  
 
     this.http.post(this.backendServer.getServer() + "admin/approveAdvertisement", '', params)
       .subscribe(

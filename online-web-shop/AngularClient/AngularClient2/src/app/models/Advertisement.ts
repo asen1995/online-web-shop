@@ -1,4 +1,5 @@
-export class Advertisement {
+export class Advertisement {  showUserLiked: any;
+
     advertisementId : number;
     title: string;
     information: string;

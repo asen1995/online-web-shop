@@ -19,7 +19,11 @@ export class SearchByAdvertisementGroupComponent implements OnInit {
   private selectedGroupId: any;
   private selectedGroupName: any;
   
-
+  private mostExpenciveB :boolean = false;
+  private lessExpenciveB :boolean = false;
+  private getTheLatestB :boolean = false;
+  private getTheOldestB :boolean = false;
+  
   
   private selectedGroup: Object;
 
@@ -46,6 +50,11 @@ export class SearchByAdvertisementGroupComponent implements OnInit {
       {
         params: new HttpParams()
           .set('groupId', groupId)
+          .set('mostExpencive', String(this.mostExpenciveB))
+          .set('lessExpencive', String(this.lessExpenciveB))
+          .set('getTheLatest', String(this.getTheLatestB))
+          .set('getTheOldest', String(this.getTheOldestB))
+          
       };
 
     return this.http.get(this.backendServer.getServer() + "edit/getAdvertisementByGroup", params)
@@ -54,6 +63,31 @@ export class SearchByAdvertisementGroupComponent implements OnInit {
 
       });
   }
+
+  
+  private mostExpencive(){
+    this.mostExpenciveB = true;
+    this.lessExpenciveB =this.getTheLatestB =this.getTheOldestB=false;    
+    this.getAdvertisementByGroup(this.getAdvertisementByGroup(this.selectedGroupId));
+  }
+  private lessExpencive(){
+   
+    this.lessExpenciveB = true;
+    this.mostExpenciveB = this. getTheLatestB =this.getTheOldestB =false;
+    
+    this.getAdvertisementByGroup(this.getAdvertisementByGroup(this.selectedGroupId));
+  }
+  private getTheLatest(){
+    this.getTheLatestB = true;
+    this.mostExpenciveB = this.lessExpenciveB =this.getTheOldestB =false;    
+    this.getAdvertisementByGroup(this.getAdvertisementByGroup(this.selectedGroupId));
+  }
+  private getTheOldest(){
+    this.getTheOldestB = true;
+    this.mostExpenciveB = this.lessExpenciveB =this. getTheLatestB = false;
+    this.getAdvertisementByGroup(this.getAdvertisementByGroup(this.selectedGroupId));
+  }
+  
 
   private onGroupSelected(groupName) {  
     this.selectedGroupName = groupName;

@@ -20,15 +20,15 @@
               <a routerLink="/home">home </a>
             </li>
           <li>
-            <a routerLink="/addAdvertisement">new advertisement </a>
+            <a routerLink="/addAdvertisement"> create new advertisement </a>
           </li>       
           <li>
-              <a routerLink="/searchByAdvertisementGroup" >searchByAdvertisementGroup               
+              <a routerLink="/searchByAdvertisementGroup" >Advanced search              
                 <span class="glyphicon glyphicon-search"></span>
               </a>
             </li>
             <li *ngIf="loggedUser != null">
-              <a routerLink="/myAdvertisement" > myAdvertisement </a>
+              <a routerLink="/myAdvertisement" > My Advertisement </a>
             </li>
             <li *ngIf="loggedUser != null && loggedUser.user_state === 2">
                 <a routerLink="/admin" > Approval <i class="fa fa-shield" aria-hidden="true"></i> </a>
@@ -46,7 +46,7 @@
             <a>
               <span> <a routerLink="/profile"> {{loggedUser.username}} </a> </span> <span class="glyphicon glyphicon-log-out" (click)="logout();"></span> Logout </a>
           </li>
-  
+          
         </ul>
       </div>
     </nav>

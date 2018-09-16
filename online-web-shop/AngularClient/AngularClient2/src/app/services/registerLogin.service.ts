@@ -138,4 +138,5 @@ export class RegisterLoginService {
         this.router.navigate(['/home']);
         location.reload();
     }
+
 }
